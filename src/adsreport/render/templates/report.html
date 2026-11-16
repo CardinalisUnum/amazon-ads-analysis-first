@@ -87,11 +87,12 @@
 <h2>Run information and assumptions</h2>
 <p>{{ report.stamp.text }} · SAMPLE DATA</p>
 <p>{{ report.report_id }}</p>
+{% if report.run %}<p>Run {{ report.run.run_id }}. Started {{ report.run.started_at.isoformat() }}. Trigger: {{ report.run.trigger }}.</p>{% endif %}
 <p>AI request outcome: {{ report.commentary.request_status }}. Attempts: {{ report.commentary.attempts }}. Guard rejections: {{ report.commentary.guard_rejections }}.</p>
 <p>Delivery approval is a separate operational step. A human must review the frozen report before delivery.</p>
 <p>VAT, costs and rule thresholds are assumptions. <a href="{{ assumptions_url }}">Read the assumptions</a> and confirm them with the Ads manager. Organic share is a proxy. Advertising attribution may differ from retail reporting periods.</p>
 <h3>Source fingerprints</h3>{% for name,digest in report.source_hashes.items() %}<p class="hashes">{{ name }}: {{ digest }}</p>{% endfor %}<h3>Configuration fingerprints</h3>{% for name,digest in report.config_hashes.items() %}<p class="hashes">{{ name }}: {{ digest }}</p>{% endfor %}</section>
-<footer>{{ disclosure }} Report {{ report.report_id }}. {{ report.stamp.text }}.</footer>
+<footer>{{ disclosure }} Report {{ report.provenance }}. {{ report.stamp.text }}.</footer>
 </main>
 </body>
 </html>

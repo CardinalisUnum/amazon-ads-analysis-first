@@ -6,7 +6,7 @@ Read `docs/STATUS.md`, `docs/decisions.md`, `docs/SPEC.md` and `docs/RESUME.md` 
 
 ## Working agreement
 
-- The owner approved phase-by-phase work. At every phase gate, stop, report evidence and the full phase progress table with bars, commit and push, then ask for approval to begin the next phase. Record that approval before proceeding.
+- The owner initially approved phase-by-phase gates. On 2026-11-16 the owner authorized completing the remaining buildable work and consolidating owner-dependent setup at the end. Continue through buildable phases without repeated gate questions, while recording phase evidence, the full progress table, commits and pushes. Do not count external acceptance checks or the independent audit as complete without evidence.
 - Keep checkpoints small and use Conventional Commits. Push before handing control back. Report any failed push accurately and retry recoverable failures.
 - Keep credentials in ignored `.env` locally and Actions secrets remotely. Never publish original private handovers, prospect correspondence, project account IDs or credentials.
 - Use public LEGO catalog references with clearly labelled simulated independent retailer performance. Keep manufacturer set numbers distinct from sample ASINs and SKUs. Label sample outputs throughout.

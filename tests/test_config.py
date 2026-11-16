@@ -88,8 +88,8 @@ def test_cli_help(capsys: pytest.CaptureFixture[str]) -> None:
         ["deliver", "--report", "draft.json"],
     ],
 )
-def test_pending_commands_exit_without_success(
+def test_review_commands_require_an_explicit_frozen_version(
     args: list[str], capsys: pytest.CaptureFixture[str]
 ) -> None:
     assert main(args) == 2
-    assert "scheduled for" in capsys.readouterr().err
+    assert "expect-manifest" in capsys.readouterr().err

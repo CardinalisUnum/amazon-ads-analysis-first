@@ -10,6 +10,7 @@ from adsreport.guard.numbers import METRICS
 from adsreport.kpi.engine import ProductMetrics
 from adsreport.kpi.summary import PortfolioWeek, summarize
 from adsreport.rules.engine import Flag, RuleReport
+from adsreport.runlog import RunIdentity
 
 NAVY = "17324D"
 TEAL = "087F8C"
@@ -140,6 +141,15 @@ class ReportView:
     source_hashes: dict[str, str]
     config_hashes: dict[str, str]
     stamp: Stamp = Stamp()
+    run: RunIdentity | None = None
+
+    @property
+    def provenance(self) -> str:
+        return (
+            self.report_id
+            if self.run is None
+            else f"{self.report_id} | Run {self.run.run_id}"
+        )
 
     @property
     def current(self) -> PortfolioWeek:

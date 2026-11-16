@@ -83,7 +83,7 @@ def render_xlsx(view: ReportView) -> bytes:
         sheet.set_paper(9)
         sheet.fit_to_pages(1, 0)
         sheet.set_header("&L" + view.stamp.text + "&RSAMPLE DATA")
-        sheet.set_footer("&L" + view.report_id + "&RPage &P of &N")
+        sheet.set_footer("&L" + view.provenance + "&RPage &P of &N")
         sheet.write(
             "B2", "Weekly Amazon Ads review" if name == "Summary" else name, title
         )
@@ -358,6 +358,13 @@ def render_xlsx(view: ReportView) -> bytes:
         *view.source_hashes.items(),
         *view.config_hashes.items(),
     ]
+    if view.run is not None:
+        entries += [
+            ("Run ID", view.run.run_id),
+            ("Executed at UTC", view.run.started_at.isoformat()),
+            ("Trigger", view.run.trigger),
+            ("Git commit", view.run.git_sha),
+        ]
     for row, (label, entry_value) in enumerate(entries, 5):
         info.write(row, 1, label, text)
         info.write(row, 2, entry_value, wrapped)

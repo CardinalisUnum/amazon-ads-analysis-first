@@ -536,6 +536,18 @@ def test_euro_and_percentage_point_rounding() -> None:
     assert "-5.13 pp (down)" in render_claim(points)
 
 
+def test_quota_delay_over_job_budget_uses_visible_fallback(sample) -> None:
+    products, analysis = sample
+    request = Mock(side_effect=ProviderFailure(429, retry_after=121))
+    wait = Mock(side_effect=AssertionError("Excessive quota wait"))
+    result = generate_commentary(
+        products, analysis, no_ai=False, request=request, sleep=wait
+    )
+    assert result.request_status == "quota_retry_deferred"
+    assert request.call_count == 1
+    assert all(note.label == "template" for note in result.notes)
+
+
 @pytest.mark.parametrize("output", ['{"products":[]}', None])
 def test_sdk_text_response_or_missing_output(
     monkeypatch: pytest.MonkeyPatch,

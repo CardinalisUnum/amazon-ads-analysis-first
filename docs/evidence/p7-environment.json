@@ -1,0 +1,13 @@
+{
+  "environment": "client-delivery",
+  "required_reviewers": [
+    "CardinalisUnum"
+  ],
+  "prevent_self_review": false,
+  "deployment_branch_policy": {
+    "protected_branches": false,
+    "custom_branch_policies": true
+  },
+  "waiting_and_approved_hosted_states": "unverified: account runner lock",
+  "allowed_branch": "main"
+}

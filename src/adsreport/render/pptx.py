@@ -81,7 +81,7 @@ def render_pptx(view: ReportView) -> bytes:
         item = deck.slides.add_slide(deck.slide_layouts[6])
         text(item, title, 0.65, 0.45, 12, 0.7, 32, bold=True)
         text(item, f"SAMPLE DATA | {view.stamp.text}", 0.65, 6.7, 12, 0.3, 11, GRAY)
-        text(item, view.report_id, 0.65, 7.02, 12, 0.25, 9, GRAY)
+        text(item, view.provenance, 0.65, 7.02, 12, 0.25, 9, GRAY)
         return cast(Slide, item)
 
     def table(
@@ -188,7 +188,7 @@ def render_pptx(view: ReportView) -> bytes:
     )
     text(first, view.stamp.text, 0.7, 5.3, 12, 0.55, 18, bold=True)
     text(first, DISCLOSURE, 0.7, 6.2, 12, 0.7, 14, GRAY)
-    text(first, view.report_id, 0.7, 7.02, 12, 0.25, 9, GRAY)
+    text(first, view.provenance, 0.7, 7.02, 12, 0.25, 9, GRAY)
     data = chart_data(view)
     second = slide("Portfolio results")
     rows = [["Metric", "Current week", "Change vs prior"]] + [

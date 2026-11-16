@@ -10,7 +10,9 @@ def test_numerical_cli_matches_committed_snapshot(tmp_path: Path) -> None:
     output = tmp_path / "draft"
     args = ["run", "--input", "data/sample", "--out", str(output), "--no-ai"]
     assert main(args) == 0
-    assert main(args) == 0
+    frozen = {p.name: p.read_bytes() for p in output.iterdir()}
+    assert main(args) == 2
+    assert frozen == {p.name: p.read_bytes() for p in output.iterdir()}
     assert (output / "SAMPLE_kpis.csv").read_bytes() == Path(
         "tests/golden/SAMPLE_kpis.csv"
     ).read_bytes()

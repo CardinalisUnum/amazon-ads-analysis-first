@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P6 complete and verified locally. P7 awaits owner approval. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P7 implementation is locally verified with 222 tests. The owner authorized finishing remaining buildable work. External P7 acceptance and hosted CI P1-5 remain open; implementation readiness does not count as external acceptance.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
@@ -59,11 +59,11 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P6-4 | PDF from the HTML (WeasyPrint, local-only fetcher) | A4, no cut-off content; screenshots of every page | Complete. Local Pango setup verified. Eight A4 pages rendered and inspected. Strict WeasyPrint 70 fetcher blocks network/file resources and fails clearly. |
 | P6-5 | PPTX 5 slides per §8 | Opens cleanly; screenshots | Complete. Native PowerPoint opened/rendered five editable slides with native charts. Full commentary remains in notes. Screenshots in evidence/p6. |
 | P6-6 | Cross-output consistency test + DRAFT/APPROVED + SAMPLE stamps | Test passes | Complete. Tests compare displayed portfolio figures, full XLSX values, native chart data, labels and identities. Approval-display tests are injected only; real approval remains P7. |
-| P7-1 | `weekly-report.yml`: schedule (off-minute cron) + `workflow_dispatch`, `build` job uploads artifacts | Manual run green | Pending |
+| P7-1 | `weekly-report.yml`: schedule (off-minute cron) + `workflow_dispatch`, `build` job uploads artifacts | Manual run green | Implemented; blocked by runner account lock. See evidence/P7-REPORT.md. |
 | P7-2 | Run log JSONL committed per run + success-rate calculation | Log entries visible; rate in README | Pending |
-| P7-3 | `client-delivery` environment with required reviewer; `deliver` job waits for approval | Screenshot of the waiting and approved states | Pending |
-| P7-4 | Failure alerts through both email and Discord | Alert received (screenshot) | Pending |
-| P7-5 | Injected failure test, labelled `test_failure`, excluded from the success rate | Log + alert evidence | Pending |
+| P7-3 | `client-delivery` environment with required reviewer; `deliver` job waits for approval | Screenshot of the waiting and approved states | Configured owner reviewer/main branch; actual hosted states unverified. See evidence/p7-environment.json. |
+| P7-4 | Failure alerts through both email and Discord | Alert received (screenshot) | Adapters tested with mock transports; private destinations and real receipts needed. |
+| P7-5 | Injected failure test, labelled `test_failure`, excluded from the success rate | Log + alert evidence | Label/exclusion tested; real alert receipts needed. |
 | P7-6 | First **unattended** scheduled run succeeds (temporarily schedule a near-future run if needed, then restore the weekly cron) | Run URL showing the `schedule` trigger | Pending |
 | P8-1 | README: what it does, a 60-second quickstart, architecture diagram, screenshots, run history (real dates and counts), success rate, measured time saved | Owner approves | Pending |
 | P8-2 | PROCESS.md: the weekly Ads-review process as an analyst does it, including exceptions (this is the "expert know-how written down") | Owner approves | Pending |

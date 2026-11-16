@@ -1,0 +1,134 @@
+name: Weekly sample report
+on:
+  schedule:
+    - cron: '17 1 * * 1'
+  workflow_dispatch:
+    inputs:
+      no_ai:
+        description: Use deterministic templates without Gemini
+        type: boolean
+        default: true
+      inject_failure:
+        description: Label and exercise test_failure alerts
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    outputs:
+      manifest: ${{ steps.identity.outputs.manifest }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.13.8'
+          enable-cache: false
+      - run: uv sync --locked
+      - name: Install PDF native libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
+      - name: Generate a new sample draft
+        env:
+          NO_AI: ${{ github.event_name == 'workflow_dispatch' && inputs.no_ai }}
+          INJECT_FAILURE: ${{ inputs.inject_failure }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_FREE_TIER_CONFIRMED: ${{ vars.GEMINI_FREE_TIER_CONFIRMED }}
+          NOTIFY_ENABLED: ${{ vars.NOTIFY_ENABLED }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          flags=()
+          if [ "$NO_AI" = true ]; then flags+=(--no-ai); fi
+          if [ "$INJECT_FAILURE" = true ]; then flags+=(--inject-failure); fi
+          uv run adsreport run --input data/sample --out reports/draft "${flags[@]}"
+      - name: Record the exact review identity
+        id: identity
+        run: |
+          uv run adsreport inspect --report reports/draft > reports/identity.json
+          echo "manifest=$(uv run python -c 'import json; print(json.load(open("reports/identity.json"))["manifest_sha256"])')" >> "$GITHUB_OUTPUT"
+          echo 'Download SAMPLE-draft, review all files, and approve only this run. Sample data; no brand affiliation.' >> "$GITHUB_STEP_SUMMARY"
+          cat reports/identity.json >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: SAMPLE-draft
+          path: reports/draft/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Persist public execution evidence
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: uv run python scripts/persist_run_log.py
+
+  deliver:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: client-delivery
+    permissions:
+      actions: read
+      contents: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: '0.13.8'
+          enable-cache: false
+      - run: uv sync --locked
+      - name: Install PDF native libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: SAMPLE-draft
+          path: reports/draft
+      - name: Verify actual owner review and freeze approved output
+        env:
+          EXPECTED_MANIFEST: ${{ needs.build.outputs.manifest }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          uv run adsreport approve --report reports/draft --expect-manifest "$EXPECTED_MANIFEST" --github-review --out reports/approved > reports/approval-result.json
+      - name: Deliver the exact approved archive
+        env:
+          NOTIFY_ENABLED: ${{ vars.NOTIFY_ENABLED }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          SMTP_FROM: ${{ secrets.SMTP_FROM }}
+          SMTP_TO: ${{ secrets.SMTP_TO }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          digest=$(uv run python -c 'import json; print(json.load(open("reports/approval-result.json"))["manifest_sha256"])')
+          uv run adsreport deliver --report reports/approved --expect-manifest "$digest"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: SAMPLE-approved
+          path: reports/approved/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Persist public approval and delivery evidence
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: uv run python scripts/persist_run_log.py

@@ -3,7 +3,6 @@
 import hashlib
 import json
 import math
-import os
 import time
 from collections import Counter
 from collections.abc import Callable, Sequence
@@ -17,6 +16,7 @@ from pydantic import ValidationError
 
 from adsreport.ai.fallback import REVIEWS, allowed_reviews, template_note
 from adsreport.ai.models import Commentary, Draft, DraftBatch, Note, StrictModel
+from adsreport.environment import read_environment
 from adsreport.guard.numbers import (
     METRICS,
     NUMBER,
@@ -135,22 +135,9 @@ def request_gemini(prompt: str, model: str, key: str) -> str:
 
 
 def credentials(env_file: Path) -> tuple[str, bool]:
-    settings = {
-        name: os.environ[name]
-        for name in (
-            "GEMINI_API_KEY",
-            "GEMINI_FREE_TIER_CONFIRMED",
-        )
-        if name in os.environ
-    }
-    if env_file.exists():
-        for line in env_file.read_text(encoding="utf-8-sig").splitlines():
-            name, separator, value = line.partition("=")
-            if separator and name.strip() in {
-                "GEMINI_API_KEY",
-                "GEMINI_FREE_TIER_CONFIRMED",
-            }:
-                settings.setdefault(name.strip(), value.strip().strip("\"'"))
+    settings = read_environment(
+        ("GEMINI_API_KEY", "GEMINI_FREE_TIER_CONFIRMED"), env_file
+    )
     return settings.get("GEMINI_API_KEY", ""), settings.get(
         "GEMINI_FREE_TIER_CONFIRMED", ""
     ).lower() == "true"
@@ -195,6 +182,7 @@ def generate_commentary(
     env_file: Path = Path(".env"),
     request: Callable[[str, str, str], str] = request_gemini,
     sleep: Callable[[float], None] = time.sleep,
+    max_retry_wait: float = 120,
 ) -> Commentary:
     products = sorted(
         (r for r in records if r.week == analysis.report_week), key=lambda r: r.asin
@@ -247,6 +235,8 @@ def generate_commentary(
             if exc.code == 429 and attempt == 0:
                 if not math.isfinite(exc.retry_after):
                     return batch_fallback("quota_retry_invalid")
+                if exc.retry_after > max_retry_wait:
+                    return batch_fallback("quota_retry_deferred")
                 remaining = max(0, exc.retry_after)
                 while remaining:
                     pause = min(remaining, 60)
