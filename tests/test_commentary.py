@@ -298,6 +298,10 @@ def test_provider_failures_never_fail_report(
     assert result.request_status == reason
     assert all(n.reason == reason and n.label == "template" for n in result.notes)
     assert "secret" not in result.model_dump_json()
+    if isinstance(failure, ProviderFailure):
+        assert result.provider_error_status == failure.code
+    else:
+        assert result.provider_error_status is None
 
 
 def test_single_quota_retry_can_recover(

@@ -11,8 +11,13 @@ requires-python = ">=3.13,<3.14"
 license = "MIT"
 dependencies = [
     "google-genai==3.3.0",
+    "jinja2==3.1.6",
+    "matplotlib==3.11.2",
     "pydantic==2.14.3",
+    "python-pptx==1.0.2",
     "PyYAML==6.0.3",
+    "weasyprint==70.0",
+    "xlsxwriter==3.3.1",
 ]
 
 [project.scripts]
@@ -22,6 +27,8 @@ adsreport = "adsreport.cli:main"
 dev = [
   "hypothesis==6.170.15",
   "mypy==2.4.1",
+  "openpyxl==3.1.5",
+  "pypdf==7.1.0",
   "pytest==9.2.0",
   "pytest-cov==7.1.0",
   "ruff==0.17.5",
@@ -43,6 +50,11 @@ select = ["E", "F", "I", "UP", "B"]
 python_version = "3.13"
 strict = true
 files = ["src"]
+
+[[tool.mypy.overrides]]
+module = "adsreport.render.pptx"
+# python-pptx 1.0.2 exposes some unannotated chart/color constructors.
+disallow_untyped_calls = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

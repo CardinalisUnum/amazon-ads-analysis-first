@@ -12,6 +12,12 @@ from adsreport.artifacts import publish_bundle
 from adsreport.config import Configuration
 from adsreport.io.loader import InputError, load_inputs
 from adsreport.kpi.engine import ProductMetrics, calculate_report
+from adsreport.render.charts import render_charts
+from adsreport.render.html import render_html
+from adsreport.render.model import make_view, view_manifest
+from adsreport.render.pdf import render_pdf
+from adsreport.render.pptx import render_pptx
+from adsreport.render.xlsx import render_xlsx
 from adsreport.rules.engine import evaluate_rules
 
 
@@ -70,10 +76,16 @@ def run_numerical_draft(
         model=config.settings.gemini_model,
         limit=config.settings.commentary_products,
     )
-    report = {
+    config_hashes = {
+        "validated_configuration": hashlib.sha256(
+            config.model_dump_json().encode()
+        ).hexdigest(),
+        "normalized_column_map": loaded.column_map_hash,
+    }
+    report: dict[str, object] = {
         "data_label": loaded.manifest.data_label,
         "status": "DRAFT",
-        "stage": "commentary",
+        "stage": "outputs",
         "analysis": analysis.model_dump(mode="json"),
         "commentary": commentary.model_dump(mode="json"),
         "marketplace": loaded.manifest.marketplace,
@@ -81,12 +93,7 @@ def run_numerical_draft(
         "vat_rate": str(loaded.manifest.vat_rate),
         "report_week": loaded.manifest.report_week.isoformat(),
         "source_hashes": loaded.source_hashes,
-        "config_hashes": {
-            "validated_configuration": hashlib.sha256(
-                config.model_dump_json().encode()
-            ).hexdigest(),
-            "normalized_column_map": loaded.column_map_hash,
-        },
+        "config_hashes": config_hashes,
         "products": [
             {
                 "asin": r.asin,
@@ -102,12 +109,42 @@ def run_numerical_draft(
             for r in results
         ],
     }
-    return publish_bundle(
-        destination,
-        {
-            "SAMPLE_kpis.csv": kpi_csv(results),
-            "report.json": (
-                json.dumps(report, indent=2, allow_nan=False) + "\n"
-            ).encode("utf-8"),
-        },
+    view = make_view(
+        results,
+        analysis,
+        commentary,
+        loaded.source_hashes,
+        config_hashes,
+        {r.asin: r.model_dump() for r in loaded.catalog},
+        json.dumps(report, sort_keys=True),
     )
+    report["presentation"] = view_manifest(view)
+    charts = render_charts(view)
+    html = render_html(view, charts)
+    files = {
+        **charts,
+        "SAMPLE_report.html": html,
+        "SAMPLE_report.pdf": render_pdf(html),
+        "SAMPLE_report.xlsx": render_xlsx(view),
+        "SAMPLE_report.pptx": render_pptx(view),
+        "SAMPLE_kpis.csv": kpi_csv(results),
+        "report.json": (json.dumps(report, indent=2, allow_nan=False) + "\n").encode(
+            "utf-8"
+        ),
+    }
+    files["artifacts.json"] = (
+        json.dumps(
+            {
+                "report_id": view.report_id,
+                "status": "DRAFT",
+                "data_label": "SAMPLE DATA",
+                "sha256": {
+                    name: hashlib.sha256(content).hexdigest()
+                    for name, content in files.items()
+                },
+            },
+            indent=2,
+        )
+        + "\n"
+    ).encode()
+    return publish_bundle(destination, files)

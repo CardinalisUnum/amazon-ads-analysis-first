@@ -20,6 +20,10 @@ jobs:
           version: "0.13.8"
           enable-cache: false
       - run: uv sync --locked
+      - name: Install PDF native libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run mypy --strict src/

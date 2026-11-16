@@ -44,10 +44,37 @@ def test_two_campaigns_do_not_multiply_retail() -> None:
     with Path("data/sample/SAMPLE_total_sales.csv").open() as stream:
         source_revenue = sum(Decimal(r["gross_sales"]) for r in csv.DictReader(stream))
     assert sum(r.retail.gross_sales for r in loaded.rows) == source_revenue
-    assert len(loaded.source_hashes) == 5
+    assert len(loaded.source_hashes) == 6
     with Path("data/sample/SAMPLE_ads.csv").open() as stream:
         source_spend = sum(Decimal(r["Spend"]) for r in csv.DictReader(stream))
     assert sum(r.ads.spend for r in loaded.rows) == source_spend
+
+
+def test_optional_catalog_is_validated_and_fingerprinted(inputs: Path) -> None:
+    loaded = load_inputs(inputs, COLUMN_MAP)
+    assert len(loaded.catalog) == 10
+    assert loaded.catalog[0].asin == "SAMPLE0001"
+    assert loaded.catalog[0].set_number == "10696"
+    assert "SAMPLE_catalog.csv" in loaded.source_hashes
+    edit_csv(inputs, "catalog", lambda rows: rows.append(dict(rows[0])))
+    with pytest.raises(InputError, match="Duplicate catalog"):
+        load_inputs(inputs, COLUMN_MAP)
+
+
+def test_catalog_rejects_unsafe_links_and_duplicate_paths(inputs: Path) -> None:
+    edit_csv(
+        inputs, "catalog", lambda rows: rows[0].update(source_url="javascript:alert(1)")
+    )
+    with pytest.raises(InputError):
+        load_inputs(inputs, COLUMN_MAP)
+    shutil.copyfile(inputs / "SAMPLE_catalog.csv", inputs / "catalog.csv")
+    with pytest.raises(InputError, match="at most one catalog"):
+        load_inputs(inputs, COLUMN_MAP)
+
+
+def test_catalog_can_be_absent_for_external_adapter(inputs: Path) -> None:
+    (inputs / "SAMPLE_catalog.csv").unlink()
+    assert load_inputs(inputs, COLUMN_MAP).catalog == ()
 
 
 def test_current_aliases_preserve_total_and_promoted_sales(inputs: Path) -> None:

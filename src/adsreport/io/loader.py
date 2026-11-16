@@ -15,6 +15,7 @@ from pydantic import BaseModel, TypeAdapter, ValidationError
 from adsreport.io.models import (
     AdsRow,
     AdTotals,
+    CatalogRow,
     CostRow,
     InputManifest,
     InventoryRow,
@@ -105,6 +106,15 @@ def load_inputs(folder: Path, column_map: Path) -> LoadedInput:
                     f"Provide exactly one {kind}.csv or SAMPLE_{kind}.csv."
                 )
             paths[kind] = candidates[0]
+        catalog_paths = [
+            p
+            for p in (folder / "catalog.csv", folder / "SAMPLE_catalog.csv")
+            if p.is_file()
+        ]
+        if len(catalog_paths) > 1:
+            raise InputError("Provide at most one catalog.csv or SAMPLE_catalog.csv.")
+        if catalog_paths:
+            paths["catalog"] = catalog_paths[0]
         contents = {p.name: p.read_bytes() for p in paths.values()}
         for name, expected in manifest.files.items():
             if Path(name).name != name or name in {".", ".."}:
@@ -134,6 +144,15 @@ def load_inputs(folder: Path, column_map: Path) -> LoadedInput:
             aliases["ads"],
             allow_empty=True,
         )
+        catalog = (
+            _read_csv(
+                paths["catalog"].name, contents[paths["catalog"].name], CatalogRow, {}
+            )
+            if "catalog" in paths
+            else []
+        )
+        if len({r.asin for r in catalog}) != len(catalog):
+            raise InputError("Duplicate catalog ASIN records.")
         costs_by_asin = {r.asin: r for r in costs}
         retail_by_key = {(r.asin, r.week): r for r in retail}
         stock_by_key = {(r.asin, r.week): r for r in inventory}
@@ -213,6 +232,7 @@ def load_inputs(folder: Path, column_map: Path) -> LoadedInput:
             tuple(joined),
             hashes,
             hashlib.sha256(json.dumps(aliases, sort_keys=True).encode()).hexdigest(),
+            tuple(catalog),
         )
     except (
         OSError,

@@ -70,7 +70,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         except (InputError, OSError, ValueError) as exc:
             print(f"Report input/output error: {exc}", file=sys.stderr)
             return 2
-        print(f"DRAFT SAMPLE DATA report.json and KPI CSV ready at {path}.")
+        print(f"DRAFT SAMPLE DATA XLSX, HTML, PDF, PPTX and evidence ready at {path}.")
         return 0
     phases = {"approve": "P7", "deliver": "P7"}
     print(

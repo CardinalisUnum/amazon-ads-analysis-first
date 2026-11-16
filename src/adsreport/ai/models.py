@@ -70,3 +70,4 @@ class Commentary(StrictModel):
     prompt_sha256: str
     ai_used: bool = False
     guard_rejections: int = 0
+    provider_error_status: int | None = None

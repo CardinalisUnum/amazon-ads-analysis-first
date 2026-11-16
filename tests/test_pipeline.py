@@ -17,7 +17,7 @@ def test_numerical_cli_matches_committed_snapshot(tmp_path: Path) -> None:
     report = json.loads((output / "report.json").read_text())
     assert report["status"] == "DRAFT" and report["data_label"] == "SAMPLE DATA"
     assert len(report["products"]) == 80
-    assert report["stage"] == "commentary"
+    assert report["stage"] == "outputs"
     notes = report["commentary"]["notes"]
     assert len(notes) == 10
     assert all(n["label"] == "template" and n["reason"] == "no_ai" for n in notes)

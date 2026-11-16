@@ -89,6 +89,16 @@ class InputManifest(SourceRow):
     files: dict[str, str] = Field(default_factory=dict)
 
 
+class CatalogRow(SourceRow):
+    asin: Identifier
+    sku: Identifier
+    set_number: Annotated[str, Field(min_length=1, max_length=20)]
+    product_name: Annotated[str, Field(min_length=1, max_length=120)]
+    source_url: Annotated[
+        str, Field(pattern=r"^https://www\.lego\.com/[A-Za-z0-9/_-]+$", max_length=300)
+    ]
+
+
 @dataclass(frozen=True)
 class AdTotals:
     spend: Decimal = Decimal(0)
@@ -114,3 +124,4 @@ class LoadedInput:
     rows: tuple[ProductWeek, ...]
     source_hashes: dict[str, str]
     column_map_hash: str
+    catalog: tuple[CatalogRow, ...] = ()

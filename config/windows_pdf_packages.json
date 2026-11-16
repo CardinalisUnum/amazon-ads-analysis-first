@@ -1,0 +1,359 @@
+{
+  "source": "https://repo.msys2.org/mingw/mingw64/mingw64.db",
+  "checked_on": "2026-11-16",
+  "packages": [
+    {
+      "name": "mingw-w64-x86_64-brotli",
+      "version": "1.2.1-1",
+      "filename": "mingw-w64-x86_64-brotli-1.2.1-1-any.pkg.tar.zst",
+      "sha256": "3163fae24021624b49d3372a6a7fe05c0f3e01b301e65fcbcb3a95557019fb2d",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-bzip2",
+      "version": "1.0.8-4",
+      "filename": "mingw-w64-x86_64-bzip2-1.0.8-4-any.pkg.tar.zst",
+      "sha256": "123768f30ae14ba654a6feb70f8526146a331bc85f831a91a549ffb3f6cbffc7",
+      "license": [
+        "custom"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-cairo",
+      "version": "1.18.6-2",
+      "filename": "mingw-w64-x86_64-cairo-1.18.6-2-any.pkg.tar.zst",
+      "sha256": "937a911b5efd6388b4ed8e6e268bbc4985db2f897648fb60de57ae4bc7fac7d6",
+      "license": [
+        "spdx:LGPL-2.1-or-later OR MPL-1.1"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-cc-libs",
+      "version": "16.2.0-7",
+      "filename": "mingw-w64-x86_64-cc-libs-16.2.0-7-any.pkg.tar.zst",
+      "sha256": "3d9d4492e35157087ab0db79b2aa0610909d5f6e18bfdc1035dd4a24544cc577",
+      "license": [
+        "spdx:GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.3-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-expat",
+      "version": "2.10.0-1",
+      "filename": "mingw-w64-x86_64-expat-2.10.0-1-any.pkg.tar.zst",
+      "sha256": "5db410fd909aa6b25e063d720ed36211efaf2de6c39a9e984cf0f494a4f573d3",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-fontconfig",
+      "version": "2.18.3-1",
+      "filename": "mingw-w64-x86_64-fontconfig-2.18.3-1-any.pkg.tar.zst",
+      "sha256": "7cdd32ad27ee9f8d176698744f3efa123feba57cecb833e87c221b50cd7224d1",
+      "license": [
+        "custom"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-freetype",
+      "version": "2.15.0-1",
+      "filename": "mingw-w64-x86_64-freetype-2.15.0-1-any.pkg.tar.zst",
+      "sha256": "426bd4e0e979118682be881ace475ef4d3ff1668084ac796350fb7e0504b82ef",
+      "license": [
+        "spdx:GPL-2.0-or-later OR FTL"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-fribidi",
+      "version": "1.0.18-1",
+      "filename": "mingw-w64-x86_64-fribidi-1.0.18-1-any.pkg.tar.zst",
+      "sha256": "0855a60a2060e2d07d71531839fcd05ef75043c93b8feeede2087533c5bc9b64",
+      "license": [
+        "spdx:LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-gettext-runtime",
+      "version": "1.0-1",
+      "filename": "mingw-w64-x86_64-gettext-runtime-1.0-1-any.pkg.tar.zst",
+      "sha256": "be68d7f260633284b910c588c6d82ee304a81c8817a686d2cd9df83f872c27af",
+      "license": [
+        "spdx:GPL-3.0-or-later AND LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-glib2",
+      "version": "2.90.1-1",
+      "filename": "mingw-w64-x86_64-glib2-2.90.1-1-any.pkg.tar.zst",
+      "sha256": "152ba3b2cfb35feebc0fcb690889b16a6f0c2b89ced52e65aea45d089f86d219",
+      "license": [
+        "spdx:LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-graphite2",
+      "version": "1.3.15-1",
+      "filename": "mingw-w64-x86_64-graphite2-1.3.15-1-any.pkg.tar.zst",
+      "sha256": "6ad20d6c16e559f7c4b06fe71248e1201c7edf494d04e5721ed7f9b3f7fd1f74",
+      "license": [
+        "spdx:LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-harfbuzz",
+      "version": "15.1.0-1",
+      "filename": "mingw-w64-x86_64-harfbuzz-15.1.0-1-any.pkg.tar.zst",
+      "sha256": "ee718d4598d9e29fa53ad33b99034d8e036e8e5aa04038d908e8fcd74367608a",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libdatrie",
+      "version": "0.2.14-1",
+      "filename": "mingw-w64-x86_64-libdatrie-0.2.14-1-any.pkg.tar.zst",
+      "sha256": "fbbf30e9a911c1139ba5c38c5ae008309dd912f6c6b1e05f4310ec698e1b1339",
+      "license": [
+        "LGPL"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libffi",
+      "version": "3.8.1-1",
+      "filename": "mingw-w64-x86_64-libffi-3.8.1-1-any.pkg.tar.zst",
+      "sha256": "92ba29c4a632a01affff6cb48617bcb62d65c02bfe6df2ed27fb087a9ba51de3",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libgcc",
+      "version": "16.2.0-7",
+      "filename": "mingw-w64-x86_64-libgcc-16.2.0-7-any.pkg.tar.zst",
+      "sha256": "6d1311b397ba33be542fd46bae3de60338bfd967e95e221847f01269e98983b8",
+      "license": [
+        "spdx:GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.3-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libiconv",
+      "version": "1.19.1-1",
+      "filename": "mingw-w64-x86_64-libiconv-1.19.1-1-any.pkg.tar.zst",
+      "sha256": "50e915aa36fdbe6c84acc8954e939275609ba051cdb4eeeff3884453c28efde0",
+      "license": [
+        "spdx:LGPL-2.1-or-later",
+        "documentation:spdx:GPL-3.0-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libpng",
+      "version": "1.6.59-2",
+      "filename": "mingw-w64-x86_64-libpng-1.6.59-2-any.pkg.tar.zst",
+      "sha256": "8cf4e17ed9f592d23a5d1f1f8875c6a8da42eaf7772a997908565e94131cfc20",
+      "license": [
+        "custom"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libstdc++",
+      "version": "16.2.0-7",
+      "filename": "mingw-w64-x86_64-libstdc++-16.2.0-7-any.pkg.tar.zst",
+      "sha256": "578db695632bdb5bafd716958c4caa62560f3de2633680b258ae6f684201276d",
+      "license": [
+        "spdx:GPL-3.0-or-later WITH GCC-exception-3.1 AND GFDL-1.3-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libsystre",
+      "version": "1.0.2-3",
+      "filename": "mingw-w64-x86_64-libsystre-1.0.2-3-any.pkg.tar.zst",
+      "sha256": "ea20a54127fe2a606ef0f2bef62b1abef77710840b661b832a933b4020bfe316",
+      "license": [
+        "spdx:BSD-2-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libthai",
+      "version": "0.1.30-1",
+      "filename": "mingw-w64-x86_64-libthai-0.1.30-1-any.pkg.tar.zst",
+      "sha256": "e8cfad91934e24e9a88221b66f2d1c5a310c952ef86631107a632d3ff1738211",
+      "license": [
+        "spdx:LGPL-2.1-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libtre",
+      "version": "0.9.0-2",
+      "filename": "mingw-w64-x86_64-libtre-0.9.0-2-any.pkg.tar.zst",
+      "sha256": "c4051508d063258e1e02dd29615edb7d73c5c5f582ae42795fdd92e7ddce506b",
+      "license": [
+        "BSD"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-libwinpthread",
+      "version": "14.0.0.r598.ge3d18511f-1",
+      "filename": "mingw-w64-x86_64-libwinpthread-14.0.0.r598.ge3d18511f-1-any.pkg.tar.zst",
+      "sha256": "942a62a3ecafbb4f5a80016685a0e3002a8de903012eed49c213e4f5b693668a",
+      "license": [
+        "spdx:MIT AND BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-lzo2",
+      "version": "2.10-3",
+      "filename": "mingw-w64-x86_64-lzo2-2.10-3-any.pkg.tar.zst",
+      "sha256": "445115c31e91486801af9493278c0eb86c6194c2644a54e92d5afac10edea630",
+      "license": [
+        "spdx:GPL-2.0-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-mpdecimal",
+      "version": "4.0.1-3",
+      "filename": "mingw-w64-x86_64-mpdecimal-4.0.1-3-any.pkg.tar.zst",
+      "sha256": "8da7e7f78434f188664c4d2779c03ea7a80f7f5837a115834ab734b352a613e5",
+      "license": [
+        "spdx:BSD-2-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-ncurses",
+      "version": "6.6-4",
+      "filename": "mingw-w64-x86_64-ncurses-6.6-4-any.pkg.tar.zst",
+      "sha256": "7bf5159441d00262085d2619f6c26877ea7595d4dafc6840637c6c5fccda5cf5",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-openssl",
+      "version": "4.1.0-1",
+      "filename": "mingw-w64-x86_64-openssl-4.1.0-1-any.pkg.tar.zst",
+      "sha256": "d23a605bd7543ea1143324fd70f4db40d26b588321c6e4e8cdcadf9d15998daf",
+      "license": [
+        "spdx:Apache-2.0"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-pango",
+      "version": "1.58.2-1",
+      "filename": "mingw-w64-x86_64-pango-1.58.2-1-any.pkg.tar.zst",
+      "sha256": "6aa68db02f6158dba802da406d25b29650011beb2d5d1b0a0050081e19874e57",
+      "license": [
+        "spdx:LGPL-2.1"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-pcre2",
+      "version": "10.49-2",
+      "filename": "mingw-w64-x86_64-pcre2-10.49-2-any.pkg.tar.zst",
+      "sha256": "60211e4d11e0a891f9a55d8bbe8702c4cddace3a68967ac8eb82f1cffdcfca5f",
+      "license": [
+        "spdx:BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-pixman",
+      "version": "0.46.4-3",
+      "filename": "mingw-w64-x86_64-pixman-0.46.4-3-any.pkg.tar.zst",
+      "sha256": "435715dd1ca4c55873cf3c38d644615196bc2d238e3366f8ff81cc0811260eb2",
+      "license": [
+        "spdx:MIT"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-python",
+      "version": "3.14.10-4",
+      "filename": "mingw-w64-x86_64-python-3.14.10-4-any.pkg.tar.zst",
+      "sha256": "aee40790d3c0a0c8afddaf84ed35eb44149c4e2b26834bb4d09434eca12154ea",
+      "license": [
+        "spdx:PSF-2.0"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-python-packaging",
+      "version": "26.3-1",
+      "filename": "mingw-w64-x86_64-python-packaging-26.3-1-any.pkg.tar.zst",
+      "sha256": "69e6eff5c623ebd1cc3cfca13d8bbc6c70b0ca1dfbc3704b251478a30a25b20e",
+      "license": [
+        "spdx:Apache-2.0",
+        "spdx:BSD-2-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-sqlite",
+      "version": "3.54.1-2",
+      "filename": "mingw-w64-x86_64-sqlite-3.54.1-2-any.pkg.tar.zst",
+      "sha256": "24e84a64427b44c94407873d53b6c98613682225c46696c0c5dbb5d9a1924182",
+      "license": [
+        "PublicDomain"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-tcl",
+      "version": "8.6.18-1",
+      "filename": "mingw-w64-x86_64-tcl-8.6.18-1-any.pkg.tar.zst",
+      "sha256": "d95289300fd8e16bd5cb241b9928a256695aeebeca2885deef3326cd4a4d5ba8",
+      "license": [
+        "custom"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-tk",
+      "version": "8.6.18-1",
+      "filename": "mingw-w64-x86_64-tk-8.6.18-1-any.pkg.tar.zst",
+      "sha256": "42aa79962e1679dd55e93f79a25dc1e50c7235f143ab501b3ec68debd0d32a3e",
+      "license": [
+        "custom"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-tzdata",
+      "version": "2026f-1",
+      "filename": "mingw-w64-x86_64-tzdata-2026f-1-any.pkg.tar.zst",
+      "sha256": "ee33831fd41045555220d250a816a2a3a57116f8b1fb7f574bf3db7079299da2",
+      "license": [
+        "custom: public domain"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-wineditline",
+      "version": "2.208-1",
+      "filename": "mingw-w64-x86_64-wineditline-2.208-1-any.pkg.tar.zst",
+      "sha256": "dfe7fab66632eececc73d84053eae2be8dd2146ecefe0fc2133277706084d7ea",
+      "license": [
+        "spdx:BSD-3-Clause"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-xz",
+      "version": "5.8.4-1",
+      "filename": "mingw-w64-x86_64-xz-5.8.4-1-any.pkg.tar.zst",
+      "sha256": "2de0f26da60b7ff7aa192a226330d7de6b1099cb9b9f9de4145affb80146bbc8",
+      "license": [
+        "spdx:0BSD AND LGPL-2.1-or-later AND GPL-2.0-or-later"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-zlib",
+      "version": "1.4-2",
+      "filename": "mingw-w64-x86_64-zlib-1.4-2-any.pkg.tar.zst",
+      "sha256": "2a065fb3311d6c08bd2c7431a092b912ade08a83954474e06ea4eb0479d908cd",
+      "license": [
+        "spdx:Zlib"
+      ]
+    },
+    {
+      "name": "mingw-w64-x86_64-zstd",
+      "version": "1.5.7-2",
+      "filename": "mingw-w64-x86_64-zstd-1.5.7-2-any.pkg.tar.zst",
+      "sha256": "1add6705b344664f6aca108c85f79ab5bdd9e1162662bb06a4cf40a34f6e0907",
+      "license": [
+        "spdx:BSD-3-Clause OR GPL-2.0-or-later"
+      ]
+    }
+  ]
+}

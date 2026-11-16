@@ -203,6 +203,7 @@ def generate_commentary(
     text = PROMPT.read_text(encoding="utf-8")
     prompt_hash = hashlib.sha256(text.encode()).hexdigest()
     attempts = 0
+    provider_error_status: int | None = None
 
     def batch_fallback(reason: str) -> Commentary:
         return Commentary(
@@ -211,6 +212,7 @@ def generate_commentary(
             attempts=attempts,
             model=model if attempts else None,
             prompt_sha256=prompt_hash,
+            provider_error_status=provider_error_status,
         )
 
     if no_ai:
@@ -241,6 +243,7 @@ def generate_commentary(
             raw = request(prompt, model, key)
             break
         except ProviderFailure as exc:
+            provider_error_status = exc.code
             if exc.code == 429 and attempt == 0:
                 if not math.isfinite(exc.retry_after):
                     return batch_fallback("quota_retry_invalid")

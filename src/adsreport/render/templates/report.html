@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Weekly Amazon Ads review | {{ report.report_week }}</title>
+<meta name="author" content="Patrick Jaso">
+<style>
+{% include 'report.css' %}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="status">{{ report.stamp.text }}</p>
+<p class="sample">SAMPLE DATA</p>
+<h1>Weekly Amazon Ads review</h1>
+<p>amazon.de · EUR · Week beginning {{ report.report_week }} (Europe/Berlin)</p>
+<p class="muted">{{ disclosure }}</p>
+<p class="muted report-id">{{ report.report_id }}</p>
+</header>
+<section aria-label="Portfolio overview">
+<div class="kpis">{% for metric in headlines %}<div class="kpi">
+<dl>
+<dt>{{ metrics[metric][0] }}</dt>
+<dd>{{ display(metric, report.current.values[metric]) }}</dd>
+</dl>
+<small>{{ report.delta(metric) }}</small>
+</div>{% endfor %}</div>
+<p class="muted">TACoS uses ad spend / net retail revenue. Total sales includes VAT. Monetary changes are EUR; TACoS change is percentage points. {{ report.current.comparison_reason }}.</p>
+<h2>Products for review</h2>
+<p class="muted">{{ report.analysis.flags|length }} flags across {{ report.analysis.flags|map(attribute='asin')|unique|list|length }} products. Showing {{ report.priorities|length }} priority products. Every flag remains in the product details.</p>
+<div class="table-scroll">
+<table>
+<thead>
+<tr>
+<th scope="col">Product</th>
+<th scope="col">Severity</th>
+<th scope="col">Rules</th>
+<th scope="col">Review focus</th>
+</tr>
+</thead>
+<tbody>{% for card in report.priorities %}<tr>
+<td>{{ card.name }}<br>
+<span class="muted">{{ card.metrics.asin }}</span>
+</td>
+<td class="{{ card.flags[0].severity }}">{{ card.flags[0].severity|title }}</td>
+<td>{{ card.flags|map(attribute='rule_id')|join(', ') }}</td>
+<td>{{ card.note.planned_change_to_review }}</td>
+</tr>{% else %}<tr>
+<td colspan="4">No rule flags for this week.</td>
+</tr>{% endfor %}</tbody>
+</table>
+</div>
+<figure class="chart" aria-label="TACoS trend">{{ charts.tacos }}</figure>
+</section>
+<section class="chart-page">
+<h2>Product economics</h2>
+<p class="muted">Sample ASINs identify simulated retailer products. Manufacturer set numbers appear in the details.</p>
+<figure class="chart" aria-label="Contribution after ads by product">{{ charts.contribution }}</figure>
+<figure class="chart" aria-label="ACoS versus break-even">{{ charts.acos }}</figure>
+</section>
+{% for page in report.cards|batch(2) %}<section class="product-page">
+<h2>Product details</h2>{% for card in page %}<article class="product-card">
+<h3>{{ card.name }}</h3>
+<p class="muted">Sample ASIN {{ card.metrics.asin }} · SKU {{ card.sku }} · LEGO set {{ card.set_number }} · {{ card.metrics.lifecycle_phase|title }}</p>
+<div class="product-metrics">{% for metric in ('ad_spend_eur','ad_sales_eur','tacos_pct','acos_pct','break_even_acos_pct','contribution_after_ads_eur') %}<p>{{ metrics[metric][0] }}<br>
+<strong>{{ display(metric,card.metrics.values[metric]) }}</strong>
+</p>{% endfor %}</div>
+{% if card.flags %}<ul class="rule-list">{% for flag in card.flags %}<li>
+<span class="{{ flag.severity }}">{{ flag.severity|title }} {{ flag.rule_id }}</span> {{ flag.reason }}<br>Evidence: {{ flag_evidence(flag) }}. Thresholds: {{ flag_thresholds(flag) }}.</li>{% endfor %}</ul>{% else %}<p class="muted">No rule flags for this week. Continue routine human review.</p>{% endif %}
+<div class="note">
+<p>
+<strong>{{ card.note.label }}</strong> · {{ card.note.reason }}</p>
+<p>{{ card.note.what_happened }}</p>
+<p>{{ card.note.likely_cause }}</p>
+<p>{{ card.note.planned_change_to_review }}</p>
+<p>{{ card.note.target_and_review_date }}</p>
+<p>Confidence: {{ card.note.confidence }}.</p>
+</div>
+{% if card.metrics.undefined_reasons %}<p class="muted">Unavailable metrics: {% for key,reason in card.metrics.undefined_reasons.items() %}{{ metrics[key][0] if key in metrics else key }} — {{ reason }}{% if not loop.last %}; {% endif %}{% endfor %}</p>{% endif %}
+{% if card.source_url %}<p class="muted">
+<a href="{{ card.source_url }}">Official LEGO catalog reference</a>. Catalog identity only; performance is simulated.</p>{% endif %}</article>{% endfor %}</section>{% endfor %}
+<section class="provenance">
+<h2>Run information and assumptions</h2>
+<p>{{ report.stamp.text }} · SAMPLE DATA</p>
+<p>{{ report.report_id }}</p>
+<p>AI request outcome: {{ report.commentary.request_status }}. Attempts: {{ report.commentary.attempts }}. Guard rejections: {{ report.commentary.guard_rejections }}.</p>
+<p>Delivery approval is a separate operational step. A human must review the frozen report before delivery.</p>
+<p>VAT, costs and rule thresholds are assumptions. <a href="{{ assumptions_url }}">Read the assumptions</a> and confirm them with the Ads manager. Organic share is a proxy. Advertising attribution may differ from retail reporting periods.</p>
+<h3>Source fingerprints</h3>{% for name,digest in report.source_hashes.items() %}<p class="hashes">{{ name }}: {{ digest }}</p>{% endfor %}<h3>Configuration fingerprints</h3>{% for name,digest in report.config_hashes.items() %}<p class="hashes">{{ name }}: {{ digest }}</p>{% endfor %}</section>
+<footer>{{ disclosure }} Report {{ report.report_id }}. {{ report.stamp.text }}.</footer>
+</main>
+</body>
+</html>

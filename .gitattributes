@@ -1,3 +1,4 @@
 # Sample manifests hash file bytes, including line endings, across platforms.
 data/sample/* text eol=lf
 tests/golden/* text eol=lf
+docs/examples/* -text
