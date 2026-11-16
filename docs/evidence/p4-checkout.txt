@@ -1,0 +1,6 @@
+Separate Windows autocrlf checkout verified.
+........................................................................ [ 59%]
+..................................................                       [100%]
+122 passed in 4.13s
+DRAFT SAMPLE DATA numerical results ready at out\draft.
+CSV and JSON are byte-identical across checkouts. P3 numerical CSV snapshot is unchanged.

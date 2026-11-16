@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P3 complete and verified. P4 awaits owner approval. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P4 complete and verified. P5 awaits owner approval. Hosted CI P1-5 remains open.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
@@ -8,13 +8,13 @@ Updated 2026-11-16. P3 complete and verified. P4 awaits owner approval. Hosted C
 | P1 Scaffold | 8% | 5/6 | 83.3% | `█████████████████░░░` |
 | P2 Sample data | 10% | 5/5 | 100.0% | `████████████████████` |
 | P3 Loader and KPIs | 15% | 6/6 | 100.0% | `████████████████████` |
-| P4 Rules | 12% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P4 Rules | 12% | 5/5 | 100.0% | `████████████████████` |
 | P5 Commentary and guard | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P6 Outputs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **21/56** | **36.7% weighted** | `███████░░░░░░░░░░░░░` |
+| **Overall** | **100%** | **26/56** | **48.7% weighted** | `██████████░░░░░░░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -42,11 +42,11 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P3-4 | Zero and edge cases (0 spend, 0 sales, 0 units, missing weeks) | Tests pass; no `inf` or `NaN` leaks into outputs | Complete. Zero denominators, missing weeks, organic residual limits and stock coverage are tested with explicit undefined reasons. |
 | P3-5 | Property tests (hypothesis) | Pass with ≥ 200 examples | Complete. Both Hypothesis identities pass 200 examples each; statistics captured in evidence/p3-local.txt. |
 | P3-6 | Golden-file snapshot of the KPI table (`--no-ai`) | Snapshot committed and test passes | Complete. --no-ai CLI matches the committed 80-row golden CSV. CSV and JSON drafts match across checkouts. See evidence/p3-checkout.txt. |
-| P4-1 | Implement R1–R9 (§6), thresholds from config | Unit test per rule | Pending |
-| P4-2 | Flag object with evidence (values, threshold, reason) | Serialises to JSON (test) | Pending |
-| P4-3 | Severity sort and top-N priority list | Test | Pending |
-| P4-4 | `expected_flags.yaml` exact-match test | Pass | Pending |
-| P4-5 | Wording check: no rule text recommends bid, price, delisting or refund decisions | Test scans flag text | Pending |
+| P4-1 | Implement R1–R9 (§6), thresholds from config | Unit test per rule | Complete. All nine explicit rules, configurable thresholds and lifecycle/equality/history boundaries are tested. Rules coverage is 100%. See evidence/p4-local.txt. |
+| P4-2 | Flag object with evidence (values, threshold, reason) | Serialises to JSON (test) | Complete. Flag includes typed observations, dates, thresholds and reasons. JSON round-trip tests preserve its values. |
+| P4-3 | Severity sort and top-N priority list | Test | Complete. Deterministic severity ordering, product deduplication, retained rule IDs and configurable top-N priorities are tested. |
+| P4-4 | `expected_flags.yaml` exact-match test | Pass | Complete. Every final-week sample product matches expected_flags.yaml exactly. See evidence/SAMPLE-p4-analysis.json. |
+| P4-5 | Wording check: no rule text recommends bid, price, delisting or refund decisions | Test scans flag text | Complete. Reasons request human review and pass directive-wording checks. See tests/test_rules.py and RULES.md. |
 | P5-1 | Commentary schema (pydantic) + prompt per §7.1 | Prompt file committed and reviewed | Pending |
 | P5-2 | One batched Gemini call with structured output (verified API shape) | Real call succeeds; output parsed | Pending |
 | P5-3 | Number guard per §7.2 | Rejection and acceptance tests pass | Pending |

@@ -126,3 +126,7 @@ Hypothesis 6.170.15 (MPL-2.0, https://pypi.org/project/hypothesis/6.170.15/) is 
 ## P4 approval
 
 On 2026-11-16 the owner approved P4 and requested that the completed phase and exact continuation handoff be pushed for another agent. P5 requires a separate approval. P1-5 stays open.
+
+P4 evaluates only the requested report week and uses historical KPI records for supporting comparisons. Launch age is evaluated at the report week's Sunday, with a strict past-window comparison (day 57 is beyond an eight-week window). Priority selection defaults to six products via priority_products. Every flag is retained independently of that display limit.
+
+All nine rules match the approved final-week sample expectations. Missing or nonfinite observations produce skipped-rule records. Exact Decimal/date evidence is serialized through typed Flag models. P4 adds no dependency and preserves the numerical CSV snapshot.
