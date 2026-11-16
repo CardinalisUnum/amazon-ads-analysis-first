@@ -1,0 +1,25 @@
+{
+  "repository_visibility": "public",
+  "hosted_ci_verified": false,
+  "runs": [
+    {
+      "id": 43790137243,
+      "html_url": "https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43790137243",
+      "status": "completed",
+      "conclusion": "startup_failure",
+      "head_sha": "30f4e58face331f6607401b1f28257c7055ffe44",
+      "event": "workflow_dispatch",
+      "name": "CI"
+    },
+    {
+      "id": 43790123304,
+      "html_url": "https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43790123304",
+      "status": "completed",
+      "conclusion": "startup_failure",
+      "head_sha": "30f4e58face331f6607401b1f28257c7055ffe44",
+      "event": "push",
+      "name": ""
+    }
+  ],
+  "diagnosis": "Provider account restriction reported by owner on initial run; public-repository recovery also stopped before jobs."
+}

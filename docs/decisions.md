@@ -6,7 +6,7 @@ Recorded 2026-11-16 from the owner interview and subsequent approvals.
 |---|---|
 | Acceptance | A fully working PoC with real execution history and verified KPIs calculated on labelled sample data. Show measured operational impact. |
 | Target | November 19, 2026 around 18:00 Asia/Manila. Owner review/recording availability has no fixed daily allocation yet. Reserve time before delivery. |
-| Repository | CardinalisUnum/amazon-ads-analysis-first. Keep private during build. Publish sanitized content after owner review. Original private handovers remain outside Git. |
+| Repository | CardinalisUnum/amazon-ads-analysis-first. Owner approved publication after P1 review. Repository is now public. Original private handovers remain outside Git. |
 | Review | CardinalisUnum is the planned delivery reviewer. Required-reviewer Environment configuration needs the public repository for GitHub Free. |
 | Scope | All four outputs and P0-P9 remain in scope. Both email and Discord need failure-alert and approved-notice demonstrations. |
 | Market | amazon.de, EUR. One SKU per child ASIN in the sample. |
@@ -104,3 +104,5 @@ The earlier tracker had corrupted Unicode progress bars and a stale P0 subtotal 
 ## Publication approval
 
 On 2026-11-16 the owner approved making the reviewed repository public and requested commits under the configured owner author identity with no assistant-authorship tags. Existing commits use Patrick Jaso and have no co-author trailers. Shared handoff filenames support agent continuation and carry no claim of project authorship.
+
+The owner-approved public-repository recovery was performed. CI still ended before job creation. P1-5 remains open. The owner can authorize P2 while this external account condition is resolved. No paid service or spending-limit change was enabled.

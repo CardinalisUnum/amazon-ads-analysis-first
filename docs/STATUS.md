@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P1 is awaiting hosted CI. Publication decision pending.
+Updated 2026-11-16. P1 is 5/6 complete. Repository publication approved and performed. Hosted CI is blocked by a provider account restriction. P2 requires owner approval.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|

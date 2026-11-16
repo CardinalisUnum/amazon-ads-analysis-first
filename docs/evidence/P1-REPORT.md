@@ -44,7 +44,7 @@ Full command output is in p1-local.txt. Coverage includes CLI and configuration 
 - Workflow registration is active and repository Actions permissions are enabled.
 - Independent schema validation is in p1-workflow-validation.json.
 
-Standard hosted runners in public repositories are free according to [GitHub billing documentation](https://docs.github.com/en/billing/concepts/product-billing/github-actions). Publishing the reviewed repository requires the owner's approval. A provider account restriction can still require account-level attention.
+Standard hosted runners in public repositories are free according to [GitHub billing documentation](https://docs.github.com/en/billing/concepts/product-billing/github-actions). The owner approved publication and the repository is now public. The recovery dispatch still ended before jobs. Account-level attention is required to establish a green hosted run.
 
 ## Publication review
 
@@ -52,4 +52,8 @@ The 34 tracked files were checked against the supplied credential and known priv
 
 ## Next phase
 
-After hosted CI succeeds, request explicit approval to begin P2. P2 generates ten catalog-linked products across eight sample weeks with deterministic files, expected flags and documented assumptions.
+Request owner approval to begin P2 with P1-5 explicitly open while the provider account restriction is resolved. Otherwise keep P1 at this checkpoint. P2 generates ten catalog-linked products across eight sample weeks with deterministic files, expected flags and documented assumptions.
+
+## Public recovery
+
+The owner approved publication. Repository visibility was changed to public, and [public recovery run](https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43790137243) still returned startup_failure before jobs. See p1-ci.json. P1 remains 5/6 complete, with overall weighted progress 11.7%. Commit author identity is the configured owner, with no assistant co-author trailers.
