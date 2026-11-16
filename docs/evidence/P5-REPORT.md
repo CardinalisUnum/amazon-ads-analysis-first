@@ -18,7 +18,7 @@ P5 is complete. The owner authorized this phase on 2026-11-16. P6 requires a new
 ```text
 uv sync --locked                         exit 0, 46 packages resolved
 uv run ruff check .                      All checks passed!
-uv run ruff format --check .              46 files already formatted
+uv run ruff format --check .              47 files already formatted
 uv run mypy --strict src/                 no issues in 20 source files
 uv run pytest --cov=src/adsreport          180 passed, 98% total coverage
 KPI / rules / number guard coverage       100% each, including branches
@@ -48,7 +48,7 @@ The builder traced request success, network/quota/schema failures, product-local
 
 All six P5 tasks are complete. Overall completion is 32 of 56 tasks and 63.7% weighted. STATUS.md contains the full phase/task table. RESUME.md contains the contracts, reproduction commands and P6 implementation order for another agent.
 
-The existing GitHub account restriction remains an external CI blocker. This phase claims local verification only. Billing-unlinked Gemini status is owner-attested, without independent billing-admin access. Official pricing and schema links are in COMMENTARY.md and decisions.md. The key shared in chat must be rotated privately before unattended operation.
+The P5 [hosted run](https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43869282957) executed zero runner steps and returned the same account billing-lock annotation. See p5-hosted-ci.json. This phase claims local verification only. Billing-unlinked Gemini status is owner-attested, without independent billing-admin access. Official pricing and schema links are in COMMENTARY.md and decisions.md. The key shared in chat must be rotated privately before unattended operation.
 
 Four visual outputs and native PDF support remain P6. Human approval/delivery, email/Discord evidence and genuine scheduled history remain P7. Measured manual versus assisted review effort remains P8. No prospect delivery or production schedule has been performed.
 

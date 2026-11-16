@@ -60,7 +60,7 @@ The ignored local .env contains the owner's key and GEMINI_FREE_TIER_CONFIRMED=t
 
 ## External blockers and remaining acceptance
 
-Hosted CI P1-5 remains blocked by the provider account billing lock. The latest pre-P5 verified attempt is linked in evidence/P4-REPORT.md. No green hosted run is claimed, and no spending settings were changed. Repeated push emails may reflect the same account restriction.
+Hosted CI P1-5 remains blocked by the provider account billing lock. The P5 push was checked directly and had zero runner steps, with the same account-lock annotation. See evidence/p5-hosted-ci.json. No green hosted run is claimed, and no spending settings were changed. Repeated push emails reflect this account restriction in the verified run.
 
 Visual outputs and native PDF rendering are P6. Frozen human approval, email/Discord receipts and genuine unattended schedule evidence remain P7. Measured manual versus assisted review time remains P8. P9 requires a separate independent reviewer. Do not count simulated performance as actual business impact.
 
