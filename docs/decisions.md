@@ -100,3 +100,7 @@ Only Pydantic and PyYAML are application dependencies at this phase. Add analysi
 Source metadata was read on 2026-11-16. Commit-SHA action references were verified in P0. CI has contents:read permission, a ten-minute timeout and no API credentials. It runs on pushes, pull requests and manual dispatch.
 
 The earlier tracker had corrupted Unicode progress bars and a stale P0 subtotal despite five completed task rows. P1 repairs the encoding and derives phase totals from the task statuses.
+
+## Publication approval
+
+On 2026-11-16 the owner approved making the reviewed repository public and requested commits under the configured owner author identity with no assistant-authorship tags. Existing commits use Patrick Jaso and have no co-author trailers. Shared handoff filenames support agent continuation and carry no claim of project authorship.

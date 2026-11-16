@@ -1,35 +1,34 @@
 # Resume this checkpoint
 
-Current phase P1, in progress. Owner requested explicit approval at every phase gate and a commit and push at every checkpoint. Owner approved P1 on 2026-11-16. P2 approval is pending.
+Current phase P1. The owner approved P1 on 2026-11-16. P2 is awaiting its phase gate.
 
-## Read first
+Read AGENTS.md, decisions.md, STATUS.md, SPEC.md and evidence/P1-REPORT.md first.
 
-1. AGENTS.md and CLAUDE.md for shared working rules.
-2. docs/decisions.md for owner-approved changes to the original brief.
-3. docs/STATUS.md for all 56 acceptance tasks and weighted progress.
-4. docs/SPEC.md for the technical build scope.
-5. docs/evidence/ for actual execution evidence.
+## Actual state
 
-## Environment
-
-The pre-existing system Python is 3.11. P0 downloaded Python 3.13.18 into `.tools/python/cpython-3.13.18-windows-x86_64-none/`. The local isolated probe environment is `.tools/p0-check/`. Bootstrap uv is `.tools/bootstrap/bin/uv.exe`.
-
-Windows sandbox denied uv temporary/cache writes. Python's standard `venv` created the probe environment successfully. These are local ignored tools. P1 should use uv for the project lock and install, resolving the temporary-directory issue before claiming the packaging gate.
-
-The ignored `.env` holds the owner-supplied Gemini credential. It must be rotated before unattended service setup because it was shared in chat. Never read it into logs or commit it. A replacement should be saved directly by the owner. Use the standard Gemini endpoint only for the requested synthetic test.
+- Package, lock, CLI interface, strict configuration validation and CI are implemented.
+- Local locked installation, Ruff, strict mypy and 21 tests pass. Coverage is 98%. See evidence/p1-local.txt.
+- Workflow schema validation passes actionlint 1.7.12.
+- Push and manual GitHub CI both ended at startup with zero jobs because of a provider account restriction. The owner confirmed the account banner in chat.
+- Publication review of 34 tracked files found no supplied credential or known private handover/account details. The owner has been asked whether to publish now and retry a free standard runner. Wait for the answer before changing visibility.
+- P1-5 remains incomplete until a successful hosted CI run is captured.
 
 ## Next actions
 
-P0 is complete. The owner approved P1 on 2026-11-16. Complete P1 then stop for the P2 gate.
+1. Resolve the owner-approved CI path and capture the successful run URL and checked commit.
+2. Update the tracker and report, commit and push all evidence.
+3. Pause and ask for explicit P2 approval. Then implement the deterministic sample generator.
 
-- Read docs/evidence/p0-stack.json and p0-gemini.json for actual results.
-- Pango/native libraries are unavailable in this Windows environment. Implement and verify an Ubuntu runner dependency installation before claiming PDF support in P6.
-- uv version executes but uv venv temporary/cache writes were denied. The isolated P0 probe used standard venv/pip. P1 must demonstrate uv sync --locked with a chosen supported execution environment.
-- After approval, create the P1 package, lock, CLI/config, MIT license and CI. Preserve owner control at the next gate.
-- The key was shared in chat. Rotate it before unattended setup, saving its replacement directly in ignored .env. No credential has been committed.
+## Local environment
 
-## Persistence
+The uv cache issue was resolved using a fresh workspace-owned directory. In PowerShell set UV_CACHE_DIR to .tools/p1-cache and UV_PYTHON_INSTALL_DIR to .tools/python, both resolved from the repository root. Bootstrap uv is .tools/bootstrap/bin/uv.exe, Python 3.13.18 is under .tools/python, and .venv is the project environment. Standard uv commands work with those paths. A fresh clone can use an installed uv.
 
-The origin is `https://github.com/CardinalisUnum/amazon-ads-analysis-first.git`, branch main. Normal Git network operations required escalation to access the existing Git credential helper in this Windows environment. Use commit messages with no secrets. Confirm the remote SHA after pushing.
+The ignored .tools/p0-check environment contains the earlier dependency probes. The app installs only its current dependencies. Later phases add analysis and rendering libraries. Windows Pango is still unavailable. Successful PDF rendering is required in P6.
 
-Commit this resume file with an accurate update at every checkpoint. Another agent should verify current branch, working tree and remote SHA before continuing.
+The local .env contains the supplied Gemini key. It was shared in chat and must be rotated before unattended setup, saving the replacement directly. Never echo or commit keys.
+
+## Git and remote operations
+
+Origin is https://github.com/CardinalisUnum/amazon-ads-analysis-first.git, branch main. Git credential helper operations require escalation in this Windows sandbox. The ignored .tools/check_ci.py can query current-commit Actions status using that helper with credentials retained only in memory. Its code must never print credential responses.
+
+Always update this handoff and push a checkpoint before returning control. Verify remote SHA and working-tree status.

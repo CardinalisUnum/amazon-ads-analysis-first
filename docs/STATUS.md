@@ -1,22 +1,22 @@
 # Completion tracker
 
-Updated 2026-11-16. Only completed tasks earn weighted credit. P0 verification is complete. P1 approved and in progress. Native Windows PDF rendering and uv temporary/cache access require setup work in later build phases.
+Updated 2026-11-16. P1 is awaiting hosted CI. Publication decision pending.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
-| P0 Kickoff | 5% | 5/5 | 100% | `████████████████████` |
-| P1 Scaffold | 8% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P2 Sample data | 10% | 0/5 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P3 Loader and KPIs | 15% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P4 Rules | 12% | 0/5 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P5 Commentary and guard | 15% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P6 Outputs | 15% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P7 Operations and approval | 10% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P8 Docs and demo | 5% | 0/5 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P9 Independent audit | 5% | 0/6 | 0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **5/56** | **5.0% weighted** | `█░░░░░░░░░░░░░░░░░░░` |
+| P0 Kickoff | 5% | 5/5 | 100.0% | `████████████████████` |
+| P1 Scaffold | 8% | 5/6 | 83.3% | `█████████████████░░░` |
+| P2 Sample data | 10% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P3 Loader and KPIs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P4 Rules | 12% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P5 Commentary and guard | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P6 Outputs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| **Overall** | **100%** | **10/56** | **11.7% weighted** | `██░░░░░░░░░░░░░░░░░░` |
 
-The overall 20-cell bar rounds to 5% increments. Use the numeric percentage for exact progress.
+Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
 | ID | Task | Acceptance | Status and evidence |
 |---|---|---|---|
@@ -29,7 +29,7 @@ The overall 20-cell bar rounds to 5% increments. Use the numeric percentage for 
 | P1-2 | ruff + mypy strict + pytest + coverage config | All gates run (0 tests is OK) | Complete. Lint, format, strict mypy and 21 configuration/CLI tests pass. See evidence/p1-local.txt. |
 | P1-3 | `.gitignore`, `.env.example`, LICENSE (owner chooses), README skeleton | Files present; no secrets | Complete. MIT license, ignore rules, example environment and development quickstart committed. |
 | P1-4 | CLI skeleton (`generate-sample`, `run`, `approve`, `deliver`) | `--help` output pasted | Complete. Installed adsreport --help exposes all four commands. See evidence/p1-local.txt. |
-| P1-5 | `ci.yml`: lint, types, tests on push/PR; actions SHA-pinned; least-privilege permissions | Green CI run URL | In progress. CI workflow implemented. Awaiting a successful GitHub run. |
+| P1-5 | `ci.yml`: lint, types, tests on push/PR; actions SHA-pinned; least-privilege permissions | Green CI run URL | Blocked. Hosted job cannot start due provider account restriction. Local workflow validation passed. See evidence/P1-REPORT.md. |
 | P1-6 | Config loading (`settings.yaml`, `thresholds.yaml`) via pydantic | Invalid config fails with a clear error (test) | Complete. Settings and threshold models reject malformed, missing and invalid config through CLI and direct loader tests. |
 | P2-1 | Generator for ads, total sales, costs, inventory (10 products × 8 weeks, seeded) | Same seed → identical files (test) | Pending |
 | P2-2 | Engineer the 10 product stories from §5.3 | Each story visible in the data | Pending |
