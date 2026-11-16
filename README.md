@@ -20,7 +20,16 @@ uv run ruff format --check .
 uv run mypy --strict src/
 ```
 
-The current P1 implementation validates settings and thresholds, rejects unsupported configuration, and exposes the four planned command interfaces. Generate-sample, run, approve and deliver return a nonzero status identifying their implementation phase. Report generation begins in P2-P6. Scheduled reporting and delivery follow in P7.
+The current implementation validates settings and thresholds and generates the reproducible sample inputs. Run, approve and deliver return a nonzero status identifying their implementation phase. Report generation follows in P3-P6. Scheduled reporting and delivery follow in P7.
+
+```shell
+uv run adsreport generate-sample --seed 42
+uv run adsreport generate-sample --seed 2026 --out out/sample-2026
+```
+
+The default command verifies the committed seed-42 bundle without rewriting it. A new output directory is published only after every file is staged. Existing different content is preserved, and the command asks for another output path. Use [sample review](docs/P2-SAMPLE-REVIEW.md) to inspect all ten stories and [assumptions](docs/ASSUMPTIONS.md) for costs, dates and attribution limitations.
+
+The sample contains 1,120 daily campaign-product rows, 80 weekly retail rows, 80 inventory snapshots, ten cost records and ten catalog records. File names or metadata carry SAMPLE DATA markers. The ads CSV uses classic English column names. The accompanying manifest identifies tax bases, seed, reporting dates and file hashes.
 
 The development checks use no API credentials. For the earlier Gemini account probe, use a dedicated Free Tier project with billing unlinked and store its key in ignored .env. That probe's SDK requirements are recorded separately in docs/evidence/p0-requirements.txt.
 

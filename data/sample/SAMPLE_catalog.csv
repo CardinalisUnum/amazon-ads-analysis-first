@@ -1,0 +1,11 @@
+asin,sku,brand,set_number,product_name,story,source_url,source_checked_on,data_label
+SAMPLE0001,SAMPLE-10696,LEGO,10696,Medium Creative Brick Box,healthy,https://www.lego.com/en-de/product/lego-medium-creative-brick-box-10696,2026-11-16,SAMPLE DATA
+SAMPLE0002,SAMPLE-10698,LEGO,10698,Large Creative Brick Box,healthy,https://www.lego.com/en-de/product/lego-large-creative-brick-box-10698,2026-11-16,SAMPLE DATA
+SAMPLE0003,SAMPLE-11034,LEGO,11034,Creative Pets,launch_inside,https://www.lego.com/en-de/product/creative-pets-11034,2026-11-16,SAMPLE DATA
+SAMPLE0004,SAMPLE-11035,LEGO,11035,Creative Houses,launch_expired,https://www.lego.com/en-de/product/creative-houses-11035,2026-11-16,SAMPLE DATA
+SAMPLE0005,SAMPLE-11036,LEGO,11036,Creative Vehicles,above_break_even,https://www.lego.com/en-de/product/creative-vehicles-11036,2026-11-16,SAMPLE DATA
+SAMPLE0006,SAMPLE-11037,LEGO,11037,Creative Space Planets,efficiency_illusion,https://www.lego.com/en-de/product/creative-space-planets-11037,2026-11-16,SAMPLE DATA
+SAMPLE0007,SAMPLE-11039,LEGO,11039,Creative Food Friends,negative_contribution,https://www.lego.com/en-de/product/creative-food-friends-11039,2026-11-16,SAMPLE DATA
+SAMPLE0008,SAMPLE-11040,LEGO,11040,Magical Transparent Box,conversion_drop,https://www.lego.com/en-de/product/magical-transparent-box-11040,2026-11-16,SAMPLE DATA
+SAMPLE0009,SAMPLE-11041,LEGO,11041,Creative Dinosaurs,spend_spike,https://www.lego.com/en-de/product/creative-dinosaurs-11041,2026-11-16,SAMPLE DATA
+SAMPLE0010,SAMPLE-11042,LEGO,11042,Creative Happy Box,low_stock,https://www.lego.com/en-de/product/creative-happy-box-11042,2026-11-16,SAMPLE DATA

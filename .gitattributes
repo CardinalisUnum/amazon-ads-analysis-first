@@ -1,0 +1,2 @@
+# Sample manifests hash file bytes, including line endings, across platforms.
+data/sample/* text eol=lf

@@ -3,9 +3,11 @@
 import argparse
 import sys
 from collections.abc import Sequence
+from decimal import Decimal
 from pathlib import Path
 
 from adsreport.config import ConfigError, load_config
+from adsreport.sample import generate_sample
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -37,17 +39,27 @@ def main(argv: Sequence[str] | None = None) -> int:
         parser.print_help()
         return 0
     try:
-        load_config(args.config)
+        config = load_config(args.config)
     except ConfigError as exc:
         print(f"Configuration error: {exc}", file=sys.stderr)
         return 2
     if args.check_config:
         print("Configuration valid.")
         return 0
-    phases = {"generate-sample": "P2", "run": "P3-P6", "approve": "P7", "deliver": "P7"}
+    if args.command == "generate-sample":
+        try:
+            path = generate_sample(
+                args.out, args.seed, Decimal(str(config.settings.vat_rate))
+            )
+        except (OSError, ValueError) as exc:
+            print(f"Sample generation error: {exc}", file=sys.stderr)
+            return 2
+        print(f"SAMPLE DATA ready at {path} (10 products, 8 weeks, seed {args.seed}).")
+        return 0
+    phases = {"run": "P3-P6", "approve": "P7", "deliver": "P7"}
     print(
         f"{args.command} is scheduled for {phases[args.command]}. "
-        "Current checkpoint provides CLI and configuration validation.",
+        "See docs/STATUS.md for the current implementation checkpoint.",
         file=sys.stderr,
     )
     return 2

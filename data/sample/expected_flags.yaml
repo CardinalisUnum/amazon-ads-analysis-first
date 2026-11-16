@@ -1,0 +1,24 @@
+data_label: SAMPLE DATA
+report_week: '2026-10-26'
+scope: latest sample week only
+products:
+  SAMPLE0001: []
+  SAMPLE0002: []
+  SAMPLE0003: []
+  SAMPLE0004:
+  - R2
+  SAMPLE0005:
+  - R1
+  SAMPLE0006:
+  - R3
+  - R8
+  SAMPLE0007:
+  - R1
+  - R7
+  SAMPLE0008:
+  - R5
+  SAMPLE0009:
+  - R6
+  - R9
+  SAMPLE0010:
+  - R4

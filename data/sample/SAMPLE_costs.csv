@@ -1,0 +1,11 @@
+asin,unit_product_cost,referral_fee_rate,referral_minimum_eur,fba_fee_per_unit,logistics_storage_per_unit,return_rate,loss_per_return,lifecycle_phase,launch_start_date
+SAMPLE0001,8.57,0.15,0.30,2.50,0.20,0.04,12.60,maturity,2026-08-03
+SAMPLE0002,14.28,0.15,0.30,3.50,0.20,0.04,21.00,maturity,2026-08-03
+SAMPLE0003,8.57,0.15,0.30,2.50,0.20,0.04,12.60,launch,2026-10-05
+SAMPLE0004,15.71,0.15,0.30,3.85,0.20,0.04,23.11,launch,2026-08-03
+SAMPLE0005,15.71,0.15,0.30,3.85,0.20,0.04,23.11,growth,2026-08-03
+SAMPLE0006,8.57,0.15,0.30,2.50,0.20,0.04,12.60,growth,2026-08-03
+SAMPLE0007,2.85,0.15,0.30,2.50,0.20,0.04,4.20,growth,2026-08-03
+SAMPLE0008,8.57,0.15,0.30,2.50,0.20,0.04,12.60,growth,2026-08-03
+SAMPLE0009,8.57,0.15,0.30,2.50,0.20,0.04,12.60,maturity,2026-08-03
+SAMPLE0010,14.28,0.15,0.30,3.50,0.20,0.04,21.00,growth,2026-08-03

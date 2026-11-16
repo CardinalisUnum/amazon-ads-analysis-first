@@ -15,6 +15,7 @@ Read `docs/STATUS.md`, `docs/decisions.md`, `docs/SPEC.md` and `docs/RESUME.md` 
 - Maintain a frozen report version for approval. Retain draft and approved artifact identities, reviewer identity and timestamp.
 - Capture genuine runtime evidence and measured review effort. Label backfills and injected failures. State numerator and denominator for success rates.
 - Validate changed behavior and update evidence and documentation with each checkpoint. Independent release audit remains a separate reviewer task.
+- Before every push, self-test normal entry points and relevant failure cases, run the phase quality gates, review the diff for unused or unnecessary code, and scan the publication set for secrets and unintended files.
 - Source technical claims from official documentation and execution evidence. Mark untested dependencies and unanswered assumptions explicitly.
 
 ## Gates

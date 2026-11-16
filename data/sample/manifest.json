@@ -1,0 +1,26 @@
+{
+  "data_label": "SAMPLE DATA",
+  "schema_version": 1,
+  "seed": 42,
+  "marketplace": "amazon.de",
+  "currency": "EUR",
+  "vat_rate": "0.19",
+  "retail_tax_basis": "gross_including_vat",
+  "ads_tax_basis": "net_excluding_vat",
+  "first_week": "2026-09-07",
+  "report_week": "2026-10-26",
+  "weeks": 8,
+  "products": 10,
+  "reporting_timezone": "Europe/Berlin",
+  "ads_format": "English classic daily seller Sponsored Products",
+  "retail_format": "normalized weekly child-item export adapter",
+  "attribution_assumption": "zero halo, one unit per purchase, matched sample periods",
+  "files": {
+    "SAMPLE_ads.csv": "514fb2fa0f97b05f849f12dde85ef7026c6510fb834c98f1f323d2e99f2677be",
+    "SAMPLE_total_sales.csv": "d610646f96d057d691f4f711ffbbf7b75fb7af220ce446d0d87fa439df40e653",
+    "SAMPLE_costs.csv": "3de84fc093283d5d1248cd80b42530fd2f25e032a0471a314806d2a22c9f9298",
+    "SAMPLE_inventory.csv": "6277461c94fcc96e610f76585fdc7147b4f5ba3161e48e441d1862faafc493cc",
+    "SAMPLE_catalog.csv": "c24ee7c98ba1059b83a654a030f84b615e45c37564ba3e01bf549f0fab199a89",
+    "expected_flags.yaml": "2db97042eca9919b4000649261706335f2a66dc761aa1722376fc2bd8a43df74"
+  }
+}

@@ -106,3 +106,11 @@ The earlier tracker had corrupted Unicode progress bars and a stale P0 subtotal 
 On 2026-11-16 the owner approved making the reviewed repository public and requested commits under the configured owner author identity with no assistant-authorship tags. Existing commits use Patrick Jaso and have no co-author trailers. Shared handoff filenames support agent continuation and carry no claim of project authorship.
 
 The owner-approved public-repository recovery was performed. CI still ended before job creation. P1-5 remains open. The owner can authorize P2 while this external account condition is resolved. No paid service or spending-limit change was enabled.
+
+## P2 approval
+
+On 2026-11-16 the owner approved P2 while P1-5 remains open and required self-testing, verification, and review for unnecessary code before publication. Pause for owner review of sample assumptions and expected flags before P3.
+
+The P2 generator uses a fixed sample period and the approved 19% VAT convention, preserving reproducibility over time. It refuses other sample VAT settings because the expected-story fixture is tied to that approved basis. Normal report processing in P3 can validate its own declared input tax basis. Generated directories are staged and published atomically. Existing different content requires a new output path, preserving prior files.
+
+P2 catalog identities are sourced from official English-language German LEGO pages read on 2026-11-16. Simulated costs use 34% of net price for landed cost, 15% referral with a EUR 0.30 minimum, modelled fulfilment of max(EUR 2.50, 7% gross price), EUR 0.20 additional logistics/storage, and a 4% return rate with half net price as incremental loss per return. These and observed advertising ranges require owner review in the P2 gate.
