@@ -47,3 +47,30 @@ Recorded 2026-11-16 from the owner interview and subsequent approvals.
 ## Dependency verification
 
 Exact versions and Python requirement strings fetched from official PyPI JSON are in `evidence/p0-package-metadata.json`. Python 3.13.18 executes locally. Package installation and native PDF rendering are tracked separately in `STATUS.md` and the P0 evidence. Choose explicit DataFrame validation for the initial small schema, using pandas and Pydantic. Pandera is evaluated only in the compatibility probe, with no requirement to include it in the application.
+
+| Package | Verified metadata version | Python constraint | Official release |
+|---|---|---|---|
+| uv | 0.13.8 | >=3.8 | [PyPI](https://pypi.org/project/uv/0.13.8/) |
+| pandas | 3.1.1 | >=3.11 | [PyPI](https://pypi.org/project/pandas/3.1.1/) |
+| pydantic | 2.14.3 | >=3.10 | [PyPI](https://pypi.org/project/pydantic/2.14.3/) |
+| PyYAML | 6.0.3 | >=3.8 | [PyPI](https://pypi.org/project/PyYAML/6.0.3/) |
+| google-genai | 3.3.0 | >=3.11 | [PyPI](https://pypi.org/project/google-genai/3.3.0/) |
+| matplotlib | 3.11.2 | >=3.11 | [PyPI](https://pypi.org/project/matplotlib/3.11.2/) |
+| XlsxWriter | 3.3.1 | >=3.8 | [PyPI](https://pypi.org/project/XlsxWriter/3.3.1/) |
+| Jinja2 | 3.1.6 | >=3.7 | [PyPI](https://pypi.org/project/Jinja2/3.1.6/) |
+| WeasyPrint | 70.0 | >=3.10 | [PyPI](https://pypi.org/project/WeasyPrint/70.0/) |
+| python-pptx | 1.0.2 | >=3.8 | [PyPI](https://pypi.org/project/python-pptx/1.0.2/) |
+| pytest | 9.2.0 | >=3.10 | [PyPI](https://pypi.org/project/pytest/9.2.0/) |
+| pytest-cov | 7.1.0 | >=3.9 | [PyPI](https://pypi.org/project/pytest-cov/7.1.0/) |
+| hypothesis | 6.170.15 | >=3.11 | [PyPI](https://pypi.org/project/hypothesis/6.170.15/) |
+| ruff | 0.17.5 | >=3.7 | [PyPI](https://pypi.org/project/ruff/0.17.5/) |
+| mypy | 2.4.1 | >=3.10 | [PyPI](https://pypi.org/project/mypy/2.4.1/) |
+| pandera | 0.36.0 | >=3.10 | [PyPI](https://pypi.org/project/pandera/0.36.0/) |
+
+WeasyPrint 70.0 requires Pango >=1.44 and Python >=3.10. The release fixes the EPS interpreter issue in GHSA-r543-q48m-4c9j. Keep the restricted local URL fetcher and test local resources in P6. Local Windows Pango availability and runner-native installation need separate execution evidence.
+
+## Executed P0 checks
+
+Python 3.13.18 installed all pinned probe packages. pandas 3.1.1 and Pandera 0.36.0 validated a frame together. Copy-on-write and default str dtype were exercised. The SDK parsed a real structured response from gemini-3.5-flash-lite. See evidence/p0-stack.json and evidence/p0-gemini.json. Billing-unlinked status relies on the owner describing this as a Free Tier key, with no billing-admin access tested here.
+
+WeasyPrint imports fail locally with OSError because native libraries are unavailable. Installation instructions specify Pango >=1.44. This is a verified environment requirement, with successful PDF generation still required in P6. Establish Ubuntu runner support with native packages before counting that renderer as complete. Windows uv venv also encountered access denied for temporary/cache writes. The P0 probe used standard venv and pip, and P1 still requires successful uv locked install evidence.

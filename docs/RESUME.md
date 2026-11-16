@@ -20,10 +20,13 @@ The ignored `.env` holds the owner-supplied Gemini credential. It must be rotate
 
 ## Next actions
 
-- Finish P0 installation and record dependency compatibility, pandas behavior and PDF-native dependency outcomes.
-- Run `scripts/check_gemini.py --confirm-unbilled` in the probe environment using the owner's Free Tier key. It writes only synthetic response evidence. If access fails, diagnose provider status safely and record the specific unmet dependency.
-- Update STATUS with completed evidence and push the checkpoint. Ask for P1 approval only when presenting the P0 result and open conditions accurately.
-- On approval, build P1 scaffold, reproducible lock, CLI/config and CI. Do not start P2 before its gate.
+P0 is complete as a verification phase. Wait for the owner's approval before P1.
+
+- Read docs/evidence/p0-stack.json and p0-gemini.json for actual results.
+- Pango/native libraries are unavailable in this Windows environment. Implement and verify an Ubuntu runner dependency installation before claiming PDF support in P6.
+- uv version executes but uv venv temporary/cache writes were denied. The isolated P0 probe used standard venv/pip. P1 must demonstrate uv sync --locked with a chosen supported execution environment.
+- After approval, create the P1 package, lock, CLI/config, MIT license and CI. Preserve owner control at the next gate.
+- The key was shared in chat. Rotate it before unattended setup, saving its replacement directly in ignored .env. No credential has been committed.
 
 ## Persistence
 

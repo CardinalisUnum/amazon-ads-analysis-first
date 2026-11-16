@@ -1,6 +1,6 @@
 # Candidate verified against public pricing and model documentation 2026-11-16.
-# Account-level access remains pending until the smoke script succeeds.
+# Account response parsed successfully; see docs/evidence/p0-gemini.json.
 provider: google
 model: gemini-3.5-flash-lite
-access_verified: false
+access_verified: true
 required_project_tier: free_billing_unlinked

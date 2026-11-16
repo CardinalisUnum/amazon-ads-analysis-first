@@ -11,13 +11,23 @@ import pandera.pandas as pa
 import yaml
 from google import genai
 
-
-rows = json.loads(Path("docs/evidence/p0-package-metadata.json").read_text(encoding="utf-8-sig"))
+rows = json.loads(
+    Path("docs/evidence/p0-package-metadata.json").read_text(encoding="utf-8-sig")
+)
 versions = {}
 for row in rows:
     if row["name"] != "uv":
         versions[row["name"]] = importlib.metadata.version(row["name"])
-for module in ["pydantic", "matplotlib", "xlsxwriter", "jinja2", "pptx", "pytest", "hypothesis", "mypy"]:
+for module in [
+    "pydantic",
+    "matplotlib",
+    "xlsxwriter",
+    "jinja2",
+    "pptx",
+    "pytest",
+    "hypothesis",
+    "mypy",
+]:
     importlib.import_module(module)
 frame = pd.DataFrame({"name": ["sample"], "amount": [1.0]})
 pa.DataFrameSchema({"name": pa.Column(str), "amount": pa.Column(float)}).validate(frame)
@@ -30,7 +40,8 @@ assert "Sales" in mapping["ads"]["ad_sales"]
 with genai.Client(api_key="placeholder-no-request") as client:
     assert callable(client.interactions.create)
 result = {
-    "python": platform.python_version(), "versions": versions,
+    "python": platform.python_version(),
+    "versions": versions,
     "pandera_pandas_compatibility": "validated sample frame",
     "pandas_copy_on_write": "original preserved on shallow-copy modification",
     "string_dtype": str(frame["name"].dtype),
@@ -44,6 +55,11 @@ try:
     assert pdf.startswith(b"%PDF")
     result["pdf_native"] = "minimal PDF rendered"
 except (ImportError, OSError) as exc:
-    result["pdf_native"] = {"status": "native dependency unavailable", "error_type": type(exc).__name__}
-Path("docs/evidence/p0-stack.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    result["pdf_native"] = {
+        "status": "native dependency unavailable",
+        "error_type": type(exc).__name__,
+    }
+Path("docs/evidence/p0-stack.json").write_text(
+    json.dumps(result, indent=2) + "\n", encoding="utf-8"
+)
 print(json.dumps(result, indent=2))

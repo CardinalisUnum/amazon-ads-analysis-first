@@ -1,0 +1,11 @@
+{
+  "status": "parsed_response",
+  "model": "gemini-3.5-flash-lite",
+  "checked_at": "2026-11-16T01:46:55.670066+00:00",
+  "project_unbilled_confirmed_by_operator": true,
+  "sample_data": true,
+  "response": {
+    "product": "SAMPLE-01",
+    "note": "Contribution after ads is EUR 180"
+  }
+}

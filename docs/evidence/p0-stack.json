@@ -1,0 +1,29 @@
+{
+  "python": "3.13.18",
+  "versions": {
+    "pandas": "3.1.1",
+    "pydantic": "2.14.3",
+    "PyYAML": "6.0.3",
+    "google-genai": "3.3.0",
+    "matplotlib": "3.11.2",
+    "XlsxWriter": "3.3.1",
+    "Jinja2": "3.1.6",
+    "WeasyPrint": "70.0",
+    "python-pptx": "1.0.2",
+    "pytest": "9.2.0",
+    "pytest-cov": "7.1.0",
+    "hypothesis": "6.170.15",
+    "ruff": "0.17.5",
+    "mypy": "2.4.1",
+    "pandera": "0.36.0"
+  },
+  "pandera_pandas_compatibility": "validated sample frame",
+  "pandas_copy_on_write": "original preserved on shallow-copy modification",
+  "string_dtype": "str",
+  "column_map": "distinct total and promoted aliases parsed",
+  "sdk_shape": "interactions.create exists; no network request in this check",
+  "pdf_native": {
+    "status": "native dependency unavailable",
+    "error_type": "OSError"
+  }
+}

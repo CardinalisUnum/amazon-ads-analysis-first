@@ -158,4 +158,3 @@ Required test types:
 - **End-to-end:** generate sample → run → all 4 files exist, are non-empty, open without error, and carry the SAMPLE DATA marker.
 
 ---
-

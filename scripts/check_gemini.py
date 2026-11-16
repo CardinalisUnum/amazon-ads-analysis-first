@@ -4,10 +4,11 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from google import genai
+from google.genai import errors
 from pydantic import BaseModel, ConfigDict
 
 
@@ -41,9 +42,11 @@ def main() -> int:
         with genai.Client(api_key=key) as client:
             reply = client.interactions.create(
                 model=model,
-                input=("SAMPLE DATA. Product SAMPLE-01 has contribution after ads "
-                       "of EUR 180. Return its identifier and a short note using only "
-                       "this fact. Do not calculate anything."),
+                input=(
+                    "SAMPLE DATA. Product SAMPLE-01 has contribution after ads "
+                    "of EUR 180. Return its identifier and a short note using only "
+                    "this fact. Do not calculate anything."
+                ),
                 response_format={
                     "type": "text",
                     "mime_type": "application/json",
@@ -53,15 +56,17 @@ def main() -> int:
         result = CheckResult.model_validate_json(reply.output_text)
         if result.product != "SAMPLE-01":
             raise ValueError("Unexpected product")
-    except Exception as exc:
+    except (errors.APIError, ValueError, OSError) as exc:
         # Provider exception text may contain request details. Store only its class.
         print(json.dumps({"status": "failed", "error_type": type(exc).__name__}))
         return 1
     evidence = {
-        "status": "parsed_response", "model": model,
-        "checked_at": datetime.now(timezone.utc).isoformat(),
+        "status": "parsed_response",
+        "model": model,
+        "checked_at": datetime.now(UTC).isoformat(),
         "project_unbilled_confirmed_by_operator": True,
-        "sample_data": True, "response": result.model_dump(),
+        "sample_data": True,
+        "response": result.model_dump(),
     }
     path = Path("docs/evidence/p0-gemini.json")
     path.write_text(json.dumps(evidence, indent=2) + "\n", encoding="utf-8")
