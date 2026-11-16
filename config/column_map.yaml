@@ -1,0 +1,32 @@
+# Draft verified 2026-11-16 against seller Sponsored Products definitions.
+# Source https://advertising.amazon.com/help/GYNVHW8R4QPYUS9H
+# Lists are alternative source names. Multiple matching columns need conflict checks.
+# Retail input is a normalized adapter from a per-period child-item export.
+ads:
+  date: [Date]
+  campaign: [Campaign Name]
+  ad_group: [Ad Group Name]
+  sku: [Advertised SKU]
+  asin: [Advertised ASIN]
+  currency: [Currency]
+  impressions: [Impressions]
+  clicks: [Clicks]
+  spend: [Cost, Spend, Spend on sponsored ads]
+  ad_sales: [Sales, 7 Day Total Sales]
+  promoted_sales: [Sales (promoted), 7 Day Advertised SKU Sales]
+  halo_sales: [Sales (halo), 7 Day Other SKU Sales]
+  purchases: [Purchases, 7 Day Total Orders (#)]
+  ad_units: [Units sold, 7 Day Total Units (#)]
+  promoted_units: [Units sold (promoted), 7 Day Advertised SKU Units (#)]
+  source_ctr: [Click-Thru Rate (CTR), Click-through rate (CTR)]
+  source_cpc: [Cost Per Click (CPC), Cost per click (CPC)]
+  source_acos: [Total Advertising Cost of Sales (ACoS)]
+  source_roas: [Total Return on Advertising Spend (RoAS), Total Return on Advertising Spend (ROAS)]
+retail:
+  asin: [(Child) ASIN, childAsin]
+  gross_sales: [Ordered Product Sales, orderedProductSales]
+  units: [Units Ordered, unitsOrdered]
+  sessions: [Sessions - Total, sessions]
+# Scope: English daily seller export. Derived source ratios are optional and
+# recomputed from additive measures. German headers require a supplied fixture.
+# Retail period dates belong in export metadata, not inferred from child rows.
