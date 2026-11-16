@@ -43,3 +43,5 @@ All committed example manifest hashes survive checkout. Example bytes disable Gi
 P3 golden CSV unchanged.
 
 Wheel verified: 36 package/metadata files, templates/prompt included, no workspace cache.
+
+Post-gate source whitespace cleanup used explicit UTF-8 and preserved all thirteen output files byte-for-byte. Generated SVG path whitespace is intentional; source diff whitespace checks pass.

@@ -44,4 +44,4 @@ The builder reviewed changed normal/failure paths, publication staging, package 
 
 All six P6 tasks are complete. Overall completion is 38/56 tasks and 78.7% weighted. STATUS.md contains the full progress table. RESUME.md documents exact interfaces and P7 steps.
 
-The GitHub account lock remains an external blocker for hosted CI and future unattended acceptance. The Ubuntu native-library step is committed but unverified on a hosted runner. Operations, frozen approval, notification receipts and real scheduled history remain P7. Measured human review savings remain P8. Pause after pushing for P7 approval.
+The P6 [hosted run](https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43888880338) executed zero runner steps and returned the same account billing-lock annotation. See p6-hosted-ci.json. The Ubuntu native-library step is committed but unverified on a hosted runner. Operations, frozen approval, notification receipts and real scheduled history remain P7. Measured human review savings remain P8. Pause after pushing for P7 approval.
