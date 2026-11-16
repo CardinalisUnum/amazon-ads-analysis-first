@@ -1,6 +1,6 @@
 # Amazon Ads Analysis First
 
-A proof of concept in development for weekly Amazon Ads review. Planned outputs are Excel, HTML, PDF and PowerPoint with Python-calculated product economics, prioritised review flags and checked commentary.
+A proof of concept in development for weekly Amazon Ads review. It generates Excel, HTML, PDF and PowerPoint with Python-calculated product economics, prioritised review flags and checked commentary.
 
 Catalog references use real LEGO products. Seller financial results and stock are simulated and labelled SAMPLE DATA.
 
@@ -20,7 +20,7 @@ uv run ruff format --check .
 uv run mypy --strict src/
 ```
 
-The current implementation validates inputs, calculates deterministic KPIs, applies all nine review rules and produces checked commentary or deterministic template notes. Approval and delivery return a nonzero status identifying P7. Visual reports follow in P6. Scheduled reporting and delivery follow in P7.
+The current implementation validates inputs, calculates deterministic KPIs, applies all nine review rules and generates Excel, HTML, PDF and PowerPoint with checked commentary or deterministic template notes. Approval and delivery return a nonzero status identifying P7. Scheduled reporting and delivery follow in P7.
 
 ```shell
 uv run adsreport generate-sample --seed 42
@@ -37,7 +37,13 @@ The sample contains 1,120 daily campaign-product rows, 80 weekly retail rows, 80
 uv run adsreport run --input data/sample --out out/numerical-draft --no-ai
 ```
 
-This produces SAMPLE_kpis.csv and report.json containing all 80 product-week observations. Both carry DRAFT and SAMPLE DATA labels. JSON preserves exact decimal values as strings, explicit nulls with reasons, source hashes and configuration fingerprints. CSV leaves undefined values blank. The committed golden CSV is checked by the tests.
+This produces four visual files, three charts in SVG/PNG, SAMPLE_kpis.csv, report.json and artifacts.json. All remain DRAFT and SAMPLE DATA. JSON/CSV contain all 80 product-week observations. JSON preserves exact decimals, explicit nulls with reasons, source hashes and configuration fingerprints. The committed golden CSV is unchanged and checked by the tests. Windows needs the one-time native PDF setup in [output instructions](docs/OUTPUTS.md).
+
+Reviewed offline examples are available as [Excel](docs/examples/SAMPLE_report.xlsx), [HTML](docs/examples/SAMPLE_report.html), [PDF](docs/examples/SAMPLE_report.pdf) and [PowerPoint](docs/examples/SAMPLE_report.pptx). Download HTML to open it locally. These use labelled templates and simulated independent retailer performance.
+
+![Report overview](docs/evidence/p6/html-desktop.png)
+
+The workbook has six sheets and native charts. The PDF has eight A4 pages. The deck has five editable slides with native charts and full product commentary in speaker notes. [P6 verification](docs/evidence/P6-REPORT.md) records the checks and limits. Human approval, genuine scheduled history and measured review savings remain future acceptance items.
 
 The loader accepts the configured classic and current English ad-report aliases, verifies source types and declared file hashes, aggregates campaign records first and joins each retail row once. Supply manifest.json and exactly one ads.csv, total_sales.csv, costs.csv and inventory.csv, with optional SAMPLE_ prefixes. Retail inputs use the normalized weekly adapter described in [input contract](docs/INPUT-CONTRACT.md).
 
@@ -59,7 +65,7 @@ uv run adsreport run --input data/sample --out out/ai-draft
 
 The verified model is gemini-3.5-flash-lite. Other models fall back until reviewed for free access. One quota retry honors the provider delay. SDK automatic retries and continuation are disabled. Every note carries SAMPLE DATA, either AI-drafted, guard-checked or template, and a reason. Check commentary.request_status and commentary.attempts for the actual service outcome.
 
-The model selects metric facts and a permitted review focus. Python validates each value against that product, week, metric, unit and direction, and owns the rendered labels. Causes, targets and review dates remain unknown. Free-form analysis and causal accuracy are outside this guard's guarantees. See [commentary contract](docs/COMMENTARY.md).
+The model selects metric facts and a permitted review focus. Python validates each value against that product, week, metric, unit and direction, and owns the rendered labels. Causes, targets and review dates remain unknown. Free-form analysis and causal accuracy are outside this guard's guarantees. See [commentary contract](docs/COMMENTARY.md). P6 observed a provider HTTP 503 and usable template outputs. The numeric provider_error_status field now records such failures without provider text. [Replay evidence](docs/evidence/p6-ai-replay.json) identifies a captured real response checked without another request. Service availability is not guaranteed.
 
 The [P5 evidence](docs/evidence/p5-gemini.json) records a real ten-product batched response with ten accepted notes and no rejections, measured at 6.066 seconds for that local end-to-end run. This manual check provides no scheduled reliability or business time-saving claim. The first serving schema was rejected and simplified before the successful call. Hosted CI remains blocked by the account restriction described in [status](docs/STATUS.md).
 

@@ -1,0 +1,236 @@
+{
+  "products": [
+    {
+      "asin": "SAMPLE0001",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_spend_eur",
+          "value": "190.5",
+          "unit": "EUR",
+          "direction": "level"
+        },
+        {
+          "metric": "acos_pct",
+          "value": "18",
+          "unit": "percent",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "routine_review",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0002",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_spend_eur",
+          "value": "295",
+          "unit": "EUR",
+          "direction": "level"
+        },
+        {
+          "metric": "acos_pct",
+          "value": "18",
+          "unit": "percent",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "routine_review",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0003",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_spend_eur",
+          "value": "559",
+          "unit": "EUR",
+          "direction": "level"
+        },
+        {
+          "metric": "acos_pct",
+          "value": "60",
+          "unit": "percent",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "routine_review",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0004",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "acos_pct",
+          "value": "60",
+          "unit": "percent",
+          "direction": "level"
+        },
+        {
+          "metric": "break_even_acos_pct",
+          "value": "37.39",
+          "unit": "percent",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "launch_window",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0005",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "acos_pct",
+          "value": "60.0",
+          "unit": "percent",
+          "direction": "level"
+        },
+        {
+          "metric": "break_even_acos_pct",
+          "value": "37.39",
+          "unit": "percent",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "profitability",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0006",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "acos_pct_wow_pp",
+          "value": "-8",
+          "unit": "percentage_points",
+          "direction": "down"
+        },
+        {
+          "metric": "net_revenue_eur_wow_pct",
+          "value": "-26",
+          "unit": "percent",
+          "direction": "down"
+        },
+        {
+          "metric": "impressions_wow_pct",
+          "value": "-34",
+          "unit": "percent",
+          "direction": "down"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "sales_and_reach",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0007",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "acos_pct",
+          "value": "70",
+          "unit": "percent",
+          "direction": "level"
+        },
+        {
+          "metric": "break_even_acos_pct",
+          "value": "14.02",
+          "unit": "percent",
+          "direction": "level"
+        },
+        {
+          "metric": "contribution_after_ads_eur",
+          "value": "-224.33",
+          "unit": "EUR",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "profitability",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0008",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_cvr_pct_wow_pct",
+          "value": "-42.86",
+          "unit": "percent",
+          "direction": "down"
+        },
+        {
+          "metric": "clicks_wow_pct",
+          "value": "0",
+          "unit": "percent",
+          "direction": "flat"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "conversion",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0009",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_spend_eur_wow_pct",
+          "value": "66.67",
+          "unit": "percent",
+          "direction": "up"
+        },
+        {
+          "metric": "ad_sales_eur_wow_pct",
+          "value": "0",
+          "unit": "percent",
+          "direction": "flat"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "spend_and_sales",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    },
+    {
+      "asin": "SAMPLE0010",
+      "week": "2026-10-26",
+      "what_happened": [
+        {
+          "metric": "ad_spend_eur_wow_pct",
+          "value": "61.4",
+          "unit": "percent",
+          "direction": "up"
+        },
+        {
+          "metric": "stock_coverage_days",
+          "value": "0.31",
+          "unit": "days",
+          "direction": "level"
+        }
+      ],
+      "likely_cause": "unknown",
+      "planned_change_to_review": "inventory",
+      "target_and_review_date": "unknown",
+      "confidence": "low"
+    }
+  ]
+}

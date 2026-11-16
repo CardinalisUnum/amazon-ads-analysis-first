@@ -1,0 +1,311 @@
+{
+  "mode": "REPLAY of a captured real diagnostic response",
+  "data_label": "SAMPLE DATA",
+  "source_recorded_at": "2026-11-16T14:20:07.835304+00:00",
+  "checked_at": "2026-11-16T14:30:34.903140+00:00",
+  "network_requests_during_replay": 0,
+  "source_response_sha256": "169f9977c68b5b109e9729e5f28a270ca0da8b8b9dcc2494f196b135ff84aeac",
+  "commentary": {
+    "notes": [
+      {
+        "asin": "SAMPLE0001",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Ad spend: EUR 190.5. ACoS: 18%.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review routine performance with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_spend_eur",
+            "value": "190.5",
+            "unit": "EUR",
+            "direction": "level"
+          },
+          {
+            "metric": "acos_pct",
+            "value": "18",
+            "unit": "percent",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0002",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Ad spend: EUR 295. ACoS: 18%.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review routine performance with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_spend_eur",
+            "value": "295",
+            "unit": "EUR",
+            "direction": "level"
+          },
+          {
+            "metric": "acos_pct",
+            "value": "18",
+            "unit": "percent",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0003",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Ad spend: EUR 559. ACoS: 60%.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review routine performance with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_spend_eur",
+            "value": "559",
+            "unit": "EUR",
+            "direction": "level"
+          },
+          {
+            "metric": "acos_pct",
+            "value": "60",
+            "unit": "percent",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0004",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "ACoS: 60%. Break-even ACoS: 37.39%.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review launch age and launch economics with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "acos_pct",
+            "value": "60",
+            "unit": "percent",
+            "direction": "level"
+          },
+          {
+            "metric": "break_even_acos_pct",
+            "value": "37.39",
+            "unit": "percent",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0005",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "ACoS: 60.0%. Break-even ACoS: 37.39%.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review product economics and ad efficiency with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "acos_pct",
+            "value": "60.0",
+            "unit": "percent",
+            "direction": "level"
+          },
+          {
+            "metric": "break_even_acos_pct",
+            "value": "37.39",
+            "unit": "percent",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0006",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Week-over-week ACoS change: -8 pp (down). Week-over-week change in net retail revenue: -26% (down). Week-over-week change in impressions: -34% (down).",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review the sales and reach decline with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "acos_pct_wow_pp",
+            "value": "-8",
+            "unit": "percentage_points",
+            "direction": "down"
+          },
+          {
+            "metric": "net_revenue_eur_wow_pct",
+            "value": "-26",
+            "unit": "percent",
+            "direction": "down"
+          },
+          {
+            "metric": "impressions_wow_pct",
+            "value": "-34",
+            "unit": "percent",
+            "direction": "down"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0007",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "ACoS: 70%. Break-even ACoS: 14.02%. Contribution after ads: EUR -224.33.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review product economics and ad efficiency with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "acos_pct",
+            "value": "70",
+            "unit": "percent",
+            "direction": "level"
+          },
+          {
+            "metric": "break_even_acos_pct",
+            "value": "14.02",
+            "unit": "percent",
+            "direction": "level"
+          },
+          {
+            "metric": "contribution_after_ads_eur",
+            "value": "-224.33",
+            "unit": "EUR",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0008",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Week-over-week change in ad conversion rate: -42.86% (down). Week-over-week change in clicks: 0% (flat).",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review conversion and detail-page health with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_cvr_pct_wow_pct",
+            "value": "-42.86",
+            "unit": "percent",
+            "direction": "down"
+          },
+          {
+            "metric": "clicks_wow_pct",
+            "value": "0",
+            "unit": "percent",
+            "direction": "flat"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0009",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Week-over-week change in ad spend: 66.67% (up). Week-over-week change in ad-attributed sales: 0% (flat).",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review spend and attributed-sales trends with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_spend_eur_wow_pct",
+            "value": "66.67",
+            "unit": "percent",
+            "direction": "up"
+          },
+          {
+            "metric": "ad_sales_eur_wow_pct",
+            "value": "0",
+            "unit": "percent",
+            "direction": "flat"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      },
+      {
+        "asin": "SAMPLE0010",
+        "week": "2026-10-26",
+        "data_label": "SAMPLE DATA",
+        "label": "AI-drafted, guard-checked",
+        "reason": "validated_fact_selections",
+        "what_happened": "Week-over-week change in ad spend: 61.4% (up). Stock coverage: 0.31 days.",
+        "likely_cause": "Unknown. These observations do not establish a cause.",
+        "planned_change_to_review": "Review stock availability and the spend trend with the Ads manager.",
+        "target_and_review_date": "Unknown. Agree a target and review date with the Ads manager.",
+        "confidence": "low",
+        "claims": [
+          {
+            "metric": "ad_spend_eur_wow_pct",
+            "value": "61.4",
+            "unit": "percent",
+            "direction": "up"
+          },
+          {
+            "metric": "stock_coverage_days",
+            "value": "0.31",
+            "unit": "days",
+            "direction": "level"
+          }
+        ],
+        "guard_issues": [],
+        "rejected_numeric_tokens": []
+      }
+    ],
+    "request_status": "replayed_real_response",
+    "attempts": 0,
+    "model": "gemini-3.5-flash-lite",
+    "prompt_sha256": "439670f31a213ba09fa134673988e856bf7dd09847ff5fadd483dd14b4910777",
+    "ai_used": true,
+    "guard_rejections": 0,
+    "provider_error_status": null
+  }
+}

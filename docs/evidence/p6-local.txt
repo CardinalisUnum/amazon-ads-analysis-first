@@ -1,0 +1,124 @@
+$ uv sync --locked
+Resolved 74 packages in 16ms
+   Building adsreport @ file:///<workspace>
+      Built adsreport @ file:///<workspace>
+Prepared 1 package in 2.13s
+Uninstalled 1 package in 12ms
+Installed 1 package in 23ms
+ ~ adsreport==0.1.0 (from file:///<workspace>)
+
+exit=0, seconds=3.965
+
+$ uv run ruff check .
+All checks passed!
+
+exit=0, seconds=0.122
+
+$ uv run ruff format --check .
+59 files already formatted
+
+exit=0, seconds=0.110
+
+$ uv run mypy --strict src/
+Success: no issues found in 28 source files
+
+exit=0, seconds=1.080
+
+$ uv run pytest --cov=src/adsreport --cov-report=term-missing --hypothesis-show-statistics
+============================= test session starts =============================
+platform win32 -- Python 3.13.18, pytest-9.2.0, pluggy-1.7.0
+rootdir: <workspace>
+configfile: pyproject.toml
+testpaths: tests
+plugins: anyio-4.16.0, hypothesis-6.170.15, cov-7.1.0
+collected 195 items
+
+tests\test_commentary.py ............................................... [ 24%]
+...........                                                              [ 29%]
+tests\test_config.py ...................                                 [ 39%]
+tests\test_kpi.py ...................                                    [ 49%]
+tests\test_loader.py .................................                   [ 66%]
+tests\test_outputs.py ............                                       [ 72%]
+tests\test_pipeline.py ...                                               [ 73%]
+tests\test_rules.py .......................................              [ 93%]
+tests\test_sample.py ............                                        [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.18-final-0 _______________
+
+Name                               Stmts   Miss Branch BrPart  Cover   Missing
+------------------------------------------------------------------------------
+src\adsreport\__init__.py              0      0      0      0   100%
+src\adsreport\__main__.py              2      2      0      0     0%   1-3
+src\adsreport\ai\__init__.py           0      0      0      0   100%
+src\adsreport\ai\commentary.py       172      0     60      6    97%   74->84, 85->100, 87->100, 89->100, 91->90, 240->262
+src\adsreport\ai\fallback.py          15      0      2      0   100%
+src\adsreport\ai\models.py            46      0      0      0   100%
+src\adsreport\artifacts.py            17      1     10      2    89%   10, 12->21
+src\adsreport\cli.py                  55      0     10      0   100%
+src\adsreport\config.py               59      0      6      0   100%
+src\adsreport\guard\__init__.py        0      0      0      0   100%
+src\adsreport\guard\numbers.py        48      0     24      0   100%
+src\adsreport\io\__init__.py           0      0      0      0   100%
+src\adsreport\io\loader.py           118      5     64      5    95%   48, 77, 90, 96, 199
+src\adsreport\io\models.py            96      0      2      0   100%
+src\adsreport\kpi\__init__.py          0      0      0      0   100%
+src\adsreport\kpi\engine.py           78      0     26      0   100%
+src\adsreport\kpi\summary.py          38      0     10      0   100%
+src\adsreport\pipeline.py             44      1      4      1    96%   64
+src\adsreport\render\__init__.py       0      0      0      0   100%
+src\adsreport\render\charts.py        51      0     12      0   100%
+src\adsreport\render\html.py          10      0      0      0   100%
+src\adsreport\render\model.py        116      0     32      1    99%   76->88
+src\adsreport\render\pdf.py           21      4      6      2    70%   9-11, 31
+src\adsreport\render\pptx.py         144      1     36      1    99%   270
+src\adsreport\render\xlsx.py         132      0     26      0   100%
+src\adsreport\rules\__init__.py        0      0      0      0   100%
+src\adsreport\rules\engine.py        124      0     44      0   100%
+src\adsreport\sample.py              114      0     34      0   100%
+------------------------------------------------------------------------------
+TOTAL                               1500     14    408     18    98%
+============================ Hypothesis Statistics ============================
+tests/test_kpi.py::test_acos_roas_identity:
+
+  - during generate phase (0.39 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+tests/test_kpi.py::test_contribution_identity:
+
+  - during generate phase (0.13 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+============================ 195 passed in 49.25s =============================
+
+exit=0, seconds=51.445
+
+$ uv run adsreport generate-sample --seed 42
+SAMPLE DATA ready at data\sample (10 products, 8 weeks, seed 42).
+
+exit=0, seconds=1.981
+
+$ uv run adsreport --check-config
+Configuration valid.
+
+exit=0, seconds=1.877
+
+$ uv run adsreport run --out out/p6-gates --no-ai
+DRAFT SAMPLE DATA XLSX, HTML, PDF, PPTX and evidence ready at out\p6-gates.
+
+exit=0, seconds=6.529
+
+$ uv build --wheel --out-dir out/p6-dist
+warning: The cache directory `.tools\p1-cache` is inside the build source directory `.` and may be included in distributions
+Building wheel...
+Successfully built out\p6-dist\adsreport-0.1.0-py3-none-any.whl
+
+exit=0, seconds=1.842

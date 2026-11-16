@@ -1,0 +1,28 @@
+{
+  "trigger": "manual_phase_verification",
+  "data_label": "SAMPLE DATA",
+  "mode": "no_ai",
+  "elapsed_seconds": 4.454,
+  "product_weeks": 80,
+  "flags": 10,
+  "notes": 10,
+  "artifacts": {
+    "report_id": "SAMPLE-20261026-5f153769bf35bf7c",
+    "status": "DRAFT",
+    "data_label": "SAMPLE DATA",
+    "sha256": {
+      "SAMPLE_tacos.svg": "a58e6716c92a556440b2dc5b78726de9efccf25dac223d9fc7a1b5a1a5b2401c",
+      "SAMPLE_tacos.png": "9760f51b653a49b5f1120b51ce66c4a26cc8f64345ede592ca53caf39a96dfde",
+      "SAMPLE_contribution.svg": "75ce104ae88443ad4f8db2d38c758e5ba5f76236d7704d31ec2f8be9f4406bfd",
+      "SAMPLE_contribution.png": "f18d37413c53e2c94c589a04ac740cbfbc03407bedebdf0ad1922e5efb589d6e",
+      "SAMPLE_acos.svg": "f327dad65599552077ffb1cbb81520d511850e05ab08a8b42b7ecb6aee7473cc",
+      "SAMPLE_acos.png": "bf2a2f889ffbcba034ccda9f6af181c9a6bd734d3b90ef5b1290c634a30c9907",
+      "SAMPLE_report.html": "f42a200d74aa1fa43280b1bac1393a845ab02939cc6122cfa7bfe7091cb64609",
+      "SAMPLE_report.pdf": "7db5c925584b02619562612c832eda18090abf30906e408cdb407cf089ea0548",
+      "SAMPLE_report.xlsx": "faaf35b593184ae4943ca0cc5f1690a82561a9979284aeab40b307f0cc663056",
+      "SAMPLE_report.pptx": "cbcb87329ea484b7302b0aa1131e40fac9b7ecd4686a7559ddfc665922df4e3c",
+      "SAMPLE_kpis.csv": "2301e2b92556eba7abeb5c3b357b7849347f325ffe1d676eb8bc6bafcb0da3db",
+      "report.json": "6a511f1233bf3da1a982fc5ae82a197197036ddb17124c5f005a48127b8f7575"
+    }
+  }
+}

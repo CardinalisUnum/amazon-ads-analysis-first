@@ -1,0 +1,53 @@
+{
+  "data_label": "SAMPLE DATA",
+  "status": "DRAFT",
+  "source_report_id": "SAMPLE-20261026-5f153769bf35bf7c",
+  "source_bundle": "docs/examples",
+  "methods": {
+    "pdf": "Poppler rendering of every final PDF page",
+    "xlsx": "Native Excel read-only open, six bounded sheet views exported to PDF then rendered with Poppler",
+    "pptx": "Native PowerPoint read-only open and PNG export of all five slides",
+    "html": "Separate Chrome browser viewport captures"
+  },
+  "native_excel_sheets_opened": 6,
+  "native_charts_on_charts_sheet": 3,
+  "native_powerpoint_slides_rendered": 5,
+  "pdf_pages_inspected": 8,
+  "browser": {
+    "desktop_viewport": [
+      1440,
+      1000
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "mobile_document_width": 390,
+    "product_cards": 10,
+    "inline_charts": 3,
+    "external_resources": []
+  },
+  "previews": {
+    "html-desktop.png": "15c2d172afc3b0444200db43f4d9b85c340f0b45550d298202885a3839b7bb42",
+    "html-mobile.png": "b5feaa1e58a90693c046d503098089ab69ff368e1f6a0986d1ccbb2d25d3c3e0",
+    "pdf-page-1.png": "7f98b1855029fbe851b9c2c9d472e5250a5336d5ebfaa9a260fe0baecc4e1ef2",
+    "pdf-page-2.png": "69f0bfd6edc655b1f7d5d49e660f62d6acd55d9bb36e6252c4e3712f75531695",
+    "pdf-page-3.png": "d5119e5b19bd36492dac58b74fae9415ce62ae15f26754e51ecd48b02594dd82",
+    "pdf-page-4.png": "3dc6c43cda8e88b6d36412c71518b6abcdda3d67624c342e4a16c8e32ada1b6e",
+    "pdf-page-5.png": "6a4ca4c4474bc12f43b91c37c41f87ca62305e5edeefd291d72d8d1d1c066f40",
+    "pdf-page-6.png": "f29c6eca3f933ab3bb2ac6042d7cce907b6e11e72465de5d9cca3c75c04419c9",
+    "pdf-page-7.png": "00c0130a2169d1c52d37fd6e69d4c9b5d6440cc5d1d4deda4538f6228b439822",
+    "pdf-page-8.png": "95ee3f5d873f9cc358328ba54cb08635f1e67c6588447c6dc895d825e7ecc187",
+    "pptx-slide1.png": "292da0915705f80db98989689a27e6524a3eb2b0af03d3f81f7aeb0e7ca876e3",
+    "pptx-slide2.png": "6fd1cefbcbf085ced327cca1f018bc965cb30865604b721370db71cce6853dbb",
+    "pptx-slide3.png": "5c5fe02436813721754f9177f42d56e2e7ddc56aa51797c99e2445fe74e9fa51",
+    "pptx-slide4.png": "9edf886727a9439e450136dfb7bd97116be53381c49079ebe1952922f8269102",
+    "pptx-slide5.png": "27328410a1fbeb532676efc149d505dda19f9f103cf5da8f494b73d3234df9d5",
+    "xlsx-charts.png": "020704c2cf83fc6bdbfa7cb3b94522e3df60705aa6ca4eb723238418efdac34f",
+    "xlsx-commentary.png": "2227f12405efef37204f090216902dc65a47a79050123009f3a360f226d0559a",
+    "xlsx-priorities.png": "73f81c362ee29d83cfad94675ac74b05fd6320401b4695675dcb58151cac336c",
+    "xlsx-products.png": "73d33f1bbfa9cf4d0b56e6fc34f9bf8db349c422e3128b5a603b6d443d0b0e9e",
+    "xlsx-run-info.png": "6e0cb32924c8a9033a102dba60429d15f2d180b0e094673f9eef9afb5c89b534",
+    "xlsx-summary.png": "4d9ab5b208b73e7788cce9330d130c754e2a4449b6d6f711be06029ca029cc2c"
+  }
+}

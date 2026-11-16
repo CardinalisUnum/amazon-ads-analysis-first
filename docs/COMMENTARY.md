@@ -22,6 +22,8 @@ Accepted claims become canonical English sentences. The remaining fields use bou
 
 Every note records label, reason, product, week, SAMPLE DATA and its structured claims. Labels are AI-drafted, guard-checked or template. Templates show ad spend, ACoS and contribution after ads where available, plus a rule-aligned review item. An unavailable value is omitted rather than invented.
 
+P6 adds provider_error_status, an optional numeric HTTP failure code in batch metadata. It records no provider exception text or account identifiers. A service fallback remains a usable numerical report, while ai_used=false identifies the absence of accepted AI notes. Explicit replay evidence is separated from live requests and scheduled history.
+
 Guard rejection records stable issue codes and extracted numeric tokens. Arbitrary rejected prose, provider exception text, keys and account identifiers are never persisted. Other reasons include no_ai, missing_key, free_tier_unconfirmed, model_not_free_verified, credentials_unreadable, service_error, quota_exhausted, quota_retry_invalid, schema_invalid, duplicate_product, missing_product, unexpected_product and product_limit. request_status=parsed_response confirms parsing, while ai_used and note labels distinguish accepted notes from partial or total fallback.
 
 --no-ai returns deterministic templates before reading credentials or making a request. The default path reads only GEMINI_API_KEY and GEMINI_FREE_TIER_CONFIRMED from the environment and ignored .env, with environment precedence. The configured model must be the free-verified gemini-3.5-flash-lite. The confirmation flag is an operator attestation, not a billing API check.

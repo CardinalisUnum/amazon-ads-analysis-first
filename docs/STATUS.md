@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P5 complete and verified. P6 awaits owner approval. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P6 complete and verified locally. P7 awaits owner approval. Hosted CI P1-5 remains open.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
@@ -10,11 +10,11 @@ Updated 2026-11-16. P5 complete and verified. P6 awaits owner approval. Hosted C
 | P3 Loader and KPIs | 15% | 6/6 | 100.0% | `████████████████████` |
 | P4 Rules | 12% | 5/5 | 100.0% | `████████████████████` |
 | P5 Commentary and guard | 15% | 6/6 | 100.0% | `████████████████████` |
-| P6 Outputs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P6 Outputs | 15% | 6/6 | 100.0% | `████████████████████` |
 | P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **32/56** | **63.7% weighted** | `█████████████░░░░░░░` |
+| **Overall** | **100%** | **38/56** | **78.7% weighted** | `████████████████░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -53,12 +53,12 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P5-4 | Template fallback (deterministic) | `--no-ai` path fully works | Complete. Offline CLI yields ten deterministic templates, unchanged golden CSV and byte-identical JSON across checkouts. |
 | P5-5 | Error handling: quota/429 → one retry → fallback; never fails the run | Test with a mocked 429 | Complete. Quota retry/recovery/exhaustion, provider delays, schema and network fallback tested. Actual SDK transport confirms no hidden retry. |
 | P5-6 | Label each comment "AI-drafted, guard-checked" or "template", and why | Visible in outputs (test) | Complete. Every report.json note has label and reason. Partial rejection preserves other notes. Rendering these labels in four formats follows in P6. |
-| P6-1 | Chart module (matplotlib → SVG + PNG), shared palette | Charts render; labels and units present | Pending |
-| P6-2 | XLSX per §8 with native charts + conditional formatting | Opens cleanly in Excel; screenshots | Pending |
-| P6-3 | HTML per §8 (Jinja2, autoescape) | Screenshot; no external network requests | Pending |
-| P6-4 | PDF from the HTML (WeasyPrint, local-only fetcher) | A4, no cut-off content; screenshots of every page | Pending |
-| P6-5 | PPTX 5 slides per §8 | Opens cleanly; screenshots | Pending |
-| P6-6 | Cross-output consistency test + DRAFT/APPROVED + SAMPLE stamps | Test passes | Pending |
+| P6-1 | Chart module (matplotlib → SVG + PNG), shared palette | Charts render; labels and units present | Complete. Three labelled deterministic SVG/PNG charts share data and palette with native Office charts. See evidence/p6 and tests/test_outputs.py. |
+| P6-2 | XLSX per §8 with native charts + conditional formatting | Opens cleanly in Excel; screenshots | Complete. Native Excel opened all six sheets and three Charts-sheet charts. Summary has another native trend chart. Values, filters, formats, frozen identifiers and severity rules verified. |
+| P6-3 | HTML per §8 (Jinja2, autoescape) | Screenshot; no external network requests | Complete. Responsive self-contained HTML checked at desktop and 390 pixels, ten cards and three charts, no external resources or page overflow. |
+| P6-4 | PDF from the HTML (WeasyPrint, local-only fetcher) | A4, no cut-off content; screenshots of every page | Complete. Local Pango setup verified. Eight A4 pages rendered and inspected. Strict WeasyPrint 70 fetcher blocks network/file resources and fails clearly. |
+| P6-5 | PPTX 5 slides per §8 | Opens cleanly; screenshots | Complete. Native PowerPoint opened/rendered five editable slides with native charts. Full commentary remains in notes. Screenshots in evidence/p6. |
+| P6-6 | Cross-output consistency test + DRAFT/APPROVED + SAMPLE stamps | Test passes | Complete. Tests compare displayed portfolio figures, full XLSX values, native chart data, labels and identities. Approval-display tests are injected only; real approval remains P7. |
 | P7-1 | `weekly-report.yml`: schedule (off-minute cron) + `workflow_dispatch`, `build` job uploads artifacts | Manual run green | Pending |
 | P7-2 | Run log JSONL committed per run + success-rate calculation | Log entries visible; rate in README | Pending |
 | P7-3 | `client-delivery` environment with required reviewer; `deliver` job waits for approval | Screenshot of the waiting and approved states | Pending |
