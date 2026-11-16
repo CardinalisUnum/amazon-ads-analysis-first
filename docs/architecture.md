@@ -1,6 +1,6 @@
 # System map
 
-This is the proposed architecture. See STATUS.md for implementation evidence.
+This is the implemented local architecture. Hosted execution, actual gate states and real notifications require the external acceptance in STATUS.md. OPERATIONS.md documents exact commands and identity boundaries.
 
 ```mermaid
 flowchart TD
@@ -35,7 +35,7 @@ flowchart TD
 2. Ads aggregate to one child-ASIN-week before joining retail so retail totals cannot multiply across campaigns.
 3. KPI functions return values with explicit units and undefined-value reasons. All ratios use summed numerators and denominators.
 4. Rules attach exact facts and config thresholds. Multiple flags can apply to one product.
-5. Commentary selects facts by metric, product, week, unit and direction. Proposed design lets Python substitute formatted values for validated fact references.
+5. Commentary selects facts by metric, product, week, unit and direction. Python renders canonical wording from those validated claims.
 6. The immutable report record is the source for all output formats. Reviewer changes create a new version.
 7. Approval refers to the reviewed content. Preserve draft hashes and final stamped hashes. Verify semantic equality of the reviewed facts and commentary.
 8. Delivery records each channel independently so retries reuse the approved release.
@@ -44,7 +44,7 @@ flowchart TD
 
 Retail sample revenue includes 19% VAT. Net retail revenue removes VAT once. Preserve ad sales as reported, with their own attribution and tax basis. Use net retail revenue for this PoC's TACoS denominator and margin calculation. Organic share is a labelled residual proxy. Invalid or incomplete histories suppress dependent flags with a reason.
 
-Separate reporting week, export cut-off, workflow execution time, review waiting time, approval timestamp and notification outcome. Backfilled sample weeks record their actual execution timestamps.
+Separate reporting week, export cut-off, workflow execution time, review waiting time, approval timestamp and notification outcome. Historical simulated sample periods retain their real execution timestamps; no historical run dates are fabricated.
 
 ## Runtime evidence
 

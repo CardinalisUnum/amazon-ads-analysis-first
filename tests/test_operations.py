@@ -281,6 +281,10 @@ def test_smtp_requires_encrypted_transport(monkeypatch, port):
         notifications.send_email(values, "SAMPLE", "body", None)
     with pytest.raises(ValueError):
         notifications.send_email(values | {"SMTP_PORT": "25"}, "s", "b", None)
+    with pytest.raises(notifications.NotificationConfigError):
+        notifications.send_email(values | {"SMTP_PORT": "invalid"}, "s", "b", None)
+    client.send_message.return_value = {}
+    notifications.send_email(values | {"SMTP_PORT": ""}, "s", "b", None)
 
 
 def test_discord_waits_for_ack_and_blocks_mentions_redirects(monkeypatch):

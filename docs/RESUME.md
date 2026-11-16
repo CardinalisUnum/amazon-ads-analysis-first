@@ -1,6 +1,6 @@
 # Resume this checkpoint
 
-P7 operations are implemented locally with 222 passing tests. The owner authorized finishing all remaining buildable work without repeated phase questions; see decisions.md. Hosted acceptance remains blocked by the existing account billing lock. No release tag or independent audit is claimed.
+All buildable P7 code and P8 documentation are complete locally, with 222 passing tests (95% overall coverage). Strict acceptance is 41/56 tasks, 82.3% weighted; see STATUS.md for the full phase table. The owner authorized finishing all remaining buildable work without repeated phase questions; see decisions.md. Hosted acceptance remains blocked by the existing account billing lock. No release tag or independent audit is claimed.
 
 Read AGENTS.md, STATUS.md, decisions.md, SPEC.md and OPERATIONS.md first. P6 examples remain frozen DRAFT sample snapshots. Real operational CLI runs create unique reports/<run-id>/draft directories, with real UTC identity and append-only runs/run-log.jsonl events. Unit tests isolate their logs and disable notifications.
 
@@ -8,7 +8,18 @@ Approval captures the exact manifest, preserves the original draft, restores per
 
 Email and Discord transports are implemented and mock-tested. No private destinations are configured. No actual approval, receipt or unattended success was invented. The Environment is configured for CardinalisUnum/main; actual hosted waiting/approved states remain unverified. See evidence/p7-environment.json and evidence/P7-REPORT.md.
 
-Next: capture genuine local offline and injected-failure runs after this implementation commit, finish README/PROCESS/LIMITS/owner setup/demo/auditor handoff, update status against strict acceptance, self-check, commit and push. Keep P9 independent. Rotate the Gemini key privately before unattended use. Never copy the exposed key into Actions.
+## Current evidence and next work
+
+- Start-Report.ps1 completed a genuine local offline run at 2026-11-16 15:36 UTC: run 20261116T153601Z-7150091f311b, 6.382 pipeline seconds, ten products, ten flags, thirteen files. Source identity and dirty-tree disclosure are in evidence/p7-local-run.json. Local HTML, Excel, eight-page PDF and five-slide deck are available in reports/<run-id>/draft (ignored). Committed P6 examples remain static review references.
+- One actual labelled injected failure is in runs/run-log.jsonl; alerts were disabled. Scheduled evidence is 0/0, unavailable. Neither historical sample weeks nor unit calls were backfilled into operational history.
+- Both CI and one manual weekly-report attempt failed before job start with the account-lock annotation. See evidence/p7-hosted-ci.json and p7-manual-hosted.json. Do not rerun repeatedly while that restriction persists.
+- Final tests use both session-level isolation for module rendering setup and per-test temporary logs. The full suite leaves genuine history byte-identical. No mocked acceptance is recorded as an actual receipt. SMTP has conservative uncertain-state handling, including failed QUIT after possible DATA acceptance.
+- README, PROCESS, LIMITS, OPERATIONS, OWNER-ACTIONS, REVIEW-EFFORT, loom-script and AUDIT-HANDOFF are present. Owner documentation approval, measured effort and P9 are outstanding. Source archives explicitly select publication roots so ignored local checkout files cannot leak through broad environment-template ignore exceptions.
+
+Next executable work is owner-dependent: use OWNER-ACTIONS.md to recover free runner access, privately rotate Gemini credentials, choose/configure email/Discord destinations, and configure Actions secrets. Never copy the exposed key into Actions. Then run one manual workflow, review the exact uploaded draft, obtain genuine owner approval and both receipts, exercise the labelled failure alert, and verify an actual schedule. Restore Monday 09:17 Manila after any temporary verification schedule. Update evidence/status without claiming real merchant impact.
+
+For independent review, give another reviewer AUDIT-HANDOFF.md and the current main SHA. P9 must remain independent of the builder; no v1.0.0 tag until acceptance and audit findings are resolved. The owner is asked which SMTP sender to use; Gmail with app-password support is the recommended free PoC route, while Outlook sending may require an unimplemented OAuth adapter. No destination or credential was requested in chat.
+
 
 Local commands:
 

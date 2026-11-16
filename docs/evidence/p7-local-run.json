@@ -1,0 +1,27 @@
+{
+  "scope": "Genuine local offline execution on simulated sample data; no human review or delivery",
+  "run_id": "20261116T153601Z-7150091f311b",
+  "git_sha": "c37cbb39405b5ed0f33a7a82ebd249d528dc9e79",
+  "working_tree_dirty": true,
+  "elapsed_seconds": 6.381825,
+  "started_at": "2026-11-16T15:36:01.083128+00:00",
+  "finished_at": "2026-11-16T15:36:07.468697+00:00",
+  "manifest_sha256": "5e27237bf042dec52461f4501bae5f95428d89f3a716e3121bd3b19433466ff2",
+  "outputs": 13,
+  "pdf_pages": 8,
+  "products": 10,
+  "flags": {
+    "high": 5,
+    "medium": 3,
+    "low": 2
+  },
+  "ai_outcome": "no_ai",
+  "notifications": "disabled, no destinations configured",
+  "app_observed_scheduled_rate": {
+    "successful": 0,
+    "scheduled": 0,
+    "incomplete": 0,
+    "percent": null
+  },
+  "test_isolation": "Full suite left genuine operational history byte-identical"
+}

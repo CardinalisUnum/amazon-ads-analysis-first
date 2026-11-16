@@ -21,7 +21,7 @@ Portfolio amounts sum the computed product values. TACoS uses total spend / tota
 
 Optional catalog.csv or SAMPLE_catalog.csv supplies product_name, asin, sku, set_number and source_url. The loader validates/fingerprints catalog bytes. Catalog URLs must be official LEGO references. Duplicate catalog identifiers/paths and unsafe links fail. Missing catalog metadata uses explicit unavailable fields. Manufacturer set numbers remain distinct from sample ASINs/SKUs. Financial calculations do not depend on catalog identity.
 
-presentation.report_id identifies source/configuration/commentary content. artifacts.json fingerprints every other generated file. A renderer failure publishes nothing, and different existing content is preserved. Binary packaging timestamps use a canonical epoch for replay, including embedded chart workbooks. Those document properties are not execution-time evidence. Actual development timings/timestamps are in evidence JSON. P7 must freeze the exact artifact manifest and bytes for approval, with genuine run identity. The content ID alone is not an approval token.
+presentation.report_id identifies source/configuration/commentary content. artifacts.json fingerprints every other generated file. A renderer failure publishes nothing, and different existing content is preserved. Binary packaging timestamps use a canonical epoch for replay, including embedded chart workbooks. Those document properties are not execution-time evidence. Actual development timings/timestamps are in evidence JSON. P7 now freezes the exact artifact manifest and bytes for approval, with genuine run identity; see OPERATIONS.md. The content ID alone is not an approval token.
 
 ## Four formats
 
@@ -32,7 +32,7 @@ presentation.report_id identifies source/configuration/commentary content. artif
 | PDF | The same HTML with A4 print styles. The sample is eight pages. Each page has SAMPLE DATA, identity and pagination. WeasyPrint 70 URLFetcher permits no external protocols and stops on requested network/file resources. |
 | PPTX | Five editable slides with title/status, portfolio results, priorities, native charts and review items. Two products are highlighted on the final slide. Full commentary for all ten products and catalog references remain in speaker notes. |
 
-The palette is navy/teal with severity text. Render-only Stamp displays DRAFT or supplied reviewer/timestamp. Both states are tested. Injected approval tests do not approve a published sample. The actual approval action remains P7.
+The palette is navy/teal with severity text. Render-only Stamp displays DRAFT or supplied reviewer/timestamp. Both states are tested. Injected approval tests do not approve a published sample. The approval action is implemented in P7; see OPERATIONS.md. No genuine human approval or receipt is claimed from the tests.
 
 ## Verification and service behavior
 

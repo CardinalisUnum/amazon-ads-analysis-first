@@ -33,7 +33,7 @@ These are scenario-design assumptions. They have no empirical calibration to an 
 
 The simulated retailer lists Creative Pets on October 5, 2026. It has four prelaunch weeks with zero activity and stays inside the eight-week launch window in the review week. Other launch/growth products use August 3 as their listing start. A retailer listing launch is independent of a manufacturer's product release date.
 
-The expected-flags file applies only to the latest sample week, October 26-November 1. It expects both healthy maturity products and the in-window launch to have no flags. It covers every rule R1-R9 across the remaining products. Production-engine verification is scheduled for P4.
+The expected-flags file applies only to the latest sample week, October 26-November 1. It expects both healthy maturity products and the in-window launch to have no flags. It covers every rule R1-R9 across the remaining products. Production-engine verification completed in P4 with exact-match and boundary tests.
 
 All configurable rule thresholds in config/thresholds.yaml remain assumptions for the reviewing Ads manager. A changed threshold needs a new review of the expected fixture. R8 requires three declines over four consecutive comparable weeks.
 
@@ -41,7 +41,7 @@ All configurable rule thresholds in config/thresholds.yaml remain assumptions fo
 
 Money uses decimal arithmetic with half-up cent rounding. Unit and click counts use nearest-integer rounding. Integer allocation preserves exact weekly counts and euro cents across the fourteen campaign-day rows. Recompute ratios from summed amounts. Undefined zero-denominator source rates are blank.
 
-Seed 42 produces the committed sample. The same seed in the pinned Python environment produces byte-identical files. A manifest records SHA-256 hashes of every companion file. The manifest omits execution timestamps so that regeneration remains deterministic. Actual execution records belong to the P7 run log.
+Seed 42 produces the committed sample. The same seed in the pinned Python environment produces byte-identical files. A manifest records SHA-256 hashes of every companion file. The manifest omits execution timestamps so that regeneration remains deterministic. Actual execution records are in runs/run-log.jsonl, separately from the simulated sample periods.
 
 ## References
 

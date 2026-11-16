@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P7 implementation is locally verified with 222 tests. The owner authorized finishing remaining buildable work. External P7 acceptance and hosted CI P1-5 remain open; implementation readiness does not count as external acceptance.
+Updated 2026-11-16. P7 implementation is locally verified with 222 tests. The owner authorized finishing remaining buildable work. All buildable P7 code and P8 documentation are present. External P7 acceptance, owner documentation/timing sign-off and hosted CI P1-5 remain open. P9 is a separate independent reviewer task; implementation readiness does not count as external acceptance.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
@@ -11,10 +11,10 @@ Updated 2026-11-16. P7 implementation is locally verified with 222 tests. The ow
 | P4 Rules | 12% | 5/5 | 100.0% | `████████████████████` |
 | P5 Commentary and guard | 15% | 6/6 | 100.0% | `████████████████████` |
 | P6 Outputs | 15% | 6/6 | 100.0% | `████████████████████` |
-| P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P7 Operations and approval | 10% | 1/6 | 16.7% | `███░░░░░░░░░░░░░░░░░` |
+| P8 Docs and demo | 5% | 2/5 | 40.0% | `████████░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **38/56** | **78.7% weighted** | `████████████████░░░░` |
+| **Overall** | **100%** | **41/56** | **82.3% weighted** | `████████████████░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -60,16 +60,16 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P6-5 | PPTX 5 slides per §8 | Opens cleanly; screenshots | Complete. Native PowerPoint opened/rendered five editable slides with native charts. Full commentary remains in notes. Screenshots in evidence/p6. |
 | P6-6 | Cross-output consistency test + DRAFT/APPROVED + SAMPLE stamps | Test passes | Complete. Tests compare displayed portfolio figures, full XLSX values, native chart data, labels and identities. Approval-display tests are injected only; real approval remains P7. |
 | P7-1 | `weekly-report.yml`: schedule (off-minute cron) + `workflow_dispatch`, `build` job uploads artifacts | Manual run green | Implemented; blocked by runner account lock. See evidence/P7-REPORT.md. |
-| P7-2 | Run log JSONL committed per run + success-rate calculation | Log entries visible; rate in README | Pending |
+| P7-2 | Run log JSONL committed per run + success-rate calculation | Log entries visible; rate in README | Complete. Genuine local build and labelled injected-failure events in runs/run-log.jsonl. README states 0/0 scheduled builds and denominator scope. See evidence/p7-local-run.json. Hosted per-run publication remains unverified under P7-1. |
 | P7-3 | `client-delivery` environment with required reviewer; `deliver` job waits for approval | Screenshot of the waiting and approved states | Configured owner reviewer/main branch; actual hosted states unverified. See evidence/p7-environment.json. |
 | P7-4 | Failure alerts through both email and Discord | Alert received (screenshot) | Adapters tested with mock transports; private destinations and real receipts needed. |
 | P7-5 | Injected failure test, labelled `test_failure`, excluded from the success rate | Log + alert evidence | Label/exclusion tested; real alert receipts needed. |
 | P7-6 | First **unattended** scheduled run succeeds (temporarily schedule a near-future run if needed, then restore the weekly cron) | Run URL showing the `schedule` trigger | Pending |
-| P8-1 | README: what it does, a 60-second quickstart, architecture diagram, screenshots, run history (real dates and counts), success rate, measured time saved | Owner approves | Pending |
-| P8-2 | PROCESS.md: the weekly Ads-review process as an analyst does it, including exceptions (this is the "expert know-how written down") | Owner approves | Pending |
-| P8-3 | ASSUMPTIONS.md (every threshold and data assumption, "to confirm with your Ads manager") + LIMITS.md (free-tier, schedule delay, 60-day rule, sample data, no live API) | Complete | Pending |
-| P8-4 | Time-saved measurement: owner's stopwatch time on the manual analysis vs. review time with the report | Real numbers in the README | Pending |
-| P8-5 | Loom script (3 minutes): problem → run → flags → guard → approval → outputs → limits | Script in `docs/loom-script.md` | Pending |
+| P8-1 | README: what it does, a 60-second quickstart, architecture diagram, screenshots, run history (real dates and counts), success rate, measured time saved | Owner approves | Written; owner sign-off pending. |
+| P8-2 | PROCESS.md: the weekly Ads-review process as an analyst does it, including exceptions (this is the "expert know-how written down") | Owner approves | Written; owner sign-off pending. |
+| P8-3 | ASSUMPTIONS.md (every threshold and data assumption, "to confirm with your Ads manager") + LIMITS.md (free-tier, schedule delay, 60-day rule, sample data, no live API) | Complete | Complete. ASSUMPTIONS.md and LIMITS.md document the implemented bounds and external gaps. |
+| P8-4 | Time-saved measurement: owner's stopwatch time on the manual analysis vs. review time with the report | Real numbers in the README | Pending owner measurement. See REVIEW-EFFORT.md; no saving invented. |
+| P8-5 | Loom script (3 minutes): problem → run → flags → guard → approval → outputs → limits | Script in `docs/loom-script.md` | Complete. Three-minute script distinguishes real runs, mock checks and remaining gaps. |
 | P9-1 | Fresh clone → run every quality gate (§9) | Outputs pasted | Pending |
 | P9-2 | Hand-recalculate all KPIs for 3 random products | Match within rounding; worksheet attached | Pending |
 | P9-3 | Promise check: every clause in §1.1 is demonstrably true | Clause-by-clause table | Pending |

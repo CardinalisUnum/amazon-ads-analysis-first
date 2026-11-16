@@ -1,5 +1,6 @@
 # Sample manifests hash file bytes, including line endings, across platforms.
 data/sample/* text eol=lf
+runs/run-log.jsonl text eol=lf
 tests/golden/* text eol=lf
 # Preserve generated snapshot bytes; SVG paths intentionally contain whitespace.
 docs/examples/* -text whitespace=-blank-at-eol

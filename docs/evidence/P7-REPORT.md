@@ -11,6 +11,12 @@ The owner authorized remaining buildable work on November 16, 2026. P7 operation
 
 Quality output is in `p7-local.txt`; operational tests cover hash changes, preserved facts, no recalculation, stale approvals, draft/test delivery rejection, exact ZIP contents, channel retries, interrupted sends, secure transports, real-review context checks, append-only history, injected failure handling and maturity cutoffs. Failed development test invocations were corrected before the final gate. Pre-isolation development logs were quarantined in ignored `.tools` and are not published as operational history.
 
+The local launcher produced a genuine thirteen-file draft with ten products and ten flags in 6.382 pipeline seconds, excluding startup/setup/human review. `p7-local-run.json` retains its actual times, source SHA and dirty-tree disclosure. The eight-page PDF, six-sheet workbook and five-slide deck opened through their parsers; the final PDF provenance page was rendered and inspected with no clipped identity. An explicit local injected failure was recorded with both alerts disabled, so receipt acceptance remains open. The public log has only these actual local operations, not unit-test calls.
+
+An additional publication check caught module-scoped rendering fixtures running before function-scoped environment isolation. A session-level isolation fixture now protects those setup calls too. The full suite left genuine history byte-identical. Unpublished development records were quarantined rather than counted as real operational runs. SMTP port handling also accepts a blank optional workflow secret as the documented 587 default and rejects malformed values as configuration failures.
+
+Both the pushed CI run and one registered manual weekly-report dispatch failed before executing jobs with the same account-lock annotation; see `p7-hosted-ci.json` and `p7-manual-hosted.json`. No repeated verification dispatches were made.
+
 ## Acceptance still needing external evidence
 
 P1-5: hosted CI success. P7-1: green manual hosted report. P7-3: screenshot of waiting and actual owner-approved environment states. P7-4: real failure alert received in both channels. P7-5: labelled injected failure plus both real alert receipts. P7-6: successful unattended schedule trigger. No such result is claimed from mocks, local execution or existing service responses.

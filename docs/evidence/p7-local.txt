@@ -43,7 +43,7 @@ src\adsreport\io\models.py            96      0      2      0   100%
 src\adsreport\kpi\__init__.py          0      0      0      0   100%
 src\adsreport\kpi\engine.py           78      0     26      0   100%
 src\adsreport\kpi\summary.py          38      0     10      0   100%
-src\adsreport\notifications.py       121      7     34      6    92%   44, 63, 69, 120, 123->140, 147, 171, 208
+src\adsreport\notifications.py       124      7     34      6    92%   44, 63, 72, 123, 126->143, 150, 174, 211
 src\adsreport\operations.py           68      8      6      2    86%   125-127, 137, 169-184, 202-203
 src\adsreport\periods.py              15      0      6      0   100%
 src\adsreport\pipeline.py             74      3     16      6    90%   69->exit, 75, 77->88, 84, 138->146, 173
@@ -61,12 +61,12 @@ src\adsreport\rules\engine.py        124      0     44      0   100%
 src\adsreport\runlog.py               95     10     16      2    86%   73, 120-128, 136-138
 src\adsreport\sample.py              114      0     34      0   100%
 ------------------------------------------------------------------------------
-TOTAL                               2141     77    578     53    95%
+TOTAL                               2144     77    578     53    95%
 ============================ Hypothesis Statistics ============================
 tests/test_kpi.py::test_acos_roas_identity:
 
-  - during generate phase (0.43 seconds):
-    - Typical runtimes: < 1ms, of which < 1ms in data generation
+  - during generate phase (1.50 seconds):
+    - Typical runtimes: ~ 1-3 ms, of which ~ 0-1 ms in data generation
     - 200 passing, 0 failing, and 0 invalid test cases
 
   - Stopped because settings.max_examples=200
@@ -74,11 +74,11 @@ tests/test_kpi.py::test_acos_roas_identity:
 
 tests/test_kpi.py::test_contribution_identity:
 
-  - during generate phase (0.15 seconds):
-    - Typical runtimes: < 1ms, of which < 1ms in data generation
+  - during generate phase (0.60 seconds):
+    - Typical runtimes: ~ 1-3 ms, of which < 1ms in data generation
     - 200 passing, 0 failing, and 0 invalid test cases
 
   - Stopped because settings.max_examples=200
 
 
-======================= 222 passed in 65.04s (0:01:05) ========================
+======================= 222 passed in 94.68s (0:01:34) ========================

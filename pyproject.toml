@@ -38,6 +38,15 @@ dev = [
 [tool.hatch.build.targets.wheel]
 packages = ["src/adsreport"]
 
+[tool.hatch.build.targets.sdist]
+# Select publication roots explicitly; local tools/checkouts stay private.
+only-include = [
+    "src/adsreport", "config", "data/sample", "tests", "docs", "scripts", "runs",
+    ".github/workflows", "README.md", "LICENSE", "pyproject.toml", "uv.lock",
+    ".python-version", ".env.example", ".gitignore", ".gitattributes",
+    "AGENTS.md", "CLAUDE.md", "Start-Report.ps1",
+]
+
 [tool.ruff]
 target-version = "py313"
 line-length = 88

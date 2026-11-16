@@ -61,7 +61,10 @@ def send_email(
 ) -> str | None:
     if not all(values.get(k) for k in EMAIL_FIELDS):
         raise NotificationConfigError("Email settings are incomplete.")
-    port = int(values.get("SMTP_PORT", "587"))
+    try:
+        port = int(values.get("SMTP_PORT") or "587")
+    except ValueError as exc:
+        raise NotificationConfigError("SMTP port must be 465 or 587.") from exc
     if port not in (465, 587):
         raise NotificationConfigError("SMTP must use TLS on port 465 or 587.")
     for key in ("SMTP_FROM", "SMTP_TO"):

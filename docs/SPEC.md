@@ -1,6 +1,6 @@
 # Build specification
 
-Owner decisions in decisions.md supersede older defaults below. Implementation through P6 is complete. See STATUS.md for acceptance evidence and external blockers.
+Owner decisions in decisions.md supersede older defaults below. Implementation through P8 buildable code/documentation is present; external acceptance remains open. See STATUS.md for acceptance evidence and external blockers.
 
 ## 5. Architecture
 
@@ -125,7 +125,7 @@ Fields: `run_id`, `trigger` (schedule / manual / test_failure), `started_at`, `f
 ---
 
 ## 8. Outputs and visual standard
-Implemented behavior, native setup, identities and verification limits are in OUTPUTS.md. Templates are packaged under src/adsreport/render/templates. One typed ReportView feeds all four renderers. The committed examples are offline DRAFT snapshots. Render-only approval stamps are tested, while approval actions and genuine run logging remain P7.
+Implemented behavior, native setup, identities and verification limits are in OUTPUTS.md. Templates are packaged under src/adsreport/render/templates. One typed ReportView feeds all four renderers. The committed examples are offline DRAFT snapshots. Approval actions and genuine run logging are implemented; see OPERATIONS.md for frozen manifests, local self-attestation and hosted review verification. External gate and receipt evidence remains pending.
 
 One report object → four renderers. **The figures must be identical across all four** (an automated test compares them).
 

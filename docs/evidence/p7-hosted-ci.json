@@ -1,0 +1,10 @@
+{
+  "html_url": "https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43898044085",
+  "head_sha": "c37cbb39405b5ed0f33a7a82ebd249d528dc9e79",
+  "status": "completed",
+  "conclusion": "failure",
+  "event": "push",
+  "annotations": [
+    "The job was not started because your account is locked due to a billing issue."
+  ]
+}
