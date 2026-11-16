@@ -20,7 +20,7 @@ On a fresh Windows checkout: install free [uv](https://docs.astral.sh/uv/getting
 |---|---|---|---|
 | 1 | Resolve the existing GitHub account lock in Settings → Billing & licensing, or contact GitHub Support. Keep the free-only requirement; do not raise spending just to clear this PoC. | A CI run actually starts and passes. | No |
 | 2 | Rotate the Gemini key shared in chat. Save its replacement only in ignored `.env`, from an unbilled Free Tier project. | Private replacement configured, then a real normal run with `parsed_response`, accepted notes and recorded source identity. | No |
-| 3 | Choose a free email account/provider that supports application SMTP credentials, choose a test recipient, and privately configure the six SMTP fields in `.env.example`. | A test alert and approved ZIP actually arrive. | No |
+| 3 | Gmail sender selected. Choose a test recipient and privately fill the sender address and application password in `.env`; the six SMTP fields are documented in `.env.example`. | A test alert and approved ZIP actually arrive. | No |
 | 4 | Create a webhook for your chosen Discord test channel; save its URL privately. | A test alert and approved ZIP actually appear in that channel. | No |
 | 5 | After local tests, copy private configuration into the right GitHub secrets and enable the two documented variables. | Manual workflow builds, uploads a draft and visibly waits for you. | No |
 | 6 | Review that exact draft and approve its `client-delivery` gate. Verify both messages and their attachment hashes. | Genuine waiting/approval state and two receipt records; sanitize screenshots before publication. | No |

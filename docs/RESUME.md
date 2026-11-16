@@ -18,7 +18,7 @@ Email and Discord transports are implemented and mock-tested. No private destina
 
 Next executable work is owner-dependent: use OWNER-ACTIONS.md to recover free runner access, privately rotate Gemini credentials, choose/configure email/Discord destinations, and configure Actions secrets. Never copy the exposed key into Actions. Then run one manual workflow, review the exact uploaded draft, obtain genuine owner approval and both receipts, exercise the labelled failure alert, and verify an actual schedule. Restore Monday 09:17 Manila after any temporary verification schedule. Update evidence/status without claiming real merchant impact.
 
-For independent review, give another reviewer AUDIT-HANDOFF.md and the current main SHA. P9 must remain independent of the builder; no v1.0.0 tag until acceptance and audit findings are resolved. The owner is asked which SMTP sender to use; Gmail with app-password support is the recommended free PoC route, while Outlook sending may require an unimplemented OAuth adapter. No destination or credential was requested in chat.
+For independent review, give another reviewer AUDIT-HANDOFF.md and the current main SHA. P9 must remain independent of the builder; no v1.0.0 tag until acceptance and audit findings are resolved. The owner selected an existing personal Gmail sender with app-password support. Local non-secret defaults use smtp.gmail.com:587 with notifications disabled. Private sender/recipient fields and application password still need setup; no live authentication or receipt has occurred. No address or credential was requested in chat.
 
 
 Local commands:
