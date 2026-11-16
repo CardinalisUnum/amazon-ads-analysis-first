@@ -31,6 +31,7 @@ class Settings(StrictConfig):
     sample_label: Literal["SAMPLE DATA"]
     gemini_model: Annotated[str, Field(min_length=1, pattern=r"^gemini-[a-z0-9.-]+$")]
     commentary_products: Annotated[int, Field(ge=1, le=10)]
+    priority_products: Annotated[int, Field(ge=1)] = 6
     output_formats: list[Literal["xlsx", "html", "pdf", "pptx"]] = Field(
         min_length=4, max_length=4
     )

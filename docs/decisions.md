@@ -122,3 +122,7 @@ On 2026-11-16 the owner approved the P2 expected flags and sample assumptions an
 P3 uses the standard library CSV reader with typed Pydantic source records and Decimal arithmetic. This replaces the planned pandas DataFrame loader with a smaller explicit implementation that preserves source precision and avoids a production dependency used only for parsing. P0's pandas/Pandera compatibility evidence remains historical verification. Source amounts are captured and hashed from the actual parsed bytes.
 
 Hypothesis 6.170.15 (MPL-2.0, https://pypi.org/project/hypothesis/6.170.15/) is added only to the development group for the required mathematical property tests. Application dependencies remain Pydantic and PyYAML. The shared bundle publisher was extracted from the sample generator for two actual callers, preserving the existing publish/retry behavior.
+
+## P4 approval
+
+On 2026-11-16 the owner approved P4 and requested that the completed phase and exact continuation handoff be pushed for another agent. P5 requires a separate approval. P1-5 stays open.

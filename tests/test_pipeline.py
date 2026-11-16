@@ -17,7 +17,10 @@ def test_numerical_cli_matches_committed_snapshot(tmp_path: Path) -> None:
     report = json.loads((output / "report.json").read_text())
     assert report["status"] == "DRAFT" and report["data_label"] == "SAMPLE DATA"
     assert len(report["products"]) == 80
-    assert report["stage"] == "kpis"
+    assert report["stage"] == "rules"
+    assert len(report["analysis"]["flags"]) == 10
+    assert len(report["analysis"]["priorities"]) == 6
+    assert report["analysis"]["report_week"] == report["report_week"]
 
 
 def test_report_failure_is_visible_and_publishes_nothing(

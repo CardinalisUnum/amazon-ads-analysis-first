@@ -11,6 +11,7 @@ from adsreport.artifacts import publish_bundle
 from adsreport.config import Configuration
 from adsreport.io.loader import InputError, load_inputs
 from adsreport.kpi.engine import ProductMetrics, calculate_report
+from adsreport.rules.engine import evaluate_rules
 
 
 def kpi_csv(results: list[ProductMetrics]) -> bytes:
@@ -50,10 +51,17 @@ def run_numerical_draft(
     if loaded.manifest.vat_rate != Decimal(str(config.settings.vat_rate)):
         raise InputError("Manifest and configured VAT rates differ.")
     results = calculate_report(loaded.rows, loaded.manifest.vat_rate)
+    analysis = evaluate_rules(
+        results,
+        config.thresholds,
+        loaded.manifest.report_week,
+        config.settings.priority_products,
+    )
     report = {
         "data_label": loaded.manifest.data_label,
         "status": "DRAFT",
-        "stage": "kpis",
+        "stage": "rules",
+        "analysis": analysis.model_dump(mode="json"),
         "marketplace": loaded.manifest.marketplace,
         "currency": loaded.manifest.currency,
         "vat_rate": str(loaded.manifest.vat_rate),

@@ -1,0 +1,218 @@
+{
+  "data_label": "SAMPLE DATA",
+  "status": "DRAFT",
+  "report_week": "2026-10-26",
+  "flag_count": 10,
+  "flagged_products": 7,
+  "priority_count": 6,
+  "analysis": {
+    "report_week": "2026-10-26",
+    "flags": [
+      {
+        "rule_id": "R2",
+        "asin": "SAMPLE0004",
+        "week": "2026-10-26",
+        "severity": "high",
+        "evidence": {
+          "acos_pct": "59.99990791345706695152103947",
+          "break_even_acos_pct": "37.38500538566923855423255027",
+          "launch_start_date": "2026-08-03",
+          "review_week_end": "2026-11-01",
+          "launch_age_days": "90"
+        },
+        "thresholds": {
+          "launch_window_weeks": "8",
+          "break_even_acos_pct": "37.38500538566923855423255027"
+        },
+        "reason": "The launch window has passed and ACoS exceeds break-even. Review the launch exit criteria."
+      },
+      {
+        "rule_id": "R1",
+        "asin": "SAMPLE0005",
+        "week": "2026-10-26",
+        "severity": "high",
+        "evidence": {
+          "acos_pct": "60.0",
+          "break_even_acos_pct": "37.38520700050742734336911857"
+        },
+        "thresholds": {
+          "break_even_acos_pct": "37.38520700050742734336911857"
+        },
+        "reason": "ACoS exceeds the product break-even benchmark. Review product economics and campaign mix."
+      },
+      {
+        "rule_id": "R1",
+        "asin": "SAMPLE0007",
+        "week": "2026-10-26",
+        "severity": "high",
+        "evidence": {
+          "acos_pct": "69.99913367408819197782205666",
+          "break_even_acos_pct": "14.02053376442894012876145098"
+        },
+        "thresholds": {
+          "break_even_acos_pct": "14.02053376442894012876145098"
+        },
+        "reason": "ACoS exceeds the product break-even benchmark. Review product economics and campaign mix."
+      },
+      {
+        "rule_id": "R7",
+        "asin": "SAMPLE0007",
+        "week": "2026-10-26",
+        "severity": "high",
+        "evidence": {
+          "contribution_after_ads_eur": "-224.33"
+        },
+        "thresholds": {
+          "contribution_after_ads_eur": "0"
+        },
+        "reason": "Contribution after ads is negative. Review the product cost and advertising evidence."
+      },
+      {
+        "rule_id": "R4",
+        "asin": "SAMPLE0010",
+        "week": "2026-10-26",
+        "severity": "high",
+        "evidence": {
+          "ad_spend_eur_wow_pct": "61.40112758404677385675506369",
+          "stock_coverage_days": "0.3063457330415754923413566740"
+        },
+        "thresholds": {
+          "spend_increase_pct": "10.0",
+          "stock_coverage_days": "14.0"
+        },
+        "reason": "Ad spend rose while stock coverage is below the review threshold. Review stock and replenishment timing."
+      },
+      {
+        "rule_id": "R3",
+        "asin": "SAMPLE0006",
+        "week": "2026-10-26",
+        "severity": "medium",
+        "evidence": {
+          "acos_pct_wow_pp": "-7.99926111562379236337400660",
+          "net_revenue_eur_wow_pct": "-25.59988064287777640220810676",
+          "impressions_wow_pct": "-33.93393393393393393393393393"
+        },
+        "thresholds": {
+          "acos_improvement_pp": "5.0",
+          "sales_drop_pct": "10.0",
+          "impressions_drop_pct": "10.0"
+        },
+        "reason": "ACoS improved while total sales and impressions declined. Review the sales and reach trend together."
+      },
+      {
+        "rule_id": "R5",
+        "asin": "SAMPLE0008",
+        "week": "2026-10-26",
+        "severity": "medium",
+        "evidence": {
+          "ad_cvr_pct_wow_pct": "-42.85714285714285714285714288",
+          "clicks_wow_pct": "0"
+        },
+        "thresholds": {
+          "cvr_drop_pct": "20.0",
+          "stable_clicks_pct": "10.0"
+        },
+        "reason": "Ad purchase rate fell while clicks stayed within the stability range. Review traffic and offer conditions."
+      },
+      {
+        "rule_id": "R6",
+        "asin": "SAMPLE0009",
+        "week": "2026-10-26",
+        "severity": "medium",
+        "evidence": {
+          "ad_spend_eur_wow_pct": "66.66666666666666666666666667",
+          "ad_sales_eur_wow_pct": "0"
+        },
+        "thresholds": {
+          "spend_increase_pct": "30.0",
+          "max_ad_sales_growth_pct": "5.00"
+        },
+        "reason": "Ad spend increased beyond the spike threshold while attributed sales growth stayed limited. Review campaign performance."
+      },
+      {
+        "rule_id": "R8",
+        "asin": "SAMPLE0006",
+        "week": "2026-10-26",
+        "severity": "low",
+        "evidence": {
+          "organic_share_proxy_pct[2026-10-05]": "76.00001269756619399976509503",
+          "organic_share_proxy_pct[2026-10-12]": "71.99996190730141800070471492",
+          "organic_share_proxy_pct[2026-10-19]": "67.99991111703664200164433482",
+          "organic_share_proxy_pct[2026-10-26]": "64.51599139843670000341331877"
+        },
+        "thresholds": {
+          "decline_transitions": "3"
+        },
+        "reason": "Estimated organic share declined across consecutive observed weeks. Review the sales mix and attribution limits."
+      },
+      {
+        "rule_id": "R9",
+        "asin": "SAMPLE0009",
+        "week": "2026-10-26",
+        "severity": "low",
+        "evidence": {
+          "acos_pct": "30.00070856656982923545667115",
+          "break_even_acos_pct": "35.42525987831522431344117100"
+        },
+        "thresholds": {
+          "break_even_fraction": "0.8",
+          "acos_threshold_pct": "28.34020790265217945075293680"
+        },
+        "reason": "Maturity-stage ACoS exceeds the configured margin-buffer threshold. Review the remaining contribution headroom."
+      }
+    ],
+    "skipped": [],
+    "priorities": [
+      {
+        "asin": "SAMPLE0004",
+        "week": "2026-10-26",
+        "severity": "high",
+        "rule_ids": [
+          "R2"
+        ]
+      },
+      {
+        "asin": "SAMPLE0005",
+        "week": "2026-10-26",
+        "severity": "high",
+        "rule_ids": [
+          "R1"
+        ]
+      },
+      {
+        "asin": "SAMPLE0007",
+        "week": "2026-10-26",
+        "severity": "high",
+        "rule_ids": [
+          "R1",
+          "R7"
+        ]
+      },
+      {
+        "asin": "SAMPLE0010",
+        "week": "2026-10-26",
+        "severity": "high",
+        "rule_ids": [
+          "R4"
+        ]
+      },
+      {
+        "asin": "SAMPLE0006",
+        "week": "2026-10-26",
+        "severity": "medium",
+        "rule_ids": [
+          "R3",
+          "R8"
+        ]
+      },
+      {
+        "asin": "SAMPLE0008",
+        "week": "2026-10-26",
+        "severity": "medium",
+        "rule_ids": [
+          "R5"
+        ]
+      }
+    ]
+  }
+}

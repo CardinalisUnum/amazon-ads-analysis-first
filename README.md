@@ -20,7 +20,7 @@ uv run ruff format --check .
 uv run mypy --strict src/
 ```
 
-The current implementation validates settings and thresholds, generates reproducible sample inputs, and calculates numerical KPI drafts. Approval and delivery return a nonzero status identifying their implementation phase. Rules, commentary and visual reports follow in P4-P6. Scheduled reporting and delivery follow in P7.
+The current implementation validates settings and thresholds, generates reproducible sample inputs, calculates numerical KPI drafts and applies all nine review rules. Approval and delivery return a nonzero status identifying their implementation phase. Commentary and visual reports follow in P5-P6. Scheduled reporting and delivery follow in P7.
 
 ```shell
 uv run adsreport generate-sample --seed 42
@@ -40,6 +40,10 @@ uv run adsreport run --input data/sample --out out/numerical-draft --no-ai
 This produces SAMPLE_kpis.csv and report.json containing all 80 product-week observations. Both carry DRAFT and SAMPLE DATA labels. JSON preserves exact decimal values as strings, explicit nulls with reasons, source hashes and configuration fingerprints. CSV leaves undefined values blank. The committed golden CSV is checked by the tests.
 
 The loader accepts the configured classic and current English ad-report aliases, verifies source types and declared file hashes, aggregates campaign records first and joins each retail row once. Supply manifest.json and exactly one ads.csv, total_sales.csv, costs.csv and inventory.csv, with optional SAMPLE_ prefixes. Retail inputs use the normalized weekly adapter described in [input contract](docs/INPUT-CONTRACT.md).
+
+report.json includes an analysis section for the manifest report week. It contains every flag with numeric/date evidence and applied thresholds, explicit skipped-rule reasons, and a product priority list. The default priority_products setting is six. A product appears once in that list with all its triggered rule IDs. Every flag remains available even when its product falls outside the displayed priorities. The numerical CSV remains unchanged.
+
+See [rule contract](docs/RULES.md) for exact boundary, lifecycle and history behavior. In the final sample week, the engine finds the approved ten flags across seven products.
 
 All financial calculations use Decimal. The tests reproduce the EUR 8.44 / EUR 25.13 = 33.6% break-even example and exercise zero denominators, missing weeks, halo sales and mathematical properties. The AI path remains a later implementation step, so this checkpoint requires --no-ai.
 
