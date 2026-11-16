@@ -2,6 +2,8 @@
 
 SAMPLE DATA. The generator is implemented and locally verified. Owner review of expected flags and commercial assumptions is requested before P3. Hosted CI task P1-5 remains open with the known provider account restriction.
 
+The [P2 hosted attempt](https://github.com/CardinalisUnum/amazon-ads-analysis-first/actions/runs/43792305926) registered the quality job but stopped before runner steps. Its annotation confirms that the account remains locked by a provider billing restriction. No application test executed on that runner.
+
 ## Deliverables
 
 - src/adsreport/sample.py implements the seeded generator using the standard library and the existing PyYAML dependency.
