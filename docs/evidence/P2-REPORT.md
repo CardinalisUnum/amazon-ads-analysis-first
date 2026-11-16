@@ -27,6 +27,8 @@ uv run adsreport --check-config           Configuration valid.
 
 The tests cover seeds 0, 42 and 2026, byte-identical repetition, manifest hashes, committed seed-42 snapshot equivalence, every R1-R9 latest-week scenario, prelaunch zeros, row count consistency, distinct catalog and sample identifiers, changed seed behavior and preservation of an existing output directory. An injected disk-write failure leaves no published partial bundle and cleans its staging directory. Invalid sample VAT settings fail before output creation.
 
+A separate Git checkout with core.autocrlf=true preserved every manifest hash and passed all 32 tests. The .gitattributes rule fixes sample file line endings to LF. Full result is in p2-checkout.txt.
+
 Observed seed-42 active-week ranges are 81-133 retail units, EUR 0.3024-3.3271 CPC, 2.0-2.5% CTR and 6.8493-12.0172% ad purchase rate. These are synthetic fixture observations. Owner review is required before treating the ranges as suitable demo assumptions.
 
 ## Self-review
