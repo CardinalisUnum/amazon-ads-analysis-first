@@ -74,3 +74,29 @@ WeasyPrint 70.0 requires Pango >=1.44 and Python >=3.10. The release fixes the E
 Python 3.13.18 installed all pinned probe packages. pandas 3.1.1 and Pandera 0.36.0 validated a frame together. Copy-on-write and default str dtype were exercised. The SDK parsed a real structured response from gemini-3.5-flash-lite. See evidence/p0-stack.json and evidence/p0-gemini.json. Billing-unlinked status relies on the owner describing this as a Free Tier key, with no billing-admin access tested here.
 
 WeasyPrint imports fail locally with OSError because native libraries are unavailable. Installation instructions specify Pango >=1.44. This is a verified environment requirement, with successful PDF generation still required in P6. Establish Ubuntu runner support with native packages before counting that renderer as complete. Windows uv venv also encountered access denied for temporary/cache writes. The P0 probe used standard venv and pip, and P1 still requires successful uv locked install evidence.
+
+## P1 approval
+
+On 2026-11-16 the owner said “Okay then continue building the product” following the P0 report and P1 approval request. P1 is authorized. Pause before P2.
+
+
+## P1 implementation decisions
+
+A fresh workspace-owned UV_CACHE_DIR at .tools/p1-cache resolved the earlier Windows cache failure. The project uses uv 0.13.8, Python 3.13.18, Hatchling and src layout. uv sync --locked succeeds locally.
+
+Only Pydantic and PyYAML are application dependencies at this phase. Add analysis and rendering libraries when their implementation phases need them. The P0 probe remains a separate environment.
+
+| Dependency | Need | Maintenance and license source |
+|---|---|---|
+| hatchling 1.33.0 | Standard wheel/editable build backend | [PyPA project, MIT](https://pypi.org/project/hatchling/1.33.0/) |
+| pydantic 2.14.3 | Strict structured settings and threshold validation | [Project metadata, MIT](https://pypi.org/project/pydantic/2.14.3/) |
+| PyYAML 6.0.3 | Safe loading of owner-visible YAML configuration | [Project metadata, MIT](https://pypi.org/project/PyYAML/6.0.3/) |
+| types-PyYAML 6.0.12.20261113 | Type stubs for strict mypy checks | [Typeshed stubs, Apache-2.0](https://pypi.org/project/types-PyYAML/6.0.12.20261113/) |
+| pytest 9.2.0 | Configuration and CLI behavior checks | [pytest project, MIT](https://pypi.org/project/pytest/9.2.0/) |
+| pytest-cov 7.1.0 | Coverage reporting at quality gates | [Project metadata, MIT](https://pypi.org/project/pytest-cov/7.1.0/) |
+| ruff 0.17.5 | Lint and format checks | [Astral project, MIT](https://pypi.org/project/ruff/0.17.5/) |
+| mypy 2.4.1 | Strict static checking of src | [Project metadata, MIT](https://pypi.org/project/mypy/2.4.1/) |
+
+Source metadata was read on 2026-11-16. Commit-SHA action references were verified in P0. CI has contents:read permission, a ten-minute timeout and no API credentials. It runs on pushes, pull requests and manual dispatch.
+
+The earlier tracker had corrupted Unicode progress bars and a stale P0 subtotal despite five completed task rows. P1 repairs the encoding and derives phase totals from the task statuses.

@@ -1,0 +1,16 @@
+# ASSUMPTIONS to confirm with the reviewing Ads manager.
+# R1 compares actual ACoS with product break-even using strict >.
+# R7 checks contribution after ads < EUR 0.
+assumptions: true
+launch_window_weeks: 8             # R2, ASSUMPTION
+acos_improvement_pp: 5.0          # R3, ASSUMPTION, percentage points
+sales_drop_fraction: 0.10         # R3, ASSUMPTION
+impressions_drop_fraction: 0.10   # R3, ASSUMPTION
+stock_spend_increase_fraction: 0.10  # R4, ASSUMPTION
+stock_coverage_days: 14.0         # R4, ASSUMPTION, strict <
+cvr_drop_fraction: 0.20           # R5, ASSUMPTION, relative change
+stable_clicks_fraction: 0.10      # R5, ASSUMPTION, inclusive +/-
+spend_spike_fraction: 0.30        # R6, ASSUMPTION
+max_ad_sales_growth_fraction: 0.05  # R6, ASSUMPTION, inclusive upper bound
+organic_decline_transitions: 3    # R8, ASSUMPTION, four consecutive weeks
+maturity_break_even_fraction: 0.80  # R9, ASSUMPTION

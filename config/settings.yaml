@@ -1,0 +1,15 @@
+# SAMPLE DATA configuration for an independent German retailer simulation.
+# Retail VAT and net-revenue denominator are owner-approved sample assumptions.
+marketplace: amazon.de
+currency: EUR
+vat_rate: 0.19
+reporting_timezone: Europe/Berlin
+schedule_timezone: Asia/Manila
+schedule_cron_utc: "17 1 * * 1"
+attribution_days: 7
+reporting_latency_days: 1
+number_format: en
+sample_label: SAMPLE DATA
+gemini_model: gemini-3.5-flash-lite
+commentary_products: 10
+output_formats: [xlsx, html, pdf, pptx]

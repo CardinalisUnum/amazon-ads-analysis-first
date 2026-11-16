@@ -1,6 +1,6 @@
 # Resume this checkpoint
 
-Current phase P0. Owner requested explicit approval at every phase gate and a commit and push at every checkpoint. No approval for P1 has been recorded.
+Current phase P1, in progress. Owner requested explicit approval at every phase gate and a commit and push at every checkpoint. Owner approved P1 on 2026-11-16. P2 approval is pending.
 
 ## Read first
 
@@ -20,7 +20,7 @@ The ignored `.env` holds the owner-supplied Gemini credential. It must be rotate
 
 ## Next actions
 
-P0 is complete as a verification phase. Wait for the owner's approval before P1.
+P0 is complete. The owner approved P1 on 2026-11-16. Complete P1 then stop for the P2 gate.
 
 - Read docs/evidence/p0-stack.json and p0-gemini.json for actual results.
 - Pango/native libraries are unavailable in this Windows environment. Implement and verify an Ubuntu runner dependency installation before claiming PDF support in P6.
