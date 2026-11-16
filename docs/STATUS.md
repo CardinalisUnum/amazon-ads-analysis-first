@@ -1,20 +1,20 @@
 # Completion tracker
 
-Updated 2026-11-16. P2 approved. P3 core implemented with 81 passing tests. Final P3 verification and handoff in progress. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P3 complete and verified. P4 awaits owner approval. Hosted CI P1-5 remains open.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
 | P0 Kickoff | 5% | 5/5 | 100.0% | `████████████████████` |
 | P1 Scaffold | 8% | 5/6 | 83.3% | `█████████████████░░░` |
 | P2 Sample data | 10% | 5/5 | 100.0% | `████████████████████` |
-| P3 Loader and KPIs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P3 Loader and KPIs | 15% | 6/6 | 100.0% | `████████████████████` |
 | P4 Rules | 12% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P5 Commentary and guard | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P6 Outputs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **15/56** | **21.7% weighted** | `████░░░░░░░░░░░░░░░░` |
+| **Overall** | **100%** | **21/56** | **36.7% weighted** | `███████░░░░░░░░░░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -36,12 +36,12 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P2-3 | `expected_flags.yaml` | Reviewed by owner | Complete. Owner approved expected_flags.yaml and its review table on 2026-11-16. |
 | P2-4 | SAMPLE marker in file names, headers or metadata | Test asserts the marker | Complete. All seven sample files have SAMPLE naming or metadata markers, asserted by tests. |
 | P2-5 | Data realism check: plausible CPC, CTR, CVR, prices, fees for a toy-like category on amazon.de; every assumption logged in ASSUMPTIONS.md | Owner approves the ranges | Complete. Owner approved sample assumptions and ranges on 2026-11-16. See decisions.md. |
-| P3-1 | Loader: column mapping (old + new names) + schema validation | Bad or missing columns fail clearly (tests) | Pending |
-| P3-2 | KPI functions per §2.4 (pure, no I/O) | Unit tests pass | Pending |
-| P3-3 | The 8.44 / 25.13 → 33.6% worked example | Test pass | Pending |
-| P3-4 | Zero and edge cases (0 spend, 0 sales, 0 units, missing weeks) | Tests pass; no `inf` or `NaN` leaks into outputs | Pending |
-| P3-5 | Property tests (hypothesis) | Pass with ≥ 200 examples | Pending |
-| P3-6 | Golden-file snapshot of the KPI table (`--no-ai`) | Snapshot committed and test passes | Pending |
+| P3-1 | Loader: column mapping (old + new names) + schema validation | Bad or missing columns fail clearly (tests) | Complete. Typed loader, aliases, hashes, grain and join validation pass tests/test_loader.py. See INPUT-CONTRACT.md. |
+| P3-2 | KPI functions per §2.4 (pure, no I/O) | Unit tests pass | Complete. Every KPI verified against independent arithmetic; pure Decimal engine has 100% coverage. See evidence/p3-local.txt. |
+| P3-3 | The 8.44 / 25.13 → 33.6% worked example | Test pass | Complete. The published 8.44 / 25.13 example returns 33.6% to one decimal in test_published_worked_example. |
+| P3-4 | Zero and edge cases (0 spend, 0 sales, 0 units, missing weeks) | Tests pass; no `inf` or `NaN` leaks into outputs | Complete. Zero denominators, missing weeks, organic residual limits and stock coverage are tested with explicit undefined reasons. |
+| P3-5 | Property tests (hypothesis) | Pass with ≥ 200 examples | Complete. Both Hypothesis identities pass 200 examples each; statistics captured in evidence/p3-local.txt. |
+| P3-6 | Golden-file snapshot of the KPI table (`--no-ai`) | Snapshot committed and test passes | Complete. --no-ai CLI matches the committed 80-row golden CSV. CSV and JSON drafts match across checkouts. See evidence/p3-checkout.txt. |
 | P4-1 | Implement R1–R9 (§6), thresholds from config | Unit test per rule | Pending |
 | P4-2 | Flag object with evidence (values, threshold, reason) | Serialises to JSON (test) | Pending |
 | P4-3 | Severity sort and top-N priority list | Test | Pending |

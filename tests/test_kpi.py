@@ -169,3 +169,85 @@ def test_zero_baseline_acos_uses_percentage_points(row: ProductWeek) -> None:
     result = calculate_report([first, second], Decimal("0.19"))[-1]
     assert result.values["acos_pct_wow_pp"] == 10
     assert result.values["ad_spend_eur_wow_pct"] is None
+
+
+def test_all_kpis_against_independent_arithmetic(row: ProductWeek) -> None:
+    example = replace(
+        row,
+        retail=row.retail.model_copy(
+            update={
+                "gross_sales": Decimal("119.00"),
+                "units": 10,
+                "sessions": 50,
+            }
+        ),
+        cost=row.cost.model_copy(
+            update={
+                "unit_product_cost": Decimal("2.00"),
+                "referral_fee_rate": Decimal("0.15"),
+                "fba_fee_per_unit": Decimal("1.00"),
+                "logistics_storage_per_unit": Decimal("0.50"),
+                "return_rate": Decimal("0.10"),
+                "loss_per_return": Decimal("2.00"),
+            }
+        ),
+        inventory=row.inventory.model_copy(
+            update={"units_available": 20, "inbound_units": 50}
+        ),
+        ads=AdTotals(
+            spend=Decimal(10),
+            ad_sales=Decimal(50),
+            promoted_sales=Decimal(40),
+            impressions=1000,
+            clicks=100,
+            purchases=5,
+            ad_units=5,
+        ),
+    )
+    history = [
+        replace(
+            example,
+            retail=example.retail.model_copy(
+                update={"week": example.retail.week + timedelta(weeks=i)}
+            ),
+            inventory=example.inventory.model_copy(
+                update={"week": example.retail.week + timedelta(weeks=i)}
+            ),
+        )
+        for i in range(4)
+    ]
+    result = calculate_week(history[-1], Decimal("0.19"), history)
+    expected = {
+        "net_revenue_eur": "100.00",
+        "product_cost_eur": "20.00",
+        "amazon_fees_eur": "27.90",
+        "logistics_storage_eur": "5.00",
+        "returns_cost_eur": "2.00",
+        "contribution_before_ads_eur": "45.10",
+        "contribution_after_ads_eur": "35.10",
+        "contribution_margin_after_ads_pct": "35.1",
+        "acos_pct": "20",
+        "roas_ratio": "5",
+        "tacos_pct": "10",
+        "break_even_acos_pct": "45.1",
+        "organic_share_proxy_pct": "60",
+        "ctr_pct": "10",
+        "cpc_eur": "0.10",
+        "ad_cvr_pct": "5",
+        "retail_unit_session_pct": "20",
+        "price_gross_eur": "11.90",
+    }
+    for name, value in expected.items():
+        assert result.values[name] == Decimal(value), name
+    assert abs(result.values["stock_coverage_days"] - 14) < Decimal("1e-24")
+
+
+def test_referral_minimum_is_applied_per_unit(row: ProductWeek) -> None:
+    example = replace(
+        row,
+        retail=row.retail.model_copy(update={"gross_sales": Decimal(4), "units": 4}),
+    )
+    result = calculate_week(example, Decimal("0.19"), [example])
+    assert result.values["amazon_fees_eur"] == Decimal(4) * (
+        Decimal("0.30") + row.cost.fba_fee_per_unit
+    )

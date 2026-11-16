@@ -1,0 +1,82 @@
+$ uv sync --locked
+Resolved 24 packages in 21ms
+Checked 24 packages in 9ms
+
+exit=0
+
+$ uv run ruff check .
+All checks passed!
+
+exit=0
+
+$ uv run ruff format --check .
+33 files already formatted
+
+exit=0
+
+$ uv run mypy --strict src/
+Success: no issues found in 12 source files
+
+exit=0
+
+$ uv run pytest --cov=src/adsreport --cov-report=term-missing --hypothesis-show-statistics
+============================= test session starts =============================
+platform win32 -- Python 3.13.18, pytest-9.2.0, pluggy-1.7.0
+rootdir: <workspace>
+configfile: pyproject.toml
+testpaths: tests
+plugins: hypothesis-6.170.15, cov-7.1.0
+collected 83 items
+
+tests\test_config.py ...................                                 [ 22%]
+tests\test_kpi.py ...................                                    [ 45%]
+tests\test_loader.py ..............................                      [ 81%]
+tests\test_pipeline.py ...                                               [ 85%]
+tests\test_sample.py ............                                        [100%]
+
+=============================== tests coverage ================================
+______________ coverage: platform win32, python 3.13.18-final-0 _______________
+
+Name                            Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------
+src\adsreport\__init__.py           0      0      0      0   100%
+src\adsreport\__main__.py           2      2      0      0     0%   1-3
+src\adsreport\artifacts.py         17      1     10      2    89%   10, 12->21
+src\adsreport\cli.py               58      0     12      0   100%
+src\adsreport\config.py            58      0      6      0   100%
+src\adsreport\io\__init__.py        0      0      0      0   100%
+src\adsreport\io\loader.py        110      5     58      5    94%   47, 76, 89, 95, 180
+src\adsreport\io\models.py         89      0      2      0   100%
+src\adsreport\kpi\__init__.py       0      0      0      0   100%
+src\adsreport\kpi\engine.py        78      0     26      0   100%
+src\adsreport\pipeline.py          27      1      4      1    94%   51
+src\adsreport\sample.py           114      0     34      0   100%
+---------------------------------------------------------------------------
+TOTAL                             553      9    152      8    98%
+============================ Hypothesis Statistics ============================
+tests/test_kpi.py::test_acos_roas_identity:
+
+  - during generate phase (0.19 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+tests/test_kpi.py::test_contribution_identity:
+
+  - during generate phase (0.12 seconds):
+    - Typical runtimes: < 1ms, of which < 1ms in data generation
+    - 200 passing, 0 failing, and 0 invalid test cases
+
+  - Stopped because settings.max_examples=200
+
+
+============================= 83 passed in 5.52s ==============================
+
+exit=0
+
+$ uv run adsreport run --input data/sample --out out/p3-final --no-ai
+DRAFT SAMPLE DATA numerical results ready at out\p3-final.
+
+exit=0
