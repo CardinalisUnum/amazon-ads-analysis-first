@@ -9,9 +9,10 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
-from tempfile import TemporaryDirectory
 
 import yaml
+
+from adsreport.artifacts import publish_bundle
 
 FIRST_WEEK = date(2026, 9, 7)
 REPORT_WEEK = FIRST_WEEK + timedelta(weeks=7)
@@ -349,24 +350,4 @@ def generate_sample(destination: Path, seed: int, vat_rate: Decimal) -> Path:
         },
     }
     files["manifest.json"] = (json.dumps(manifest, indent=2) + "\n").encode("utf-8")
-    if destination.is_symlink():
-        raise ValueError("Sample output must be a directory, not a symbolic link.")
-    if destination.exists():
-        if destination.is_dir() and {p.name for p in destination.iterdir()} == set(
-            files
-        ):
-            if all(
-                (destination / name).is_file()
-                and (destination / name).read_bytes() == content
-                for name, content in files.items()
-            ):
-                return destination
-        raise FileExistsError(
-            "Output already exists with different content. Choose a new --out path."
-        )
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    with TemporaryDirectory(dir=destination.parent, prefix="sample-stage-") as staging:
-        for name, content in files.items():
-            (Path(staging) / name).write_bytes(content)
-        Path(staging).rename(destination)
-    return destination
+    return publish_bundle(destination, files)

@@ -114,3 +114,11 @@ On 2026-11-16 the owner approved P2 while P1-5 remains open and required self-te
 The P2 generator uses a fixed sample period and the approved 19% VAT convention, preserving reproducibility over time. It refuses other sample VAT settings because the expected-story fixture is tied to that approved basis. Normal report processing in P3 can validate its own declared input tax basis. Generated directories are staged and published atomically. Existing different content requires a new output path, preserving prior files.
 
 P2 catalog identities are sourced from official English-language German LEGO pages read on 2026-11-16. Simulated costs use 34% of net price for landed cost, 15% referral with a EUR 0.30 minimum, modelled fulfilment of max(EUR 2.50, 7% gross price), EUR 0.20 additional logistics/storage, and a 4% return rate with half net price as incremental loss per return. These and observed advertising ranges require owner review in the P2 gate.
+
+## P3 approval
+
+On 2026-11-16 the owner approved the P2 expected flags and sample assumptions and authorized P3. P2-3 and P2-5 are complete. P1-5 stays open. Preserve frequent committed/pushed checkpoints and exact resume steps for continuation by another agent. Pause before P4.
+
+P3 uses the standard library CSV reader with typed Pydantic source records and Decimal arithmetic. This replaces the planned pandas DataFrame loader with a smaller explicit implementation that preserves source precision and avoids a production dependency used only for parsing. P0's pandas/Pandera compatibility evidence remains historical verification. Source amounts are captured and hashed from the actual parsed bytes.
+
+Hypothesis 6.170.15 (MPL-2.0, https://pypi.org/project/hypothesis/6.170.15/) is added only to the development group for the required mathematical property tests. Application dependencies remain Pydantic and PyYAML. The shared bundle publisher was extracted from the sample generator for two actual callers, preserving the existing publish/retry behavior.

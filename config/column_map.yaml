@@ -3,7 +3,7 @@
 # Lists are alternative source names. Multiple matching columns need conflict checks.
 # Retail input is a normalized adapter from a per-period child-item export.
 ads:
-  date: [Date]
+  day: [Date, date]
   campaign: [Campaign Name]
   ad_group: [Ad Group Name]
   sku: [Advertised SKU]

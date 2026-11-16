@@ -84,7 +84,6 @@ def test_cli_help(capsys: pytest.CaptureFixture[str]) -> None:
 @pytest.mark.parametrize(
     "args",
     [
-        ["run", "--no-ai"],
         ["approve", "--report", "draft.json"],
         ["deliver", "--report", "draft.json"],
     ],

@@ -7,6 +7,8 @@ from decimal import Decimal
 from pathlib import Path
 
 from adsreport.config import ConfigError, load_config
+from adsreport.io.loader import InputError
+from adsreport.pipeline import run_numerical_draft
 from adsreport.sample import generate_sample
 
 
@@ -56,7 +58,21 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 2
         print(f"SAMPLE DATA ready at {path} (10 products, 8 weeks, seed {args.seed}).")
         return 0
-    phases = {"run": "P3-P6", "approve": "P7", "deliver": "P7"}
+    if args.command == "run":
+        if not args.no_ai:
+            print(
+                "Use --no-ai for the P3 numerical draft. AI commentary follows in P5.",
+                file=sys.stderr,
+            )
+            return 2
+        try:
+            path = run_numerical_draft(args.input, args.out, args.config, config)
+        except (InputError, OSError, ValueError) as exc:
+            print(f"Report input/output error: {exc}", file=sys.stderr)
+            return 2
+        print(f"DRAFT SAMPLE DATA numerical results ready at {path}.")
+        return 0
+    phases = {"approve": "P7", "deliver": "P7"}
     print(
         f"{args.command} is scheduled for {phases[args.command]}. "
         "See docs/STATUS.md for the current implementation checkpoint.",

@@ -1,12 +1,12 @@
 # Completion tracker
 
-Updated 2026-11-16. P2 implementation verified. Expected flags and assumptions await owner review before P3. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P2 approved. P3 core implemented with 81 passing tests. Final P3 verification and handoff in progress. Hosted CI P1-5 remains open.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
 | P0 Kickoff | 5% | 5/5 | 100.0% | `████████████████████` |
 | P1 Scaffold | 8% | 5/6 | 83.3% | `█████████████████░░░` |
-| P2 Sample data | 10% | 3/5 | 60.0% | `████████████░░░░░░░░` |
+| P2 Sample data | 10% | 5/5 | 100.0% | `████████████████████` |
 | P3 Loader and KPIs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P4 Rules | 12% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P5 Commentary and guard | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
@@ -14,7 +14,7 @@ Updated 2026-11-16. P2 implementation verified. Expected flags and assumptions a
 | P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **13/56** | **17.7% weighted** | `████░░░░░░░░░░░░░░░░` |
+| **Overall** | **100%** | **15/56** | **21.7% weighted** | `████░░░░░░░░░░░░░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -33,9 +33,9 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P1-6 | Config loading (`settings.yaml`, `thresholds.yaml`) via pydantic | Invalid config fails with a clear error (test) | Complete. Settings and threshold models reject malformed, missing and invalid config through CLI and direct loader tests. |
 | P2-1 | Generator for ads, total sales, costs, inventory (10 products × 8 weeks, seeded) | Same seed → identical files (test) | Complete. CLI generates 10 products across 8 weeks. Seeds 0, 42 and 2026 pass byte-reproducibility tests. See evidence/p2-local.txt. |
 | P2-2 | Engineer the 10 product stories from §5.3 | Each story visible in the data | Complete. Independent fixture arithmetic verifies all ten stories and exact final-week R1-R9 flags. See P2-SAMPLE-REVIEW.md and tests/test_sample.py. |
-| P2-3 | `expected_flags.yaml` | Reviewed by owner | In review. expected_flags.yaml committed and independently checked. Awaiting owner approval at the P2 gate. |
+| P2-3 | `expected_flags.yaml` | Reviewed by owner | Complete. Owner approved expected_flags.yaml and its review table on 2026-11-16. |
 | P2-4 | SAMPLE marker in file names, headers or metadata | Test asserts the marker | Complete. All seven sample files have SAMPLE naming or metadata markers, asserted by tests. |
-| P2-5 | Data realism check: plausible CPC, CTR, CVR, prices, fees for a toy-like category on amazon.de; every assumption logged in ASSUMPTIONS.md | Owner approves the ranges | In review. Modeled costs and observed ranges are recorded in ASSUMPTIONS.md and evidence/P2-REPORT.md. Awaiting owner approval. |
+| P2-5 | Data realism check: plausible CPC, CTR, CVR, prices, fees for a toy-like category on amazon.de; every assumption logged in ASSUMPTIONS.md | Owner approves the ranges | Complete. Owner approved sample assumptions and ranges on 2026-11-16. See decisions.md. |
 | P3-1 | Loader: column mapping (old + new names) + schema validation | Bad or missing columns fail clearly (tests) | Pending |
 | P3-2 | KPI functions per §2.4 (pure, no I/O) | Unit tests pass | Pending |
 | P3-3 | The 8.44 / 25.13 → 33.6% worked example | Test pass | Pending |
