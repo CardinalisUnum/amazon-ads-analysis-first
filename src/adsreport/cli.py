@@ -59,18 +59,18 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"SAMPLE DATA ready at {path} (10 products, 8 weeks, seed {args.seed}).")
         return 0
     if args.command == "run":
-        if not args.no_ai:
-            print(
-                "Use --no-ai for the P3 numerical draft. AI commentary follows in P5.",
-                file=sys.stderr,
-            )
-            return 2
         try:
-            path = run_numerical_draft(args.input, args.out, args.config, config)
+            path = run_numerical_draft(
+                args.input,
+                args.out,
+                args.config,
+                config,
+                no_ai=args.no_ai,
+            )
         except (InputError, OSError, ValueError) as exc:
             print(f"Report input/output error: {exc}", file=sys.stderr)
             return 2
-        print(f"DRAFT SAMPLE DATA numerical results ready at {path}.")
+        print(f"DRAFT SAMPLE DATA report.json and KPI CSV ready at {path}.")
         return 0
     phases = {"approve": "P7", "deliver": "P7"}
     print(

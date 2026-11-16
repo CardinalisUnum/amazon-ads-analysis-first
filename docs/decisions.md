@@ -130,3 +130,17 @@ On 2026-11-16 the owner approved P4 and requested that the completed phase and e
 P4 evaluates only the requested report week and uses historical KPI records for supporting comparisons. Launch age is evaluated at the report week's Sunday, with a strict past-window comparison (day 57 is beyond an eight-week window). Priority selection defaults to six products via priority_products. Every flag is retained independently of that display limit.
 
 All nine rules match the approved final-week sample expectations. Missing or nonfinite observations produce skipped-rule records. Exact Decimal/date evidence is serialized through typed Flag models. P4 adds no dependency and preserves the numerical CSV snapshot.
+
+## P5 approval
+
+On 2026-11-16 the owner said “Continue” after the P4 report and P5 approval request. P5 is authorized. Stop before P6 and push the implementation, tests, evidence and exact handoff. P1-5 remains open.
+
+P5 uses structured metric claims and controlled review choices. Python validates product, week, metric, unit, direction and display rounding, then renders canonical labels. Unsupported causes, targets and review dates remain unknown. This makes numeric attribution enforceable without trusting prose interpretation. All ten latest-week sample products receive commentary independently of the six priority rows.
+
+P5 adds the official google-genai 3.3.0 SDK, pinned to the version already exercised in P0. It supports Python 3.13 and is Apache-2.0 licensed. See [package metadata](https://pypi.org/project/google-genai/3.3.0/) and [official SDK](https://googleapis.github.io/python-genai/), checked 2026-11-16. Transitive dependencies are captured by uv.lock. [Standard model input/output remain free on Free Tier](https://aistudio.google.com/docs/pricing#gemini-3.5-flash-lite), with quota and provider terms. Billing-unlinked status is owner-attested, not independently verified through billing administration.
+
+The first local live attempt and a diagnostic request both received HTTP 400 for serving-schema complexity. The serving schema now omits descriptive metadata, date format and length bounds, while retaining its object types, required fields and controlled choices. Full constraints still run locally per product. The third live request parsed successfully, and all ten notes passed the guard. Evidence separates this manual verification from future scheduled history.
+
+SDK 3.3.0 Interactions uses status_code/body exceptions distinct from legacy code/details errors. A mocked HTTP transport exposed this during testing. The adapter reads both public attribute shapes, sanitizes the outcome and never persists exception text. A transport test confirms attempts=1 prevents hidden retry. Automatic continuation is disabled, store=false, no tools are supplied, and each network attempt has a sixty-second timeout. A quota response permits one application retry after the provider delay, waited in chunks of at most sixty seconds. Other failures immediately use templates.
+
+The explicit GEMINI_FREE_TIER_CONFIRMED flag records the existing owner confirmation. Unverified models and unconfirmed projects receive templates without a request. The local ignored .env flag was set from the owner's existing Free Tier attestation. No billing setting was changed. A replacement key must be saved privately before unattended operation.

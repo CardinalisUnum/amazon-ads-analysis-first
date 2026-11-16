@@ -20,7 +20,7 @@ uv run ruff format --check .
 uv run mypy --strict src/
 ```
 
-The current implementation validates settings and thresholds, generates reproducible sample inputs, calculates numerical KPI drafts and applies all nine review rules. Approval and delivery return a nonzero status identifying their implementation phase. Commentary and visual reports follow in P5-P6. Scheduled reporting and delivery follow in P7.
+The current implementation validates inputs, calculates deterministic KPIs, applies all nine review rules and produces checked commentary or deterministic template notes. Approval and delivery return a nonzero status identifying P7. Visual reports follow in P6. Scheduled reporting and delivery follow in P7.
 
 ```shell
 uv run adsreport generate-sample --seed 42
@@ -45,9 +45,23 @@ report.json includes an analysis section for the manifest report week. It contai
 
 See [rule contract](docs/RULES.md) for exact boundary, lifecycle and history behavior. In the final sample week, the engine finds the approved ten flags across seven products.
 
-All financial calculations use Decimal. The tests reproduce the EUR 8.44 / EUR 25.13 = 33.6% break-even example and exercise zero denominators, missing weeks, halo sales and mathematical properties. The AI path remains a later implementation step, so this checkpoint requires --no-ai.
+All financial calculations use Decimal. The tests reproduce the EUR 8.44 / EUR 25.13 = 33.6% break-even example and exercise zero denominators, missing weeks, halo sales and mathematical properties.
 
-The development checks use no API credentials. For the earlier Gemini account probe, use a dedicated Free Tier project with billing unlinked and store its key in ignored .env. That probe's SDK requirements are recorded separately in docs/evidence/p0-requirements.txt.
+## Checked commentary
+
+Both run modes now include ten latest-week product notes in report.json. --no-ai reads no credential and makes no network request. Its templates are reproducible. The default AI path makes one structured request for all selected products and validates each product separately. It falls back visibly for missing credentials, provider failures, malformed entries or rejected claims. The numerical CSV and rules remain identical in either mode.
+
+To use AI, create a dedicated Google AI Studio Free Tier project with billing unlinked. Save GEMINI_API_KEY and GEMINI_FREE_TIER_CONFIRMED=true in ignored .env, using .env.example as the template. This flag records the operator's attestation. The program cannot independently verify billing status. Rotate any key previously shared in chat before unattended operation.
+
+```shell
+uv run adsreport run --input data/sample --out out/ai-draft
+```
+
+The verified model is gemini-3.5-flash-lite. Other models fall back until reviewed for free access. One quota retry honors the provider delay. SDK automatic retries and continuation are disabled. Every note carries SAMPLE DATA, either AI-drafted, guard-checked or template, and a reason. Check commentary.request_status and commentary.attempts for the actual service outcome.
+
+The model selects metric facts and a permitted review focus. Python validates each value against that product, week, metric, unit and direction, and owns the rendered labels. Causes, targets and review dates remain unknown. Free-form analysis and causal accuracy are outside this guard's guarantees. See [commentary contract](docs/COMMENTARY.md).
+
+The [P5 evidence](docs/evidence/p5-gemini.json) records a real ten-product batched response with ten accepted notes and no rejections, measured at 6.066 seconds for that local end-to-end run. This manual check provides no scheduled reliability or business time-saving claim. The first serving schema was rejected and simplified before the successful call. Hosted CI remains blocked by the account restriction described in [status](docs/STATUS.md).
 
 ## Configuration
 

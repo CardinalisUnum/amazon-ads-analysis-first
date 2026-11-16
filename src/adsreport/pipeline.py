@@ -7,6 +7,7 @@ import json
 from decimal import Decimal
 from pathlib import Path
 
+from adsreport.ai.commentary import generate_commentary
 from adsreport.artifacts import publish_bundle
 from adsreport.config import Configuration
 from adsreport.io.loader import InputError, load_inputs
@@ -45,7 +46,12 @@ def kpi_csv(results: list[ProductMetrics]) -> bytes:
 
 
 def run_numerical_draft(
-    folder: Path, destination: Path, config_dir: Path, config: Configuration
+    folder: Path,
+    destination: Path,
+    config_dir: Path,
+    config: Configuration,
+    *,
+    no_ai: bool = True,
 ) -> Path:
     loaded = load_inputs(folder, config_dir / "column_map.yaml")
     if loaded.manifest.vat_rate != Decimal(str(config.settings.vat_rate)):
@@ -57,11 +63,19 @@ def run_numerical_draft(
         loaded.manifest.report_week,
         config.settings.priority_products,
     )
+    commentary = generate_commentary(
+        results,
+        analysis,
+        no_ai=no_ai,
+        model=config.settings.gemini_model,
+        limit=config.settings.commentary_products,
+    )
     report = {
         "data_label": loaded.manifest.data_label,
         "status": "DRAFT",
-        "stage": "rules",
+        "stage": "commentary",
         "analysis": analysis.model_dump(mode="json"),
+        "commentary": commentary.model_dump(mode="json"),
         "marketplace": loaded.manifest.marketplace,
         "currency": loaded.manifest.currency,
         "vat_rate": str(loaded.manifest.vat_rate),

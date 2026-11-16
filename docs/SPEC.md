@@ -1,6 +1,6 @@
 # Build specification
 
-Owner decisions in decisions.md supersede older defaults below. The application is pending.
+Owner decisions in decisions.md supersede older defaults below. Implementation through P5 is complete. See STATUS.md for acceptance evidence and external blockers.
 
 ## 5. Architecture
 
@@ -16,7 +16,7 @@ src/adsreport/
   kpi/engine.py         pure functions, no I/O
   rules/engine.py       pure functions, returns Flag objects with severity + evidence
   ai/commentary.py      one batched Gemini call → pydantic objects
-  guard/numbers.py      rejects any number not in the allowed set
+  guard/numbers.py      validates product/week/metric/unit/direction and rounding
   ai/fallback.py        deterministic template commentary
   render/charts.py      matplotlib → SVG/PNG
   render/xlsx.py        XlsxWriter workbook
@@ -95,12 +95,16 @@ Stock coverage = `units_available / avg_daily_units_last_4_weeks`. If the averag
 ## 7. AI commentary, guard, approval, run log
 
 ### 7.1 Commentary (one call per run)
+The implemented P5 contract is documented in COMMENTARY.md. To make attribution enforceable, the model's what_happened field contains one to three typed metric claims. Other fields select controlled values. Python renders these into the public note's text fields. Full local Pydantic validation follows the smaller serving schema. Unsupported cause, target and review date remain unknown, and confidence remains low. Every latest-week product receives a note, including templates beyond the configured AI batch limit.
+
 - Input: only the computed facts for flagged products (top N by severity, all ten sample products, prioritised by severity), as JSON.
 - Output schema (pydantic), per product: `asin`, `what_happened`, `likely_cause`, `planned_change_to_review`, `target_and_review_date`, `confidence` (low / medium / high).
 - Prompt rules: English; use only the numbers provided; say "unknown" rather than guess; never recommend automatic bid, price, delisting or refund decisions; frame actions as "review with the Ads manager"; at most 70 words per field.
 - Handle `429` / quota errors with **one** retry after the server's retry delay, then fall back to the template. **Never** fail the whole run because of the AI.
 
 ### 7.2 Number guard
+P5 enforces these requirements at the structured claim boundary. Numeric strings may contain a decimal point or comma and an optional sign. Currency symbols, dates, multipliers, prose and other syntax cannot be placed in numeric values. Explicit unit and direction fields are validated separately. Week must equal the requested product week. Canonical labels prevent metric names being changed in prose. The guard validates raw or half-up display-rounded values at zero, one or two decimal places. There is no unrestricted generated prose to bypass numeric extraction. Unknown causes and future dates cannot be invented in the controlled fields.
+
 - Extract every numeric token from the AI text (integers, decimals with `.` or `,`, percentages, € amounts, "x" multipliers, dates).
 - The allowed set = every value the engine computed for that product (raw plus display-rounded to 0, 1 and 2 decimals), plus the dates in the report. Bind claims to metric, product, week, unit and direction.
 - Any number outside the allowed set → reject that product's AI text, use the template, and log `guard_rejected` with the offending tokens.

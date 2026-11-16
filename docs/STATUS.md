@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P4 complete and verified. P5 awaits owner approval. Hosted CI P1-5 remains open.
+Updated 2026-11-16. P5 complete and verified. P6 awaits owner approval. Hosted CI P1-5 remains open.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|
@@ -9,12 +9,12 @@ Updated 2026-11-16. P4 complete and verified. P5 awaits owner approval. Hosted C
 | P2 Sample data | 10% | 5/5 | 100.0% | `████████████████████` |
 | P3 Loader and KPIs | 15% | 6/6 | 100.0% | `████████████████████` |
 | P4 Rules | 12% | 5/5 | 100.0% | `████████████████████` |
-| P5 Commentary and guard | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
+| P5 Commentary and guard | 15% | 6/6 | 100.0% | `████████████████████` |
 | P6 Outputs | 15% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P7 Operations and approval | 10% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P8 Docs and demo | 5% | 0/5 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
 | P9 Independent audit | 5% | 0/6 | 0.0% | `░░░░░░░░░░░░░░░░░░░░` |
-| **Overall** | **100%** | **26/56** | **48.7% weighted** | `██████████░░░░░░░░░░` |
+| **Overall** | **100%** | **32/56** | **63.7% weighted** | `█████████████░░░░░░░` |
 
 Bars round to the nearest 5%. Numeric percentages are exact to one decimal place.
 
@@ -47,12 +47,12 @@ Bars round to the nearest 5%. Numeric percentages are exact to one decimal place
 | P4-3 | Severity sort and top-N priority list | Test | Complete. Deterministic severity ordering, product deduplication, retained rule IDs and configurable top-N priorities are tested. |
 | P4-4 | `expected_flags.yaml` exact-match test | Pass | Complete. Every final-week sample product matches expected_flags.yaml exactly. See evidence/SAMPLE-p4-analysis.json. |
 | P4-5 | Wording check: no rule text recommends bid, price, delisting or refund decisions | Test scans flag text | Complete. Reasons request human review and pass directive-wording checks. See tests/test_rules.py and RULES.md. |
-| P5-1 | Commentary schema (pydantic) + prompt per §7.1 | Prompt file committed and reviewed | Pending |
-| P5-2 | One batched Gemini call with structured output (verified API shape) | Real call succeeds; output parsed | Pending |
-| P5-3 | Number guard per §7.2 | Rejection and acceptance tests pass | Pending |
-| P5-4 | Template fallback (deterministic) | `--no-ai` path fully works | Pending |
-| P5-5 | Error handling: quota/429 → one retry → fallback; never fails the run | Test with a mocked 429 | Pending |
-| P5-6 | Label each comment "AI-drafted, guard-checked" or "template", and why | Visible in outputs (test) | Pending |
+| P5-1 | Commentary schema (pydantic) + prompt per §7.1 | Prompt file committed and reviewed | Complete. Structured fact selections, canonical wording and prompt reviewed. See COMMENTARY.md and ai/models.py. |
+| P5-2 | One batched Gemini call with structured output (verified API shape) | Real call succeeds; output parsed | Complete. Real normal-CLI batch parsed ten accepted product notes in one request. See evidence/p5-gemini.json. |
+| P5-3 | Number guard per §7.2 | Rejection and acceptance tests pass | Complete. Guard tests cover rounding, EUR, percentages, points, signed direction, wrong products/weeks, metric swaps and fabricated numbers. Guard coverage is 100%. |
+| P5-4 | Template fallback (deterministic) | `--no-ai` path fully works | Complete. Offline CLI yields ten deterministic templates, unchanged golden CSV and byte-identical JSON across checkouts. |
+| P5-5 | Error handling: quota/429 → one retry → fallback; never fails the run | Test with a mocked 429 | Complete. Quota retry/recovery/exhaustion, provider delays, schema and network fallback tested. Actual SDK transport confirms no hidden retry. |
+| P5-6 | Label each comment "AI-drafted, guard-checked" or "template", and why | Visible in outputs (test) | Complete. Every report.json note has label and reason. Partial rejection preserves other notes. Rendering these labels in four formats follows in P6. |
 | P6-1 | Chart module (matplotlib → SVG + PNG), shared palette | Charts render; labels and units present | Pending |
 | P6-2 | XLSX per §8 with native charts + conditional formatting | Opens cleanly in Excel; screenshots | Pending |
 | P6-3 | HTML per §8 (Jinja2, autoescape) | Screenshot; no external network requests | Pending |

@@ -1,0 +1,24 @@
+Separate staged Git checkout, core.autocrlf=true. No local .env copied.
+
+$ python -m pytest -q
+........................................................................ [ 40%]
+........................................................................ [ 80%]
+....................................                                     [100%]
+180 passed in 6.49s
+
+exit=0
+
+$ python -m adsreport run --input data/sample --out out/offline --no-ai
+DRAFT SAMPLE DATA report.json and KPI CSV ready at out\offline.
+
+exit=0
+
+SAMPLE_kpis.csv: byte-identical, SHA-256 2301e2b92556eba7abeb5c3b357b7849347f325ffe1d676eb8bc6bafcb0da3db
+
+report.json: byte-identical, SHA-256 2861dd2bd0758e19576f592d39df8a9428031e495b2128b3efdddd618bc3414e
+
+P3 golden numerical CSV unchanged.
+
+Wheel inspection: 26 package/metadata files, prompt present, no workspace cache or .env.
+
+Live and offline product metrics, rules and fingerprints match exactly.
