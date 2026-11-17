@@ -1,0 +1,15 @@
+{
+  "recorded_at_utc": "2026-11-17T03:35:18.236550+00:00",
+  "scope": "Builder local readiness; not independent P9 or actual provider receipt",
+  "base_commit": "68c14a513d68a99b081624c257e583f91150c6b7",
+  "working_tree_dirty": true,
+  "tests_passed": 237,
+  "added_regression_cases": 15,
+  "overall_coverage": "96%",
+  "real_history_sha256": "f72803c35061e1d9783a0b80c62bfbac0acca23a7ba04fba1e52109001a46083",
+  "real_history_changed_by_tests": false,
+  "gmail_setup": "deferred, bookmarked; notifications disabled",
+  "live_email_discord_requests": 0,
+  "live_gemini_requests": 0,
+  "external_acceptance": "unchanged: 41/56 tasks, 82.3% weighted"
+}

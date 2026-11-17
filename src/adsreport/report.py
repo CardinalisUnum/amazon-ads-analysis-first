@@ -52,7 +52,12 @@ class Presentation(Strict):
 
 class Approval(Strict):
     reviewer: Annotated[
-        str, Field(min_length=1, max_length=80, pattern=r"^[A-Za-z0-9 ._@-]+$")
+        str,
+        Field(
+            min_length=1,
+            max_length=80,
+            pattern=r"^[A-Za-z0-9 ._@-]*[A-Za-z0-9][A-Za-z0-9 ._@-]*$",
+        ),
     ]
     approved_at: AwareDatetime
     draft_manifest_sha256: Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]

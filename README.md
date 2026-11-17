@@ -110,6 +110,8 @@ Use [review-effort instructions](docs/REVIEW-EFFORT.md) for actual human measure
 
 ## Verification and handoff
 
+[Gmail setup bookmark](docs/GMAIL-SETUP.md) preserves the deferred owner step. [Builder readiness review](docs/TEST-READINESS.md) records the latest checks and fixed path/identity regressions.
+
 ```shell
 uv run ruff check .
 uv run ruff format --check .
@@ -117,6 +119,6 @@ uv run mypy --strict src/
 uv run pytest --cov=src/adsreport --cov-report=term-missing
 ```
 
-The local suite has **222 passing tests**, with 95% overall coverage at the operations checkpoint. Numerical engine, rules, number guard and portfolio arithmetic retain dedicated full coverage. Both workflows pass actionlint locally. [P7 evidence](docs/evidence/P7-REPORT.md) identifies which checks are local, mocked or externally blocked. Hosted CI is not green and an independent release audit has not occurred.
+The local suite has **237 passing tests**, with 96% overall coverage in the November 17 readiness check. Numerical engine, rules, number guard and portfolio arithmetic retain dedicated full coverage. Both workflows pass actionlint locally. [P7 evidence](docs/evidence/P7-REPORT.md) identifies which checks are local, mocked or externally blocked. Hosted CI is not green and an independent release audit has not occurred.
 
 All buildable P7 code and P8 documentation are present. Strict acceptance is **41/56 tasks, 82.3% weighted**; external operation evidence, owner sign-off/timing and P9 remain open. See the complete [phase table](docs/STATUS.md), [continuation handoff](docs/RESUME.md), [independent audit request](docs/AUDIT-HANDOFF.md), [demo script](docs/loom-script.md) and [owner decisions](docs/decisions.md). No v1.0.0 release is claimed.

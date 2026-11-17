@@ -28,6 +28,8 @@ def deliver_report(
             "Test approvals cannot be delivered through the production command."
         )
     target = outbox / expected
+    if target.resolve().is_relative_to(folder.resolve()):
+        raise ValueError("Delivery outbox must remain outside the frozen report.")
     with exclusive_lock(target.with_suffix(".lock")):
         target.mkdir(parents=True, exist_ok=True)
         stream = io.BytesIO()

@@ -176,3 +176,9 @@ Local approval is self-attested and manifest-bound. Hosted approval additionally
 ## Gmail sender selection
 
 On 2026-11-16 the owner selected an existing personal Gmail account with app-password support as the SMTP sender. Use smtp.gmail.com:587 with STARTTLS. Sender/recipient addresses and the generated application password must be configured privately. Local non-secret defaults were prepared with notifications disabled; existing private values were preserved. No message, authentication attempt or receipt is claimed from this selection.
+
+## Deferred Gmail setup and readiness checks
+
+On November 17, 2026 the owner asked to bookmark the Gmail setup position and continue testing the remaining system. GMAIL-SETUP.md preserves the exact resumption steps, with links from RESUME and OWNER-ACTIONS. Notifications remain disabled and private destinations are not configured. Continue local checks without credential requests or actual messages. This builder readiness pass does not replace P9 independent review or complete missing external acceptance.
+
+Readiness regression checks found and fixed output paths that could place approval/delivery files inside a frozen bundle, plus symbol-only reviewer names. Resolved approval and archive destinations must preserve frozen directories. Neither the financial engine nor rule thresholds/sample facts were changed. Test approvals stay explicitly labelled and never represent the owner's approval.

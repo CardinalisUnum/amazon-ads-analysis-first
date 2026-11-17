@@ -448,3 +448,176 @@ def test_history_merge_preserves_existing_bytes_and_rejects_conflicts():
     assert module.merge_events(original, [event, newer]).startswith(original)
     with pytest.raises(ValueError, match="conflict"):
         module.merge_events(original, [event.model_copy(update={"status": "failure"})])
+
+
+def test_nested_approval_output_preserves_draft(tmp_path, draft):
+    folder = copy_bundle(draft, tmp_path / "draft")
+    with pytest.raises(ValueError, match="preserve"):
+        approve_report(
+            folder,
+            folder / "approved",
+            draft.manifest_sha256,
+            "Test",
+            mechanism="test",
+        )
+    assert freeze(folder).files == draft.files
+
+
+def test_nested_delivery_outbox_preserves_approved_bundle(approved, monkeypatch):
+    bundle, folder = approved
+    sender = MagicMock(side_effect=AssertionError("Must fail before sending"))
+    monkeypatch.setattr("adsreport.delivery.notify", sender)
+    with pytest.raises(ValueError, match="outside"):
+        deliver_report(
+            folder, bundle.manifest_sha256, folder / "outbox", test_mode=True
+        )
+    assert freeze(folder).files == bundle.files
+    sender.assert_not_called()
+
+
+@pytest.mark.parametrize("reviewer", [" ", "...", "_@-"])
+def test_approval_rejects_empty_reviewer_identity(tmp_path, draft, reviewer):
+    with pytest.raises(ValueError):
+        approve_report(
+            Path("docs/examples"),
+            tmp_path / "approved",
+            draft.manifest_sha256,
+            reviewer,
+            mechanism="test",
+        )
+    assert not (tmp_path / "approved").exists()
+
+
+def test_corrupt_outbox_archive_is_never_sent(tmp_path, approved, monkeypatch):
+    bundle, folder = approved
+    outbox = tmp_path / "outbox"
+    target = outbox / bundle.manifest_sha256
+    target.mkdir(parents=True)
+    (target / "SAMPLE-approved.zip").write_bytes(b"interrupted archive")
+    sender = MagicMock(side_effect=AssertionError("Must fail before sending"))
+    monkeypatch.setattr("adsreport.delivery.notify", sender)
+    with pytest.raises(ValueError, match="archive differs"):
+        deliver_report(folder, bundle.manifest_sha256, outbox, test_mode=True)
+    sender.assert_not_called()
+    assert freeze(folder).files == bundle.files
+
+
+def test_delivery_archive_target_cannot_equal_approved_folder(
+    tmp_path, approved, monkeypatch
+):
+    bundle, _ = approved
+    folder = copy_bundle(bundle, tmp_path / bundle.manifest_sha256)
+    sender = MagicMock(side_effect=AssertionError("Must fail before sending"))
+    monkeypatch.setattr("adsreport.delivery.notify", sender)
+    with pytest.raises(ValueError, match="outside"):
+        deliver_report(folder, bundle.manifest_sha256, tmp_path, test_mode=True)
+    assert freeze(folder).files == bundle.files
+    sender.assert_not_called()
+
+
+def test_receipt_write_failure_prevents_external_send(tmp_path, monkeypatch):
+    configured(monkeypatch)
+    sender = MagicMock(side_effect=AssertionError("No durable sending state"))
+    monkeypatch.setattr(notifications, "send_email", sender)
+    monkeypatch.setattr(notifications, "send_discord", sender)
+    monkeypatch.setattr(
+        notifications,
+        "save_receipt",
+        MagicMock(side_effect=OSError("Injected disk failure")),
+    )
+    with pytest.raises(OSError, match="Injected"):
+        notifications.notify("sample", "body", None, tmp_path / "receipt.json")
+    sender.assert_not_called()
+
+
+def test_crash_after_provider_acceptance_does_not_resend_email(tmp_path, monkeypatch):
+    configured(monkeypatch)
+    email = MagicMock(return_value=None)
+    discord = MagicMock(return_value="123")
+    monkeypatch.setattr(notifications, "send_email", email)
+    monkeypatch.setattr(notifications, "send_discord", discord)
+    real_save = notifications.save_receipt
+    writes = 0
+
+    def fail_after_send(path, receipt):
+        nonlocal writes
+        writes += 1
+        if writes == 2:
+            raise OSError("Injected post-acceptance persistence failure")
+        real_save(path, receipt)
+
+    monkeypatch.setattr(notifications, "save_receipt", fail_after_send)
+    receipt = tmp_path / "receipt.json"
+    with pytest.raises(OSError, match="post-acceptance"):
+        notifications.notify("sample", "body", b"archive", receipt)
+    assert (
+        json.loads(receipt.read_text(encoding="utf-8"))["email"]["state"] == "sending"
+    )
+    monkeypatch.setattr(notifications, "save_receipt", real_save)
+    assert notifications.notify("sample", "body", b"archive", receipt) == {
+        "email": "uncertain",
+        "discord": "accepted",
+    }
+    email.assert_called_once()
+    discord.assert_called_once()
+
+
+@pytest.mark.parametrize(
+    "state,login,environment",
+    [
+        ("approved", "another-reviewer", "client-delivery"),
+        ("rejected", "CardinalisUnum", "client-delivery"),
+        ("approved", "CardinalisUnum", "another-environment"),
+    ],
+)
+def test_github_review_cannot_substitute_owner_or_environment(
+    monkeypatch, state, login, environment
+):
+    for key, value in {
+        "GITHUB_ACTIONS": "true",
+        "GITHUB_RUN_ID": "123",
+        "GITHUB_REPOSITORY": "CardinalisUnum/amazon-ads-analysis-first",
+    }.items():
+        monkeypatch.setenv(key, value)
+    response = MagicMock()
+    response.__enter__.return_value = response
+    response.read.return_value = json.dumps(
+        [
+            {
+                "state": state,
+                "user": {"login": login},
+                "environments": [{"name": environment}],
+            }
+        ]
+    ).encode()
+    monkeypatch.setattr(
+        "adsreport.github_review.urllib.request.urlopen",
+        MagicMock(return_value=response),
+    )
+    with pytest.raises(ValueError, match="not recorded"):
+        github_reviewer()
+
+
+@pytest.mark.parametrize(
+    "event,injected,expected",
+    [
+        ("schedule", False, "schedule"),
+        ("workflow_dispatch", False, "manual"),
+        ("schedule", True, "test_failure"),
+    ],
+)
+def test_workflow_trigger_labels_keep_injected_failures_out_of_schedule_rate(
+    monkeypatch, event, injected, expected
+):
+    for key, value in {
+        "GITHUB_ACTIONS": "true",
+        "GITHUB_RUN_ID": "123",
+        "GITHUB_REPOSITORY": "CardinalisUnum/amazon-ads-analysis-first",
+        "GITHUB_EVENT_NAME": event,
+    }.items():
+        monkeypatch.setenv(key, value)
+    identity = new_run(test_failure=injected)
+    assert identity.trigger == expected
+    assert identity.workflow_run_url.endswith("/actions/runs/123")
+    events = [event_now(identity, "run", "success", 0)]
+    assert scheduled_rate(events)["scheduled"] == (expected == "schedule")

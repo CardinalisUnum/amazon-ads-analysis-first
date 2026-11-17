@@ -1,5 +1,7 @@
 # Owner setup and acceptance checklist
 
+**Deferred setup bookmark:** [Gmail setup — saved position and exact next steps](GMAIL-SETUP.md). Local testing can continue while this remains pending.
+
 The local reporting app is ready. **No notification account or working Gemini quota is needed to generate all four reports.** The remaining items below concern optional AI, hosted automation, delivery and release evidence.
 
 ## Run it now

@@ -1,0 +1,40 @@
+$ adsreport --help
+usage: adsreport [-h] [--config CONFIG] [--check-config]
+                 {generate-sample,run,inspect,approve,deliver,doctor,history} ...
+
+Weekly Amazon Ads analysis and reviewed delivery.
+
+positional arguments:
+  {generate-sample,run,inspect,approve,deliver,doctor,history}
+    generate-sample     Generate seeded sample inputs.
+    run                 Build and log a new DRAFT report.
+    doctor              Check local setup without making an AI or notification
+                        request.
+    history             Show real recorded runs and scheduled success
+                        numerator/denominator.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --check-config
+Exit 0
+$ adsreport --check-config
+Configuration valid.
+Exit 0
+$ adsreport doctor
+{
+  "configuration": "ready",
+  "pdf_native_libraries": "ready",
+  "ai_credentials_configured": true,
+  "notifications": {
+    "enabled": false,
+    "email": false,
+    "discord": false
+  },
+  "local_reporting_ready": true,
+  "ai_note": "Configuration only. Access/quota is not probed; templates work offline."
+}
+Exit 0
+$ adsreport generate-sample --seed 42
+SAMPLE DATA ready at data\sample (10 products, 8 weeks, seed 42).
+Exit 0

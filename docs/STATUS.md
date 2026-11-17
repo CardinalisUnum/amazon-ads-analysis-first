@@ -1,6 +1,6 @@
 # Completion tracker
 
-Updated 2026-11-16. P7 implementation is locally verified with 222 tests. The owner authorized finishing remaining buildable work. All buildable P7 code and P8 documentation are present. External P7 acceptance, owner documentation/timing sign-off and hosted CI P1-5 remain open. P9 is a separate independent reviewer task; implementation readiness does not count as external acceptance.
+Updated 2026-11-17. Builder readiness is locally verified with 237 tests; see TEST-READINESS.md. Gmail setup is deferred and bookmarked in GMAIL-SETUP.md. The owner authorized finishing remaining buildable work. All buildable P7 code and P8 documentation are present. External P7 acceptance, owner documentation/timing sign-off and hosted CI P1-5 remain open. P9 is a separate independent reviewer task; implementation readiness does not count as external acceptance.
 
 | Phase | Weight | Complete | Progress | Bar |
 |---|---:|---:|---:|---|

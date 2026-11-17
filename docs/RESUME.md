@@ -1,6 +1,8 @@
 # Resume this checkpoint
 
-All buildable P7 code and P8 documentation are complete locally, with 222 passing tests (95% overall coverage). Strict acceptance is 41/56 tasks, 82.3% weighted; see STATUS.md for the full phase table. The owner authorized finishing all remaining buildable work without repeated phase questions; see decisions.md. Hosted acceptance remains blocked by the existing account billing lock. No release tag or independent audit is claimed.
+**Saved owner setup bookmark:** [Resume Gmail setup](GMAIL-SETUP.md). On November 17, 2026 the owner deferred this setup and asked to continue local readiness testing. Keep notifications disabled; do not treat the pause as configured credentials or received messages.
+
+All buildable P7 code and P8 documentation are complete locally, with 237 passing tests (96% overall coverage). Strict acceptance is 41/56 tasks, 82.3% weighted; see STATUS.md for the full phase table. The owner authorized finishing all remaining buildable work without repeated phase questions; see decisions.md. Hosted acceptance remains blocked by the existing account billing lock. No release tag or independent audit is claimed.
 
 Read AGENTS.md, STATUS.md, decisions.md, SPEC.md and OPERATIONS.md first. P6 examples remain frozen DRAFT sample snapshots. Real operational CLI runs create unique reports/<run-id>/draft directories, with real UTC identity and append-only runs/run-log.jsonl events. Unit tests isolate their logs and disable notifications.
 
@@ -9,6 +11,8 @@ Approval captures the exact manifest, preserves the original draft, restores per
 Email and Discord transports are implemented and mock-tested. No private destinations are configured. No actual approval, receipt or unattended success was invented. The Environment is configured for CardinalisUnum/main; actual hosted waiting/approved states remain unverified. See evidence/p7-environment.json and evidence/P7-REPORT.md.
 
 ## Current evidence and next work
+
+November 17 builder readiness: 237 tests pass, including fifteen added operational regressions. See TEST-READINESS.md and evidence/readiness-20261117-tests.txt. Approval output and delivery archive targets are rejected inside frozen reports, and reviewer identity requires a letter or digit. CLI help/config/doctor/sample checks, lint, types and workflow validation pass. Real history and frozen examples remain intact. This is builder verification, not P9 independent audit.
 
 - Start-Report.ps1 completed a genuine local offline run at 2026-11-16 15:36 UTC: run 20261116T153601Z-7150091f311b, 6.382 pipeline seconds, ten products, ten flags, thirteen files. Source identity and dirty-tree disclosure are in evidence/p7-local-run.json. Local HTML, Excel, eight-page PDF and five-slide deck are available in reports/<run-id>/draft (ignored). Committed P6 examples remain static review references.
 - One actual labelled injected failure is in runs/run-log.jsonl; alerts were disabled. Scheduled evidence is 0/0, unavailable. Neither historical sample weeks nor unit calls were backfilled into operational history.

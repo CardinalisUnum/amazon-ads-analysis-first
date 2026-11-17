@@ -108,7 +108,7 @@ def approve_report(
     source = freeze(folder, expected)
     if source.manifest.status != "DRAFT":
         raise ValueError("Only a DRAFT bundle can be approved.")
-    if destination.resolve() == folder.resolve():
+    if destination.resolve().is_relative_to(folder.resolve()):
         raise ValueError("Approved output must preserve the original draft directory.")
     if destination.exists():
         existing = freeze(destination)
